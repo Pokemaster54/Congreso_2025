@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Congreso_2025", "Congreso_2025\Congreso_2025.csproj", "{74256C06-C0A5-4CE1-BE4E-D9653E53A935}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74256C06-C0A5-4CE1-BE4E-D9653E53A935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74256C06-C0A5-4CE1-BE4E-D9653E53A935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74256C06-C0A5-4CE1-BE4E-D9653E53A935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74256C06-C0A5-4CE1-BE4E-D9653E53A935}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D8833E6-73FA-497E-8416-E87B80396201}
+	EndGlobalSection
+EndGlobal
