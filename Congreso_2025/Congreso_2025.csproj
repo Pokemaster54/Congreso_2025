@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="MenuAdmin.Master.cs">
       <DependentUpon>MenuAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MenuAdmin.Master.designer.cs">
       <DependentUpon>MenuAdmin.Master</DependentUpon>
@@ -95,6 +96,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Clases\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
