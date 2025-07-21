@@ -1,4 +1,181 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CongresoDataContext">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.75, 14.25" name="CongresoDataContext">
   <DataContextMoniker Name="/CongresoDataContextDataContext" />
+  <nestedChildShapes>
+    <classShape Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" absoluteBounds="4.375, 1.125, 2, 2.5401025390625">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Actividad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="128543fc-de30-4b75-a285-ea6caa0a7962" absoluteBounds="4.39, 1.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" absoluteBounds="8, 1.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Alumno" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b8393f93-5ade-4f2b-991f-48c0c871705d" absoluteBounds="8.015, 2.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="83767a3b-2473-45a0-bdbb-52e37dbfcd55" absoluteBounds="10.125, 4.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/asignacion_actividad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b6c977bc-5d63-4996-8319-3b6169db3f5e" absoluteBounds="10.14, 4.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10 : 3.78049967447917); (10.125 : 4.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Alumno/Alumno_asignacion_actividad" />
+      <nodes>
+        <classShapeMoniker Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" />
+        <classShapeMoniker Id="83767a3b-2473-45a0-bdbb-52e37dbfcd55" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" absoluteBounds="3.375, 5.125, 2, 1.3862939453125">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/carrera_actividad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b261a7c7-7789-446b-8e9c-44e35ff44ada" absoluteBounds="3.39, 5.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.375 : 5.9175439453125); (5.88541666666667 : 5.9175439453125 : JumpStart); (6.05208333333333 : 5.9175439453125 : JumpEnd); (6.21354166666667 : 5.9175439453125 : JumpStart); (6.45833333333333 : 5.9175439453125 : JumpEnd); (10.125 : 5.9175439453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/carrera_actividad/carrera_actividad_asignacion_actividad" />
+      <nodes>
+        <classShapeMoniker Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" />
+        <classShapeMoniker Id="83767a3b-2473-45a0-bdbb-52e37dbfcd55" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.96875 : 3.6651025390625); (5.96875 : 6.2456714453125); (5.375 : 6.2456714453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Actividad/Actividad_carrera_actividad" />
+      <nodes>
+        <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
+        <classShapeMoniker Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="11fae65c-72f8-4d86-a9df-cf755748e58b" absoluteBounds="1.625, 0.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Estado_actividad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cc5f1a26-37b0-4428-b866-8d52512121d2" absoluteBounds="1.6400000000000001, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.625 : 1.40949625651042); (4.375 : 1.40949625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Estado_actividad/Estado_actividad_Actividad" />
+      <nodes>
+        <classShapeMoniker Id="11fae65c-72f8-4d86-a9df-cf755748e58b" />
+        <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8b90497f-977f-4b93-99b8-47b380cfc37f" absoluteBounds="11.5, 0.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Estado_alumno" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9353da29-ccaf-4f18-becc-8c6b3bb798d1" absoluteBounds="11.515, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11.5 : 1.0624995); (9 : 1.0624995); (9 : 1.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Estado_alumno/Estado_alumno_Alumno" />
+      <nodes>
+        <classShapeMoniker Id="8b90497f-977f-4b93-99b8-47b380cfc37f" />
+        <classShapeMoniker Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b2f1bafa-6ae2-4040-b4be-056eac695cd1" absoluteBounds="3.5, 3.375, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Estado_pago" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3955dd5-6e77-43a1-88ca-ca1c6de4a5f9" absoluteBounds="3.515, 3.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9f1c79af-a0af-40c8-8d18-48fb203cb635" absoluteBounds="7.125, 4.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/id_carrera" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40f5c773-d2ff-439a-81f2-b1128b260205" absoluteBounds="7.14, 5.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.125 : 5.47199625651042); (6.45833333333333 : 5.47199625651042 : JumpStart); (6.21354166666667 : 5.47199625651042 : JumpEnd); (6.05208333333333 : 5.47199625651042 : JumpStart); (5.88541666666667 : 5.47199625651042 : JumpEnd); (5.375 : 5.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/id_carrera/id_carrera_carrera_actividad" />
+      <nodes>
+        <classShapeMoniker Id="9f1c79af-a0af-40c8-8d18-48fb203cb635" />
+        <classShapeMoniker Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="577d94b8-5549-4f3d-9deb-f8ea6c39a7d1" absoluteBounds="3.375, 2.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Pago" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d4665c66-661c-4170-8264-61a6360bab69" absoluteBounds="3.39, 2.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.4062505 : 4.4631982421875); (3.4062505 : 4.7131982421875); (5.88541666666667 : 4.7131982421875 : JumpStart); (6.05208333333333 : 4.7131982421875 : JumpEnd); (6.21354166666667 : 4.7131982421875 : JumpStart); (6.45833333333333 : 4.7131982421875 : JumpEnd); (6.625 : 4.7131982421875); (6.625 : 2.70274983723958); (8 : 2.70274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Pago/Pago_Alumno" />
+      <nodes>
+        <classShapeMoniker Id="577d94b8-5549-4f3d-9deb-f8ea6c39a7d1" />
+        <classShapeMoniker Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.5 : 3.97199625651042); (3.33333333333333 : 3.97199625651042 : JumpStart); (3.16666666666667 : 3.97199625651042 : JumpEnd); (3.125 : 3.97199625651042); (3.125 : 3.48159912109375); (3.16666666666667 : 3.48159912109375 : JumpStart); (3.33333333333333 : 3.48159912109375 : JumpEnd); (3.375 : 3.48159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Estado_pago/Estado_pago_Pago" />
+      <nodes>
+        <classShapeMoniker Id="b2f1bafa-6ae2-4040-b4be-056eac695cd1" />
+        <classShapeMoniker Id="577d94b8-5549-4f3d-9deb-f8ea6c39a7d1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d663905f-3323-443e-a536-24355ff49a9f" absoluteBounds="1.625, 12.25, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Ponente" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfeb1b20-eff9-4cd8-ad08-e8c6ac3b4a31" absoluteBounds="1.6400000000000001, 12.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ce9ce70e-2ef2-4c51-809b-7823c10f981a" absoluteBounds="1.625, 10.375, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Tipo_actividad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e7aac6cb-4198-431e-8c40-7f59ebe1252e" absoluteBounds="1.6400000000000001, 10.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5138e5f8-4683-4830-9719-6fdbbd207213" absoluteBounds="5.25, 7.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Usuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3c10d12-8d22-48fa-89a6-451a150df571" absoluteBounds="5.265, 8.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e729a26f-fc4f-4c43-9de9-043fcc12b5d9" absoluteBounds="2.5, 8.125, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Tipo_usuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8d0b067d-9382-443d-8be6-2fe5abd982f1" absoluteBounds="2.515, 8.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="82ee1528-7518-4b15-b67c-b8ee7f0b5770" absoluteBounds="8.375, 6.875, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/CongresoDataContextDataContext/Ubicacion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec68d29c-e8bf-4742-b28b-ac11ab6e551a" absoluteBounds="8.39, 7.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 12.25); (2.625 : 11.8189925130208); (4.75 : 11.8189925130208); (4.75 : 6.7612939453125); (3.33333333333333 : 6.7612939453125 : JumpStart); (3.16666666666667 : 6.7612939453125 : JumpEnd); (2.875 : 6.7612939453125); (2.875 : 2.06574725651042); (4.375 : 2.06574725651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Ponente/Ponente_Actividad" />
+      <nodes>
+        <classShapeMoniker Id="d663905f-3323-443e-a536-24355ff49a9f" />
+        <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 10.375); (2.625 : 9.56899251302083); (4.66666666666667 : 9.56899251302083 : JumpStart); (4.83333333333333 : 9.56899251302083 : JumpEnd); (5 : 9.56899251302083); (5 : 7.0112939453125); (4.83333333333333 : 7.0112939453125 : JumpStart); (4.66666666666667 : 7.0112939453125 : JumpEnd); (3.25 : 7.0112939453125); (3.25 : 2.28287612825521); (4.375 : 2.28287612825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Tipo_actividad/Tipo_actividad_Actividad" />
+      <nodes>
+        <classShapeMoniker Id="ce9ce70e-2ef2-4c51-809b-7823c10f981a" />
+        <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.296875 : 7.875); (6.296875 : 3.9151025390625); (6.54166666666667 : 3.9151025390625 : JumpStart); (6.70833333333333 : 3.9151025390625 : JumpEnd); (6.875 : 3.9151025390625); (6.875 : 3.27287675585937); (8 : 3.27287675585937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Usuario/Usuario_Alumno" />
+      <nodes>
+        <classShapeMoniker Id="5138e5f8-4683-4830-9719-6fdbbd207213" />
+        <classShapeMoniker Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 8.72199625651042); (4.66666666666667 : 8.72199625651042 : JumpStart); (4.83333333333333 : 8.72199625651042 : JumpEnd); (4.91666666666667 : 8.72199625651042 : JumpStart); (5.08333333333333 : 8.72199625651042 : JumpEnd); (5.25 : 8.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Tipo_usuario/Tipo_usuario_Usuario" />
+      <nodes>
+        <classShapeMoniker Id="e729a26f-fc4f-4c43-9de9-043fcc12b5d9" />
+        <classShapeMoniker Id="5138e5f8-4683-4830-9719-6fdbbd207213" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.375 : 6.875); (6.375 : 6.875); (6.375 : 3.6651025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CongresoDataContextDataContext/Ubicacion/Ubicacion_Actividad" />
+      <nodes>
+        <classShapeMoniker Id="82ee1528-7518-4b15-b67c-b8ee7f0b5770" />
+        <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
 </ordesignerObjectsDiagram>

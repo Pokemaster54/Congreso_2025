@@ -1,1 +1,137 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Class="CongresoDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Congreso" Class="CongresoDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Actividad" Member="Actividad">
+    <Type Name="Actividad">
+      <Column Name="id_actividad" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_tipo_actividad" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="id_estado_actividad" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="id_ponente" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="id_ubicacion" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre_actividad" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="hora_inicio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="hora_fin" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="inscritos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Actividad_carrera_actividad" Member="carrera_actividad" ThisKey="id_actividad" OtherKey="id_actividad" Type="carrera_actividad" />
+      <Association Name="Estado_actividad_Actividad" Member="Estado_actividad" ThisKey="id_estado_actividad" OtherKey="id_estado_actividad" Type="Estado_actividad" IsForeignKey="true" />
+      <Association Name="Ponente_Actividad" Member="Ponente" ThisKey="id_ponente" OtherKey="id_ponente" Type="Ponente" IsForeignKey="true" />
+      <Association Name="Tipo_actividad_Actividad" Member="Tipo_actividad" ThisKey="id_tipo_actividad" OtherKey="id_tipo_actividad" Type="Tipo_actividad" IsForeignKey="true" />
+      <Association Name="Ubicacion_Actividad" Member="Ubicacion" ThisKey="id_ubicacion" OtherKey="id_ubicacion" Type="Ubicacion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Alumno" Member="Alumno">
+    <Type Name="Alumno">
+      <Column Name="id_alumno" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="carne" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="nombres_alumno" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="apellidos_alumno" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="id_estado" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="id_usuario" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="id_pago" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Alumno_asignacion_actividad" Member="asignacion_actividad" ThisKey="id_alumno" OtherKey="id_alumno" Type="asignacion_actividad" />
+      <Association Name="Estado_alumno_Alumno" Member="Estado_alumno" ThisKey="id_estado" OtherKey="id_estado" Type="Estado_alumno" IsForeignKey="true" />
+      <Association Name="Pago_Alumno" Member="Pago" ThisKey="id_pago" OtherKey="id_pago" Type="Pago" IsForeignKey="true" />
+      <Association Name="Usuario_Alumno" Member="Usuario" ThisKey="id_usuario" OtherKey="id_usuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.asignacion_actividad" Member="asignacion_actividad">
+    <Type Name="asignacion_actividad">
+      <Column Name="id_asignacion" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_alumno" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="id_carrera_actividad" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="bit" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Alumno_asignacion_actividad" Member="Alumno" ThisKey="id_alumno" OtherKey="id_alumno" Type="Alumno" IsForeignKey="true" />
+      <Association Name="carrera_actividad_asignacion_actividad" Member="carrera_actividad" ThisKey="id_carrera_actividad" OtherKey="id_carrera_actividad" Type="carrera_actividad" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.carrera_actividad" Member="carrera_actividad">
+    <Type Name="carrera_actividad">
+      <Column Name="id_carrera_actividad" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_actividad" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="id_carrera" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="carrera_actividad_asignacion_actividad" Member="asignacion_actividad" ThisKey="id_carrera_actividad" OtherKey="id_carrera_actividad" Type="asignacion_actividad" />
+      <Association Name="Actividad_carrera_actividad" Member="Actividad" ThisKey="id_actividad" OtherKey="id_actividad" Type="Actividad" IsForeignKey="true" />
+      <Association Name="id_carrera_carrera_actividad" Member="id_carrera1" ThisKey="id_carrera" OtherKey="id_carrera1" Type="id_carrera" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Estado_actividad" Member="Estado_actividad">
+    <Type Name="Estado_actividad">
+      <Column Name="id_estado_actividad" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_estado_actividad" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Estado_actividad_Actividad" Member="Actividad" ThisKey="id_estado_actividad" OtherKey="id_estado_actividad" Type="Actividad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Estado_alumno" Member="Estado_alumno">
+    <Type Name="Estado_alumno">
+      <Column Name="id_estado" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_estado" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Estado_alumno_Alumno" Member="Alumno" ThisKey="id_estado" OtherKey="id_estado" Type="Alumno" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Estado_pago" Member="Estado_pago">
+    <Type Name="Estado_pago">
+      <Column Name="id_estado_pago" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_tipo" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Association Name="Estado_pago_Pago" Member="Pago" ThisKey="id_estado_pago" OtherKey="id_estado_pago" Type="Pago" />
+    </Type>
+  </Table>
+  <Table Name="dbo.id_carrera" Member="id_carrera">
+    <Type Name="id_carrera">
+      <Column Name="id_carrera" Member="id_carrera1" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_carrera" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="id_carrera_carrera_actividad" Member="carrera_actividad" ThisKey="id_carrera1" OtherKey="id_carrera" Type="carrera_actividad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pago" Member="Pago">
+    <Type Name="Pago">
+      <Column Name="id_pago" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_estado_pago" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="num_boleta" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_pago" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="monto" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="timestamp" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Association Name="Pago_Alumno" Member="Alumno" ThisKey="id_pago" OtherKey="id_pago" Type="Alumno" />
+      <Association Name="Estado_pago_Pago" Member="Estado_pago" ThisKey="id_estado_pago" OtherKey="id_estado_pago" Type="Estado_pago" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ponente" Member="Ponente">
+    <Type Name="Ponente">
+      <Column Name="id_ponente" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_ponente" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_nacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="Origen" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Ponente_Actividad" Member="Actividad" ThisKey="id_ponente" OtherKey="id_ponente" Type="Actividad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tipo_actividad" Member="Tipo_actividad">
+    <Type Name="Tipo_actividad">
+      <Column Name="id_tipo_actividad" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_tipo_actividad" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Tipo_actividad_Actividad" Member="Actividad" ThisKey="id_tipo_actividad" OtherKey="id_tipo_actividad" Type="Actividad" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="id_usuario" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_usuario" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="id_tipo_usuario" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="Usuario_Alumno" Member="Alumno" ThisKey="id_usuario" OtherKey="id_usuario" Type="Alumno" />
+      <Association Name="Tipo_usuario_Usuario" Member="Tipo_usuario" ThisKey="id_tipo_usuario" OtherKey="id_tipo_usuario" Type="Tipo_usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tipo_usuario" Member="Tipo_usuario">
+    <Type Name="Tipo_usuario">
+      <Column Name="id_tipo_usuario" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_tipo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Tipo_usuario_Usuario" Member="Usuario" ThisKey="id_tipo_usuario" OtherKey="id_tipo_usuario" Type="Usuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ubicacion" Member="Ubicacion">
+    <Type Name="Ubicacion">
+      <Column Name="id_ubicacion" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_ubicacion" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="indicaciones" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Association Name="Ubicacion_Actividad" Member="Actividad" ThisKey="id_ubicacion" OtherKey="id_ubicacion" Type="Actividad" />
+    </Type>
+  </Table>
+</Database>

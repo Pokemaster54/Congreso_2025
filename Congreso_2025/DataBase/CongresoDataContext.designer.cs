@@ -22,6 +22,7 @@ namespace Congreso_2025.DataBase
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Congreso")]
 	public partial class CongresoDataContextDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -29,6 +30,48 @@ namespace Congreso_2025.DataBase
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void InsertActividad(Actividad instance);
+    partial void UpdateActividad(Actividad instance);
+    partial void DeleteActividad(Actividad instance);
+    partial void InsertAlumno(Alumno instance);
+    partial void UpdateAlumno(Alumno instance);
+    partial void DeleteAlumno(Alumno instance);
+    partial void Insertasignacion_actividad(asignacion_actividad instance);
+    partial void Updateasignacion_actividad(asignacion_actividad instance);
+    partial void Deleteasignacion_actividad(asignacion_actividad instance);
+    partial void Insertcarrera_actividad(carrera_actividad instance);
+    partial void Updatecarrera_actividad(carrera_actividad instance);
+    partial void Deletecarrera_actividad(carrera_actividad instance);
+    partial void InsertEstado_actividad(Estado_actividad instance);
+    partial void UpdateEstado_actividad(Estado_actividad instance);
+    partial void DeleteEstado_actividad(Estado_actividad instance);
+    partial void InsertEstado_alumno(Estado_alumno instance);
+    partial void UpdateEstado_alumno(Estado_alumno instance);
+    partial void DeleteEstado_alumno(Estado_alumno instance);
+    partial void InsertEstado_pago(Estado_pago instance);
+    partial void UpdateEstado_pago(Estado_pago instance);
+    partial void DeleteEstado_pago(Estado_pago instance);
+    partial void Insertid_carrera(id_carrera instance);
+    partial void Updateid_carrera(id_carrera instance);
+    partial void Deleteid_carrera(id_carrera instance);
+    partial void InsertPago(Pago instance);
+    partial void UpdatePago(Pago instance);
+    partial void DeletePago(Pago instance);
+    partial void InsertPonente(Ponente instance);
+    partial void UpdatePonente(Ponente instance);
+    partial void DeletePonente(Ponente instance);
+    partial void InsertTipo_actividad(Tipo_actividad instance);
+    partial void UpdateTipo_actividad(Tipo_actividad instance);
+    partial void DeleteTipo_actividad(Tipo_actividad instance);
+    partial void InsertUsuario(Usuario instance);
+    partial void UpdateUsuario(Usuario instance);
+    partial void DeleteUsuario(Usuario instance);
+    partial void InsertTipo_usuario(Tipo_usuario instance);
+    partial void UpdateTipo_usuario(Tipo_usuario instance);
+    partial void DeleteTipo_usuario(Tipo_usuario instance);
+    partial void InsertUbicacion(Ubicacion instance);
+    partial void UpdateUbicacion(Ubicacion instance);
+    partial void DeleteUbicacion(Ubicacion instance);
     #endregion
 		
 		public CongresoDataContextDataContext(string connection) : 
@@ -53,6 +96,2819 @@ namespace Congreso_2025.DataBase
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Actividad> Actividad
+		{
+			get
+			{
+				return this.GetTable<Actividad>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Alumno> Alumno
+		{
+			get
+			{
+				return this.GetTable<Alumno>();
+			}
+		}
+		
+		public System.Data.Linq.Table<asignacion_actividad> asignacion_actividad
+		{
+			get
+			{
+				return this.GetTable<asignacion_actividad>();
+			}
+		}
+		
+		public System.Data.Linq.Table<carrera_actividad> carrera_actividad
+		{
+			get
+			{
+				return this.GetTable<carrera_actividad>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Estado_actividad> Estado_actividad
+		{
+			get
+			{
+				return this.GetTable<Estado_actividad>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Estado_alumno> Estado_alumno
+		{
+			get
+			{
+				return this.GetTable<Estado_alumno>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Estado_pago> Estado_pago
+		{
+			get
+			{
+				return this.GetTable<Estado_pago>();
+			}
+		}
+		
+		public System.Data.Linq.Table<id_carrera> id_carrera
+		{
+			get
+			{
+				return this.GetTable<id_carrera>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Pago> Pago
+		{
+			get
+			{
+				return this.GetTable<Pago>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ponente> Ponente
+		{
+			get
+			{
+				return this.GetTable<Ponente>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tipo_actividad> Tipo_actividad
+		{
+			get
+			{
+				return this.GetTable<Tipo_actividad>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Usuario> Usuario
+		{
+			get
+			{
+				return this.GetTable<Usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tipo_usuario> Tipo_usuario
+		{
+			get
+			{
+				return this.GetTable<Tipo_usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ubicacion> Ubicacion
+		{
+			get
+			{
+				return this.GetTable<Ubicacion>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Actividad")]
+	public partial class Actividad : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_actividad;
+		
+		private string _id_tipo_actividad;
+		
+		private string _id_estado_actividad;
+		
+		private string _id_ponente;
+		
+		private string _id_ubicacion;
+		
+		private string _Nombre_actividad;
+		
+		private System.DateTime _hora_inicio;
+		
+		private System.DateTime _hora_fin;
+		
+		private System.Nullable<int> _inscritos;
+		
+		private EntitySet<carrera_actividad> _carrera_actividad;
+		
+		private EntityRef<Estado_actividad> _Estado_actividad;
+		
+		private EntityRef<Ponente> _Ponente;
+		
+		private EntityRef<Tipo_actividad> _Tipo_actividad;
+		
+		private EntityRef<Ubicacion> _Ubicacion;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_actividadChanging(string value);
+    partial void Onid_actividadChanged();
+    partial void Onid_tipo_actividadChanging(string value);
+    partial void Onid_tipo_actividadChanged();
+    partial void Onid_estado_actividadChanging(string value);
+    partial void Onid_estado_actividadChanged();
+    partial void Onid_ponenteChanging(string value);
+    partial void Onid_ponenteChanged();
+    partial void Onid_ubicacionChanging(string value);
+    partial void Onid_ubicacionChanged();
+    partial void OnNombre_actividadChanging(string value);
+    partial void OnNombre_actividadChanged();
+    partial void Onhora_inicioChanging(System.DateTime value);
+    partial void Onhora_inicioChanged();
+    partial void Onhora_finChanging(System.DateTime value);
+    partial void Onhora_finChanged();
+    partial void OninscritosChanging(System.Nullable<int> value);
+    partial void OninscritosChanged();
+    #endregion
+		
+		public Actividad()
+		{
+			this._carrera_actividad = new EntitySet<carrera_actividad>(new Action<carrera_actividad>(this.attach_carrera_actividad), new Action<carrera_actividad>(this.detach_carrera_actividad));
+			this._Estado_actividad = default(EntityRef<Estado_actividad>);
+			this._Ponente = default(EntityRef<Ponente>);
+			this._Tipo_actividad = default(EntityRef<Tipo_actividad>);
+			this._Ubicacion = default(EntityRef<Ubicacion>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_actividad", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_actividad
+		{
+			get
+			{
+				return this._id_actividad;
+			}
+			set
+			{
+				if ((this._id_actividad != value))
+				{
+					this.Onid_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_actividad = value;
+					this.SendPropertyChanged("id_actividad");
+					this.Onid_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_actividad", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_tipo_actividad
+		{
+			get
+			{
+				return this._id_tipo_actividad;
+			}
+			set
+			{
+				if ((this._id_tipo_actividad != value))
+				{
+					if (this._Tipo_actividad.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_tipo_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_tipo_actividad = value;
+					this.SendPropertyChanged("id_tipo_actividad");
+					this.Onid_tipo_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_estado_actividad", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_estado_actividad
+		{
+			get
+			{
+				return this._id_estado_actividad;
+			}
+			set
+			{
+				if ((this._id_estado_actividad != value))
+				{
+					if (this._Estado_actividad.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_estado_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_estado_actividad = value;
+					this.SendPropertyChanged("id_estado_actividad");
+					this.Onid_estado_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_ponente", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_ponente
+		{
+			get
+			{
+				return this._id_ponente;
+			}
+			set
+			{
+				if ((this._id_ponente != value))
+				{
+					if (this._Ponente.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_ponenteChanging(value);
+					this.SendPropertyChanging();
+					this._id_ponente = value;
+					this.SendPropertyChanged("id_ponente");
+					this.Onid_ponenteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_ubicacion", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_ubicacion
+		{
+			get
+			{
+				return this._id_ubicacion;
+			}
+			set
+			{
+				if ((this._id_ubicacion != value))
+				{
+					if (this._Ubicacion.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_ubicacionChanging(value);
+					this.SendPropertyChanging();
+					this._id_ubicacion = value;
+					this.SendPropertyChanged("id_ubicacion");
+					this.Onid_ubicacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre_actividad", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nombre_actividad
+		{
+			get
+			{
+				return this._Nombre_actividad;
+			}
+			set
+			{
+				if ((this._Nombre_actividad != value))
+				{
+					this.OnNombre_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre_actividad = value;
+					this.SendPropertyChanged("Nombre_actividad");
+					this.OnNombre_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hora_inicio", DbType="DateTime NOT NULL")]
+		public System.DateTime hora_inicio
+		{
+			get
+			{
+				return this._hora_inicio;
+			}
+			set
+			{
+				if ((this._hora_inicio != value))
+				{
+					this.Onhora_inicioChanging(value);
+					this.SendPropertyChanging();
+					this._hora_inicio = value;
+					this.SendPropertyChanged("hora_inicio");
+					this.Onhora_inicioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hora_fin", DbType="DateTime NOT NULL")]
+		public System.DateTime hora_fin
+		{
+			get
+			{
+				return this._hora_fin;
+			}
+			set
+			{
+				if ((this._hora_fin != value))
+				{
+					this.Onhora_finChanging(value);
+					this.SendPropertyChanging();
+					this._hora_fin = value;
+					this.SendPropertyChanged("hora_fin");
+					this.Onhora_finChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_inscritos", DbType="Int")]
+		public System.Nullable<int> inscritos
+		{
+			get
+			{
+				return this._inscritos;
+			}
+			set
+			{
+				if ((this._inscritos != value))
+				{
+					this.OninscritosChanging(value);
+					this.SendPropertyChanging();
+					this._inscritos = value;
+					this.SendPropertyChanged("inscritos");
+					this.OninscritosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Actividad_carrera_actividad", Storage="_carrera_actividad", ThisKey="id_actividad", OtherKey="id_actividad")]
+		public EntitySet<carrera_actividad> carrera_actividad
+		{
+			get
+			{
+				return this._carrera_actividad;
+			}
+			set
+			{
+				this._carrera_actividad.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_actividad_Actividad", Storage="_Estado_actividad", ThisKey="id_estado_actividad", OtherKey="id_estado_actividad", IsForeignKey=true)]
+		public Estado_actividad Estado_actividad
+		{
+			get
+			{
+				return this._Estado_actividad.Entity;
+			}
+			set
+			{
+				Estado_actividad previousValue = this._Estado_actividad.Entity;
+				if (((previousValue != value) 
+							|| (this._Estado_actividad.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estado_actividad.Entity = null;
+						previousValue.Actividad.Remove(this);
+					}
+					this._Estado_actividad.Entity = value;
+					if ((value != null))
+					{
+						value.Actividad.Add(this);
+						this._id_estado_actividad = value.id_estado_actividad;
+					}
+					else
+					{
+						this._id_estado_actividad = default(string);
+					}
+					this.SendPropertyChanged("Estado_actividad");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ponente_Actividad", Storage="_Ponente", ThisKey="id_ponente", OtherKey="id_ponente", IsForeignKey=true)]
+		public Ponente Ponente
+		{
+			get
+			{
+				return this._Ponente.Entity;
+			}
+			set
+			{
+				Ponente previousValue = this._Ponente.Entity;
+				if (((previousValue != value) 
+							|| (this._Ponente.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ponente.Entity = null;
+						previousValue.Actividad.Remove(this);
+					}
+					this._Ponente.Entity = value;
+					if ((value != null))
+					{
+						value.Actividad.Add(this);
+						this._id_ponente = value.id_ponente;
+					}
+					else
+					{
+						this._id_ponente = default(string);
+					}
+					this.SendPropertyChanged("Ponente");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_actividad_Actividad", Storage="_Tipo_actividad", ThisKey="id_tipo_actividad", OtherKey="id_tipo_actividad", IsForeignKey=true)]
+		public Tipo_actividad Tipo_actividad
+		{
+			get
+			{
+				return this._Tipo_actividad.Entity;
+			}
+			set
+			{
+				Tipo_actividad previousValue = this._Tipo_actividad.Entity;
+				if (((previousValue != value) 
+							|| (this._Tipo_actividad.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tipo_actividad.Entity = null;
+						previousValue.Actividad.Remove(this);
+					}
+					this._Tipo_actividad.Entity = value;
+					if ((value != null))
+					{
+						value.Actividad.Add(this);
+						this._id_tipo_actividad = value.id_tipo_actividad;
+					}
+					else
+					{
+						this._id_tipo_actividad = default(string);
+					}
+					this.SendPropertyChanged("Tipo_actividad");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ubicacion_Actividad", Storage="_Ubicacion", ThisKey="id_ubicacion", OtherKey="id_ubicacion", IsForeignKey=true)]
+		public Ubicacion Ubicacion
+		{
+			get
+			{
+				return this._Ubicacion.Entity;
+			}
+			set
+			{
+				Ubicacion previousValue = this._Ubicacion.Entity;
+				if (((previousValue != value) 
+							|| (this._Ubicacion.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ubicacion.Entity = null;
+						previousValue.Actividad.Remove(this);
+					}
+					this._Ubicacion.Entity = value;
+					if ((value != null))
+					{
+						value.Actividad.Add(this);
+						this._id_ubicacion = value.id_ubicacion;
+					}
+					else
+					{
+						this._id_ubicacion = default(string);
+					}
+					this.SendPropertyChanged("Ubicacion");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_carrera_actividad(carrera_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Actividad = this;
+		}
+		
+		private void detach_carrera_actividad(carrera_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Actividad = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Alumno")]
+	public partial class Alumno : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_alumno;
+		
+		private string _carne;
+		
+		private string _nombres_alumno;
+		
+		private string _apellidos_alumno;
+		
+		private string _id_estado;
+		
+		private string _id_usuario;
+		
+		private string _id_pago;
+		
+		private EntitySet<asignacion_actividad> _asignacion_actividad;
+		
+		private EntityRef<Estado_alumno> _Estado_alumno;
+		
+		private EntityRef<Pago> _Pago;
+		
+		private EntityRef<Usuario> _Usuario;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_alumnoChanging(string value);
+    partial void Onid_alumnoChanged();
+    partial void OncarneChanging(string value);
+    partial void OncarneChanged();
+    partial void Onnombres_alumnoChanging(string value);
+    partial void Onnombres_alumnoChanged();
+    partial void Onapellidos_alumnoChanging(string value);
+    partial void Onapellidos_alumnoChanged();
+    partial void Onid_estadoChanging(string value);
+    partial void Onid_estadoChanged();
+    partial void Onid_usuarioChanging(string value);
+    partial void Onid_usuarioChanged();
+    partial void Onid_pagoChanging(string value);
+    partial void Onid_pagoChanged();
+    #endregion
+		
+		public Alumno()
+		{
+			this._asignacion_actividad = new EntitySet<asignacion_actividad>(new Action<asignacion_actividad>(this.attach_asignacion_actividad), new Action<asignacion_actividad>(this.detach_asignacion_actividad));
+			this._Estado_alumno = default(EntityRef<Estado_alumno>);
+			this._Pago = default(EntityRef<Pago>);
+			this._Usuario = default(EntityRef<Usuario>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_alumno", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_alumno
+		{
+			get
+			{
+				return this._id_alumno;
+			}
+			set
+			{
+				if ((this._id_alumno != value))
+				{
+					this.Onid_alumnoChanging(value);
+					this.SendPropertyChanging();
+					this._id_alumno = value;
+					this.SendPropertyChanged("id_alumno");
+					this.Onid_alumnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_carne", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string carne
+		{
+			get
+			{
+				return this._carne;
+			}
+			set
+			{
+				if ((this._carne != value))
+				{
+					this.OncarneChanging(value);
+					this.SendPropertyChanging();
+					this._carne = value;
+					this.SendPropertyChanged("carne");
+					this.OncarneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombres_alumno", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string nombres_alumno
+		{
+			get
+			{
+				return this._nombres_alumno;
+			}
+			set
+			{
+				if ((this._nombres_alumno != value))
+				{
+					this.Onnombres_alumnoChanging(value);
+					this.SendPropertyChanging();
+					this._nombres_alumno = value;
+					this.SendPropertyChanged("nombres_alumno");
+					this.Onnombres_alumnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_apellidos_alumno", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string apellidos_alumno
+		{
+			get
+			{
+				return this._apellidos_alumno;
+			}
+			set
+			{
+				if ((this._apellidos_alumno != value))
+				{
+					this.Onapellidos_alumnoChanging(value);
+					this.SendPropertyChanging();
+					this._apellidos_alumno = value;
+					this.SendPropertyChanged("apellidos_alumno");
+					this.Onapellidos_alumnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_estado", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_estado
+		{
+			get
+			{
+				return this._id_estado;
+			}
+			set
+			{
+				if ((this._id_estado != value))
+				{
+					if (this._Estado_alumno.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_estadoChanging(value);
+					this.SendPropertyChanging();
+					this._id_estado = value;
+					this.SendPropertyChanged("id_estado");
+					this.Onid_estadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_usuario", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_usuario
+		{
+			get
+			{
+				return this._id_usuario;
+			}
+			set
+			{
+				if ((this._id_usuario != value))
+				{
+					if (this._Usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_usuarioChanging(value);
+					this.SendPropertyChanging();
+					this._id_usuario = value;
+					this.SendPropertyChanged("id_usuario");
+					this.Onid_usuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pago", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_pago
+		{
+			get
+			{
+				return this._id_pago;
+			}
+			set
+			{
+				if ((this._id_pago != value))
+				{
+					if (this._Pago.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_pagoChanging(value);
+					this.SendPropertyChanging();
+					this._id_pago = value;
+					this.SendPropertyChanged("id_pago");
+					this.Onid_pagoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Alumno_asignacion_actividad", Storage="_asignacion_actividad", ThisKey="id_alumno", OtherKey="id_alumno")]
+		public EntitySet<asignacion_actividad> asignacion_actividad
+		{
+			get
+			{
+				return this._asignacion_actividad;
+			}
+			set
+			{
+				this._asignacion_actividad.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_alumno_Alumno", Storage="_Estado_alumno", ThisKey="id_estado", OtherKey="id_estado", IsForeignKey=true)]
+		public Estado_alumno Estado_alumno
+		{
+			get
+			{
+				return this._Estado_alumno.Entity;
+			}
+			set
+			{
+				Estado_alumno previousValue = this._Estado_alumno.Entity;
+				if (((previousValue != value) 
+							|| (this._Estado_alumno.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estado_alumno.Entity = null;
+						previousValue.Alumno.Remove(this);
+					}
+					this._Estado_alumno.Entity = value;
+					if ((value != null))
+					{
+						value.Alumno.Add(this);
+						this._id_estado = value.id_estado;
+					}
+					else
+					{
+						this._id_estado = default(string);
+					}
+					this.SendPropertyChanged("Estado_alumno");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pago_Alumno", Storage="_Pago", ThisKey="id_pago", OtherKey="id_pago", IsForeignKey=true)]
+		public Pago Pago
+		{
+			get
+			{
+				return this._Pago.Entity;
+			}
+			set
+			{
+				Pago previousValue = this._Pago.Entity;
+				if (((previousValue != value) 
+							|| (this._Pago.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Pago.Entity = null;
+						previousValue.Alumno.Remove(this);
+					}
+					this._Pago.Entity = value;
+					if ((value != null))
+					{
+						value.Alumno.Add(this);
+						this._id_pago = value.id_pago;
+					}
+					else
+					{
+						this._id_pago = default(string);
+					}
+					this.SendPropertyChanged("Pago");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Alumno", Storage="_Usuario", ThisKey="id_usuario", OtherKey="id_usuario", IsForeignKey=true)]
+		public Usuario Usuario
+		{
+			get
+			{
+				return this._Usuario.Entity;
+			}
+			set
+			{
+				Usuario previousValue = this._Usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario.Entity = null;
+						previousValue.Alumno.Remove(this);
+					}
+					this._Usuario.Entity = value;
+					if ((value != null))
+					{
+						value.Alumno.Add(this);
+						this._id_usuario = value.id_usuario;
+					}
+					else
+					{
+						this._id_usuario = default(string);
+					}
+					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_asignacion_actividad(asignacion_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Alumno = this;
+		}
+		
+		private void detach_asignacion_actividad(asignacion_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Alumno = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.asignacion_actividad")]
+	public partial class asignacion_actividad : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_asignacion;
+		
+		private string _id_alumno;
+		
+		private string _id_carrera_actividad;
+		
+		private bool _bit;
+		
+		private EntityRef<Alumno> _Alumno;
+		
+		private EntityRef<carrera_actividad> _carrera_actividad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_asignacionChanging(string value);
+    partial void Onid_asignacionChanged();
+    partial void Onid_alumnoChanging(string value);
+    partial void Onid_alumnoChanged();
+    partial void Onid_carrera_actividadChanging(string value);
+    partial void Onid_carrera_actividadChanged();
+    partial void OnbitChanging(bool value);
+    partial void OnbitChanged();
+    #endregion
+		
+		public asignacion_actividad()
+		{
+			this._Alumno = default(EntityRef<Alumno>);
+			this._carrera_actividad = default(EntityRef<carrera_actividad>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_asignacion", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_asignacion
+		{
+			get
+			{
+				return this._id_asignacion;
+			}
+			set
+			{
+				if ((this._id_asignacion != value))
+				{
+					this.Onid_asignacionChanging(value);
+					this.SendPropertyChanging();
+					this._id_asignacion = value;
+					this.SendPropertyChanged("id_asignacion");
+					this.Onid_asignacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_alumno", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_alumno
+		{
+			get
+			{
+				return this._id_alumno;
+			}
+			set
+			{
+				if ((this._id_alumno != value))
+				{
+					if (this._Alumno.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_alumnoChanging(value);
+					this.SendPropertyChanging();
+					this._id_alumno = value;
+					this.SendPropertyChanged("id_alumno");
+					this.Onid_alumnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_carrera_actividad", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string id_carrera_actividad
+		{
+			get
+			{
+				return this._id_carrera_actividad;
+			}
+			set
+			{
+				if ((this._id_carrera_actividad != value))
+				{
+					if (this._carrera_actividad.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_carrera_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_carrera_actividad = value;
+					this.SendPropertyChanged("id_carrera_actividad");
+					this.Onid_carrera_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bit", DbType="Bit NOT NULL")]
+		public bool bit
+		{
+			get
+			{
+				return this._bit;
+			}
+			set
+			{
+				if ((this._bit != value))
+				{
+					this.OnbitChanging(value);
+					this.SendPropertyChanging();
+					this._bit = value;
+					this.SendPropertyChanged("bit");
+					this.OnbitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Alumno_asignacion_actividad", Storage="_Alumno", ThisKey="id_alumno", OtherKey="id_alumno", IsForeignKey=true)]
+		public Alumno Alumno
+		{
+			get
+			{
+				return this._Alumno.Entity;
+			}
+			set
+			{
+				Alumno previousValue = this._Alumno.Entity;
+				if (((previousValue != value) 
+							|| (this._Alumno.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Alumno.Entity = null;
+						previousValue.asignacion_actividad.Remove(this);
+					}
+					this._Alumno.Entity = value;
+					if ((value != null))
+					{
+						value.asignacion_actividad.Add(this);
+						this._id_alumno = value.id_alumno;
+					}
+					else
+					{
+						this._id_alumno = default(string);
+					}
+					this.SendPropertyChanged("Alumno");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="carrera_actividad_asignacion_actividad", Storage="_carrera_actividad", ThisKey="id_carrera_actividad", OtherKey="id_carrera_actividad", IsForeignKey=true)]
+		public carrera_actividad carrera_actividad
+		{
+			get
+			{
+				return this._carrera_actividad.Entity;
+			}
+			set
+			{
+				carrera_actividad previousValue = this._carrera_actividad.Entity;
+				if (((previousValue != value) 
+							|| (this._carrera_actividad.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._carrera_actividad.Entity = null;
+						previousValue.asignacion_actividad.Remove(this);
+					}
+					this._carrera_actividad.Entity = value;
+					if ((value != null))
+					{
+						value.asignacion_actividad.Add(this);
+						this._id_carrera_actividad = value.id_carrera_actividad;
+					}
+					else
+					{
+						this._id_carrera_actividad = default(string);
+					}
+					this.SendPropertyChanged("carrera_actividad");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.carrera_actividad")]
+	public partial class carrera_actividad : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_carrera_actividad;
+		
+		private string _id_actividad;
+		
+		private string _id_carrera;
+		
+		private EntitySet<asignacion_actividad> _asignacion_actividad;
+		
+		private EntityRef<Actividad> _Actividad;
+		
+		private EntityRef<id_carrera> _id_carrera1;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_carrera_actividadChanging(string value);
+    partial void Onid_carrera_actividadChanged();
+    partial void Onid_actividadChanging(string value);
+    partial void Onid_actividadChanged();
+    partial void Onid_carreraChanging(string value);
+    partial void Onid_carreraChanged();
+    #endregion
+		
+		public carrera_actividad()
+		{
+			this._asignacion_actividad = new EntitySet<asignacion_actividad>(new Action<asignacion_actividad>(this.attach_asignacion_actividad), new Action<asignacion_actividad>(this.detach_asignacion_actividad));
+			this._Actividad = default(EntityRef<Actividad>);
+			this._id_carrera1 = default(EntityRef<id_carrera>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_carrera_actividad", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_carrera_actividad
+		{
+			get
+			{
+				return this._id_carrera_actividad;
+			}
+			set
+			{
+				if ((this._id_carrera_actividad != value))
+				{
+					this.Onid_carrera_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_carrera_actividad = value;
+					this.SendPropertyChanged("id_carrera_actividad");
+					this.Onid_carrera_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_actividad", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_actividad
+		{
+			get
+			{
+				return this._id_actividad;
+			}
+			set
+			{
+				if ((this._id_actividad != value))
+				{
+					if (this._Actividad.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_actividad = value;
+					this.SendPropertyChanged("id_actividad");
+					this.Onid_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_carrera", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_carrera
+		{
+			get
+			{
+				return this._id_carrera;
+			}
+			set
+			{
+				if ((this._id_carrera != value))
+				{
+					if (this._id_carrera1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_carreraChanging(value);
+					this.SendPropertyChanging();
+					this._id_carrera = value;
+					this.SendPropertyChanged("id_carrera");
+					this.Onid_carreraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="carrera_actividad_asignacion_actividad", Storage="_asignacion_actividad", ThisKey="id_carrera_actividad", OtherKey="id_carrera_actividad")]
+		public EntitySet<asignacion_actividad> asignacion_actividad
+		{
+			get
+			{
+				return this._asignacion_actividad;
+			}
+			set
+			{
+				this._asignacion_actividad.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Actividad_carrera_actividad", Storage="_Actividad", ThisKey="id_actividad", OtherKey="id_actividad", IsForeignKey=true)]
+		public Actividad Actividad
+		{
+			get
+			{
+				return this._Actividad.Entity;
+			}
+			set
+			{
+				Actividad previousValue = this._Actividad.Entity;
+				if (((previousValue != value) 
+							|| (this._Actividad.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Actividad.Entity = null;
+						previousValue.carrera_actividad.Remove(this);
+					}
+					this._Actividad.Entity = value;
+					if ((value != null))
+					{
+						value.carrera_actividad.Add(this);
+						this._id_actividad = value.id_actividad;
+					}
+					else
+					{
+						this._id_actividad = default(string);
+					}
+					this.SendPropertyChanged("Actividad");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="id_carrera_carrera_actividad", Storage="_id_carrera1", ThisKey="id_carrera", OtherKey="id_carrera1", IsForeignKey=true)]
+		public id_carrera id_carrera1
+		{
+			get
+			{
+				return this._id_carrera1.Entity;
+			}
+			set
+			{
+				id_carrera previousValue = this._id_carrera1.Entity;
+				if (((previousValue != value) 
+							|| (this._id_carrera1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._id_carrera1.Entity = null;
+						previousValue.carrera_actividad.Remove(this);
+					}
+					this._id_carrera1.Entity = value;
+					if ((value != null))
+					{
+						value.carrera_actividad.Add(this);
+						this._id_carrera = value.id_carrera1;
+					}
+					else
+					{
+						this._id_carrera = default(string);
+					}
+					this.SendPropertyChanged("id_carrera1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_asignacion_actividad(asignacion_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.carrera_actividad = this;
+		}
+		
+		private void detach_asignacion_actividad(asignacion_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.carrera_actividad = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estado_actividad")]
+	public partial class Estado_actividad : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_estado_actividad;
+		
+		private string _nombre_estado_actividad;
+		
+		private EntitySet<Actividad> _Actividad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_estado_actividadChanging(string value);
+    partial void Onid_estado_actividadChanged();
+    partial void Onnombre_estado_actividadChanging(string value);
+    partial void Onnombre_estado_actividadChanged();
+    #endregion
+		
+		public Estado_actividad()
+		{
+			this._Actividad = new EntitySet<Actividad>(new Action<Actividad>(this.attach_Actividad), new Action<Actividad>(this.detach_Actividad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_estado_actividad", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_estado_actividad
+		{
+			get
+			{
+				return this._id_estado_actividad;
+			}
+			set
+			{
+				if ((this._id_estado_actividad != value))
+				{
+					this.Onid_estado_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_estado_actividad = value;
+					this.SendPropertyChanged("id_estado_actividad");
+					this.Onid_estado_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_estado_actividad", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombre_estado_actividad
+		{
+			get
+			{
+				return this._nombre_estado_actividad;
+			}
+			set
+			{
+				if ((this._nombre_estado_actividad != value))
+				{
+					this.Onnombre_estado_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_estado_actividad = value;
+					this.SendPropertyChanged("nombre_estado_actividad");
+					this.Onnombre_estado_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_actividad_Actividad", Storage="_Actividad", ThisKey="id_estado_actividad", OtherKey="id_estado_actividad")]
+		public EntitySet<Actividad> Actividad
+		{
+			get
+			{
+				return this._Actividad;
+			}
+			set
+			{
+				this._Actividad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_actividad = this;
+		}
+		
+		private void detach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_actividad = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estado_alumno")]
+	public partial class Estado_alumno : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_estado;
+		
+		private string _nombre_estado;
+		
+		private EntitySet<Alumno> _Alumno;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_estadoChanging(string value);
+    partial void Onid_estadoChanged();
+    partial void Onnombre_estadoChanging(string value);
+    partial void Onnombre_estadoChanged();
+    #endregion
+		
+		public Estado_alumno()
+		{
+			this._Alumno = new EntitySet<Alumno>(new Action<Alumno>(this.attach_Alumno), new Action<Alumno>(this.detach_Alumno));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_estado", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_estado
+		{
+			get
+			{
+				return this._id_estado;
+			}
+			set
+			{
+				if ((this._id_estado != value))
+				{
+					this.Onid_estadoChanging(value);
+					this.SendPropertyChanging();
+					this._id_estado = value;
+					this.SendPropertyChanged("id_estado");
+					this.Onid_estadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_estado", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre_estado
+		{
+			get
+			{
+				return this._nombre_estado;
+			}
+			set
+			{
+				if ((this._nombre_estado != value))
+				{
+					this.Onnombre_estadoChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_estado = value;
+					this.SendPropertyChanged("nombre_estado");
+					this.Onnombre_estadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_alumno_Alumno", Storage="_Alumno", ThisKey="id_estado", OtherKey="id_estado")]
+		public EntitySet<Alumno> Alumno
+		{
+			get
+			{
+				return this._Alumno;
+			}
+			set
+			{
+				this._Alumno.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Alumno(Alumno entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_alumno = this;
+		}
+		
+		private void detach_Alumno(Alumno entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_alumno = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estado_pago")]
+	public partial class Estado_pago : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_estado_pago;
+		
+		private string _nombre_tipo;
+		
+		private EntitySet<Pago> _Pago;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_estado_pagoChanging(string value);
+    partial void Onid_estado_pagoChanged();
+    partial void Onnombre_tipoChanging(string value);
+    partial void Onnombre_tipoChanged();
+    #endregion
+		
+		public Estado_pago()
+		{
+			this._Pago = new EntitySet<Pago>(new Action<Pago>(this.attach_Pago), new Action<Pago>(this.detach_Pago));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_estado_pago", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_estado_pago
+		{
+			get
+			{
+				return this._id_estado_pago;
+			}
+			set
+			{
+				if ((this._id_estado_pago != value))
+				{
+					this.Onid_estado_pagoChanging(value);
+					this.SendPropertyChanging();
+					this._id_estado_pago = value;
+					this.SendPropertyChanged("id_estado_pago");
+					this.Onid_estado_pagoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_tipo", DbType="NVarChar(60) NOT NULL", CanBeNull=false)]
+		public string nombre_tipo
+		{
+			get
+			{
+				return this._nombre_tipo;
+			}
+			set
+			{
+				if ((this._nombre_tipo != value))
+				{
+					this.Onnombre_tipoChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_tipo = value;
+					this.SendPropertyChanged("nombre_tipo");
+					this.Onnombre_tipoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_pago_Pago", Storage="_Pago", ThisKey="id_estado_pago", OtherKey="id_estado_pago")]
+		public EntitySet<Pago> Pago
+		{
+			get
+			{
+				return this._Pago;
+			}
+			set
+			{
+				this._Pago.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Pago(Pago entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_pago = this;
+		}
+		
+		private void detach_Pago(Pago entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_pago = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.id_carrera")]
+	public partial class id_carrera : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_carrera1;
+		
+		private string _nombre_carrera;
+		
+		private EntitySet<carrera_actividad> _carrera_actividad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_carrera1Changing(string value);
+    partial void Onid_carrera1Changed();
+    partial void Onnombre_carreraChanging(string value);
+    partial void Onnombre_carreraChanged();
+    #endregion
+		
+		public id_carrera()
+		{
+			this._carrera_actividad = new EntitySet<carrera_actividad>(new Action<carrera_actividad>(this.attach_carrera_actividad), new Action<carrera_actividad>(this.detach_carrera_actividad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="id_carrera", Storage="_id_carrera1", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_carrera1
+		{
+			get
+			{
+				return this._id_carrera1;
+			}
+			set
+			{
+				if ((this._id_carrera1 != value))
+				{
+					this.Onid_carrera1Changing(value);
+					this.SendPropertyChanging();
+					this._id_carrera1 = value;
+					this.SendPropertyChanged("id_carrera1");
+					this.Onid_carrera1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_carrera", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre_carrera
+		{
+			get
+			{
+				return this._nombre_carrera;
+			}
+			set
+			{
+				if ((this._nombre_carrera != value))
+				{
+					this.Onnombre_carreraChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_carrera = value;
+					this.SendPropertyChanged("nombre_carrera");
+					this.Onnombre_carreraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="id_carrera_carrera_actividad", Storage="_carrera_actividad", ThisKey="id_carrera1", OtherKey="id_carrera")]
+		public EntitySet<carrera_actividad> carrera_actividad
+		{
+			get
+			{
+				return this._carrera_actividad;
+			}
+			set
+			{
+				this._carrera_actividad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_carrera_actividad(carrera_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.id_carrera1 = this;
+		}
+		
+		private void detach_carrera_actividad(carrera_actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.id_carrera1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pago")]
+	public partial class Pago : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_pago;
+		
+		private string _id_estado_pago;
+		
+		private string _num_boleta;
+		
+		private System.DateTime _fecha_pago;
+		
+		private decimal _monto;
+		
+		private System.Data.Linq.Binary _timestamp;
+		
+		private EntitySet<Alumno> _Alumno;
+		
+		private EntityRef<Estado_pago> _Estado_pago;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_pagoChanging(string value);
+    partial void Onid_pagoChanged();
+    partial void Onid_estado_pagoChanging(string value);
+    partial void Onid_estado_pagoChanged();
+    partial void Onnum_boletaChanging(string value);
+    partial void Onnum_boletaChanged();
+    partial void Onfecha_pagoChanging(System.DateTime value);
+    partial void Onfecha_pagoChanged();
+    partial void OnmontoChanging(decimal value);
+    partial void OnmontoChanged();
+    partial void OntimestampChanging(System.Data.Linq.Binary value);
+    partial void OntimestampChanged();
+    #endregion
+		
+		public Pago()
+		{
+			this._Alumno = new EntitySet<Alumno>(new Action<Alumno>(this.attach_Alumno), new Action<Alumno>(this.detach_Alumno));
+			this._Estado_pago = default(EntityRef<Estado_pago>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pago", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public string id_pago
+		{
+			get
+			{
+				return this._id_pago;
+			}
+			set
+			{
+				if ((this._id_pago != value))
+				{
+					this.Onid_pagoChanging(value);
+					this.SendPropertyChanging();
+					this._id_pago = value;
+					this.SendPropertyChanged("id_pago");
+					this.Onid_pagoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_estado_pago", DbType="NVarChar(6) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string id_estado_pago
+		{
+			get
+			{
+				return this._id_estado_pago;
+			}
+			set
+			{
+				if ((this._id_estado_pago != value))
+				{
+					if (this._Estado_pago.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_estado_pagoChanging(value);
+					this.SendPropertyChanging();
+					this._id_estado_pago = value;
+					this.SendPropertyChanged("id_estado_pago");
+					this.Onid_estado_pagoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_num_boleta", DbType="NVarChar(100) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string num_boleta
+		{
+			get
+			{
+				return this._num_boleta;
+			}
+			set
+			{
+				if ((this._num_boleta != value))
+				{
+					this.Onnum_boletaChanging(value);
+					this.SendPropertyChanging();
+					this._num_boleta = value;
+					this.SendPropertyChanged("num_boleta");
+					this.Onnum_boletaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_pago", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime fecha_pago
+		{
+			get
+			{
+				return this._fecha_pago;
+			}
+			set
+			{
+				if ((this._fecha_pago != value))
+				{
+					this.Onfecha_pagoChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_pago = value;
+					this.SendPropertyChanged("fecha_pago");
+					this.Onfecha_pagoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_monto", DbType="Money NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public decimal monto
+		{
+			get
+			{
+				return this._monto;
+			}
+			set
+			{
+				if ((this._monto != value))
+				{
+					this.OnmontoChanging(value);
+					this.SendPropertyChanging();
+					this._monto = value;
+					this.SendPropertyChanged("monto");
+					this.OnmontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_timestamp", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary timestamp
+		{
+			get
+			{
+				return this._timestamp;
+			}
+			set
+			{
+				if ((this._timestamp != value))
+				{
+					this.OntimestampChanging(value);
+					this.SendPropertyChanging();
+					this._timestamp = value;
+					this.SendPropertyChanged("timestamp");
+					this.OntimestampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pago_Alumno", Storage="_Alumno", ThisKey="id_pago", OtherKey="id_pago")]
+		public EntitySet<Alumno> Alumno
+		{
+			get
+			{
+				return this._Alumno;
+			}
+			set
+			{
+				this._Alumno.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_pago_Pago", Storage="_Estado_pago", ThisKey="id_estado_pago", OtherKey="id_estado_pago", IsForeignKey=true)]
+		public Estado_pago Estado_pago
+		{
+			get
+			{
+				return this._Estado_pago.Entity;
+			}
+			set
+			{
+				Estado_pago previousValue = this._Estado_pago.Entity;
+				if (((previousValue != value) 
+							|| (this._Estado_pago.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estado_pago.Entity = null;
+						previousValue.Pago.Remove(this);
+					}
+					this._Estado_pago.Entity = value;
+					if ((value != null))
+					{
+						value.Pago.Add(this);
+						this._id_estado_pago = value.id_estado_pago;
+					}
+					else
+					{
+						this._id_estado_pago = default(string);
+					}
+					this.SendPropertyChanged("Estado_pago");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Alumno(Alumno entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pago = this;
+		}
+		
+		private void detach_Alumno(Alumno entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pago = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ponente")]
+	public partial class Ponente : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_ponente;
+		
+		private string _nombre_ponente;
+		
+		private System.DateTime _fecha_nacimiento;
+		
+		private string _descripcion;
+		
+		private string _Origen;
+		
+		private EntitySet<Actividad> _Actividad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_ponenteChanging(string value);
+    partial void Onid_ponenteChanged();
+    partial void Onnombre_ponenteChanging(string value);
+    partial void Onnombre_ponenteChanged();
+    partial void Onfecha_nacimientoChanging(System.DateTime value);
+    partial void Onfecha_nacimientoChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    partial void OnOrigenChanging(string value);
+    partial void OnOrigenChanged();
+    #endregion
+		
+		public Ponente()
+		{
+			this._Actividad = new EntitySet<Actividad>(new Action<Actividad>(this.attach_Actividad), new Action<Actividad>(this.detach_Actividad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_ponente", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_ponente
+		{
+			get
+			{
+				return this._id_ponente;
+			}
+			set
+			{
+				if ((this._id_ponente != value))
+				{
+					this.Onid_ponenteChanging(value);
+					this.SendPropertyChanging();
+					this._id_ponente = value;
+					this.SendPropertyChanged("id_ponente");
+					this.Onid_ponenteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_ponente", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre_ponente
+		{
+			get
+			{
+				return this._nombre_ponente;
+			}
+			set
+			{
+				if ((this._nombre_ponente != value))
+				{
+					this.Onnombre_ponenteChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_ponente = value;
+					this.SendPropertyChanged("nombre_ponente");
+					this.Onnombre_ponenteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_nacimiento", DbType="DateTime NOT NULL")]
+		public System.DateTime fecha_nacimiento
+		{
+			get
+			{
+				return this._fecha_nacimiento;
+			}
+			set
+			{
+				if ((this._fecha_nacimiento != value))
+				{
+					this.Onfecha_nacimientoChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_nacimiento = value;
+					this.SendPropertyChanged("fecha_nacimiento");
+					this.Onfecha_nacimientoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(2000) NOT NULL", CanBeNull=false)]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Origen", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Origen
+		{
+			get
+			{
+				return this._Origen;
+			}
+			set
+			{
+				if ((this._Origen != value))
+				{
+					this.OnOrigenChanging(value);
+					this.SendPropertyChanging();
+					this._Origen = value;
+					this.SendPropertyChanged("Origen");
+					this.OnOrigenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ponente_Actividad", Storage="_Actividad", ThisKey="id_ponente", OtherKey="id_ponente")]
+		public EntitySet<Actividad> Actividad
+		{
+			get
+			{
+				return this._Actividad;
+			}
+			set
+			{
+				this._Actividad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ponente = this;
+		}
+		
+		private void detach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ponente = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_actividad")]
+	public partial class Tipo_actividad : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_tipo_actividad;
+		
+		private string _nombre_tipo_actividad;
+		
+		private EntitySet<Actividad> _Actividad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_tipo_actividadChanging(string value);
+    partial void Onid_tipo_actividadChanged();
+    partial void Onnombre_tipo_actividadChanging(string value);
+    partial void Onnombre_tipo_actividadChanged();
+    #endregion
+		
+		public Tipo_actividad()
+		{
+			this._Actividad = new EntitySet<Actividad>(new Action<Actividad>(this.attach_Actividad), new Action<Actividad>(this.detach_Actividad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_actividad", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_tipo_actividad
+		{
+			get
+			{
+				return this._id_tipo_actividad;
+			}
+			set
+			{
+				if ((this._id_tipo_actividad != value))
+				{
+					this.Onid_tipo_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._id_tipo_actividad = value;
+					this.SendPropertyChanged("id_tipo_actividad");
+					this.Onid_tipo_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_tipo_actividad", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombre_tipo_actividad
+		{
+			get
+			{
+				return this._nombre_tipo_actividad;
+			}
+			set
+			{
+				if ((this._nombre_tipo_actividad != value))
+				{
+					this.Onnombre_tipo_actividadChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_tipo_actividad = value;
+					this.SendPropertyChanged("nombre_tipo_actividad");
+					this.Onnombre_tipo_actividadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_actividad_Actividad", Storage="_Actividad", ThisKey="id_tipo_actividad", OtherKey="id_tipo_actividad")]
+		public EntitySet<Actividad> Actividad
+		{
+			get
+			{
+				return this._Actividad;
+			}
+			set
+			{
+				this._Actividad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_actividad = this;
+		}
+		
+		private void detach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_actividad = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario")]
+	public partial class Usuario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_usuario;
+		
+		private string _nombre_usuario;
+		
+		private string _password;
+		
+		private string _id_tipo_usuario;
+		
+		private EntitySet<Alumno> _Alumno;
+		
+		private EntityRef<Tipo_usuario> _Tipo_usuario;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_usuarioChanging(string value);
+    partial void Onid_usuarioChanged();
+    partial void Onnombre_usuarioChanging(string value);
+    partial void Onnombre_usuarioChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void Onid_tipo_usuarioChanging(string value);
+    partial void Onid_tipo_usuarioChanged();
+    #endregion
+		
+		public Usuario()
+		{
+			this._Alumno = new EntitySet<Alumno>(new Action<Alumno>(this.attach_Alumno), new Action<Alumno>(this.detach_Alumno));
+			this._Tipo_usuario = default(EntityRef<Tipo_usuario>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_usuario", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_usuario
+		{
+			get
+			{
+				return this._id_usuario;
+			}
+			set
+			{
+				if ((this._id_usuario != value))
+				{
+					this.Onid_usuarioChanging(value);
+					this.SendPropertyChanging();
+					this._id_usuario = value;
+					this.SendPropertyChanged("id_usuario");
+					this.Onid_usuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_usuario", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string nombre_usuario
+		{
+			get
+			{
+				return this._nombre_usuario;
+			}
+			set
+			{
+				if ((this._nombre_usuario != value))
+				{
+					this.Onnombre_usuarioChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_usuario = value;
+					this.SendPropertyChanged("nombre_usuario");
+					this.Onnombre_usuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_usuario", DbType="NVarChar(6) NOT NULL", CanBeNull=false)]
+		public string id_tipo_usuario
+		{
+			get
+			{
+				return this._id_tipo_usuario;
+			}
+			set
+			{
+				if ((this._id_tipo_usuario != value))
+				{
+					if (this._Tipo_usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_tipo_usuarioChanging(value);
+					this.SendPropertyChanging();
+					this._id_tipo_usuario = value;
+					this.SendPropertyChanged("id_tipo_usuario");
+					this.Onid_tipo_usuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Alumno", Storage="_Alumno", ThisKey="id_usuario", OtherKey="id_usuario")]
+		public EntitySet<Alumno> Alumno
+		{
+			get
+			{
+				return this._Alumno;
+			}
+			set
+			{
+				this._Alumno.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_usuario_Usuario", Storage="_Tipo_usuario", ThisKey="id_tipo_usuario", OtherKey="id_tipo_usuario", IsForeignKey=true)]
+		public Tipo_usuario Tipo_usuario
+		{
+			get
+			{
+				return this._Tipo_usuario.Entity;
+			}
+			set
+			{
+				Tipo_usuario previousValue = this._Tipo_usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Tipo_usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tipo_usuario.Entity = null;
+						previousValue.Usuario.Remove(this);
+					}
+					this._Tipo_usuario.Entity = value;
+					if ((value != null))
+					{
+						value.Usuario.Add(this);
+						this._id_tipo_usuario = value.id_tipo_usuario;
+					}
+					else
+					{
+						this._id_tipo_usuario = default(string);
+					}
+					this.SendPropertyChanged("Tipo_usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Alumno(Alumno entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = this;
+		}
+		
+		private void detach_Alumno(Alumno entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_usuario")]
+	public partial class Tipo_usuario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_tipo_usuario;
+		
+		private string _nombre_tipo;
+		
+		private EntitySet<Usuario> _Usuario;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_tipo_usuarioChanging(string value);
+    partial void Onid_tipo_usuarioChanged();
+    partial void Onnombre_tipoChanging(string value);
+    partial void Onnombre_tipoChanged();
+    #endregion
+		
+		public Tipo_usuario()
+		{
+			this._Usuario = new EntitySet<Usuario>(new Action<Usuario>(this.attach_Usuario), new Action<Usuario>(this.detach_Usuario));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_usuario", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_tipo_usuario
+		{
+			get
+			{
+				return this._id_tipo_usuario;
+			}
+			set
+			{
+				if ((this._id_tipo_usuario != value))
+				{
+					this.Onid_tipo_usuarioChanging(value);
+					this.SendPropertyChanging();
+					this._id_tipo_usuario = value;
+					this.SendPropertyChanged("id_tipo_usuario");
+					this.Onid_tipo_usuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_tipo", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombre_tipo
+		{
+			get
+			{
+				return this._nombre_tipo;
+			}
+			set
+			{
+				if ((this._nombre_tipo != value))
+				{
+					this.Onnombre_tipoChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_tipo = value;
+					this.SendPropertyChanged("nombre_tipo");
+					this.Onnombre_tipoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_usuario_Usuario", Storage="_Usuario", ThisKey="id_tipo_usuario", OtherKey="id_tipo_usuario")]
+		public EntitySet<Usuario> Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				this._Usuario.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Usuario(Usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_usuario = this;
+		}
+		
+		private void detach_Usuario(Usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_usuario = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ubicacion")]
+	public partial class Ubicacion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _id_ubicacion;
+		
+		private string _nombre_ubicacion;
+		
+		private string _indicaciones;
+		
+		private EntitySet<Actividad> _Actividad;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_ubicacionChanging(string value);
+    partial void Onid_ubicacionChanged();
+    partial void Onnombre_ubicacionChanging(string value);
+    partial void Onnombre_ubicacionChanged();
+    partial void OnindicacionesChanging(string value);
+    partial void OnindicacionesChanged();
+    #endregion
+		
+		public Ubicacion()
+		{
+			this._Actividad = new EntitySet<Actividad>(new Action<Actividad>(this.attach_Actividad), new Action<Actividad>(this.detach_Actividad));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_ubicacion", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id_ubicacion
+		{
+			get
+			{
+				return this._id_ubicacion;
+			}
+			set
+			{
+				if ((this._id_ubicacion != value))
+				{
+					this.Onid_ubicacionChanging(value);
+					this.SendPropertyChanging();
+					this._id_ubicacion = value;
+					this.SendPropertyChanged("id_ubicacion");
+					this.Onid_ubicacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_ubicacion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre_ubicacion
+		{
+			get
+			{
+				return this._nombre_ubicacion;
+			}
+			set
+			{
+				if ((this._nombre_ubicacion != value))
+				{
+					this.Onnombre_ubicacionChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_ubicacion = value;
+					this.SendPropertyChanged("nombre_ubicacion");
+					this.Onnombre_ubicacionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indicaciones", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
+		public string indicaciones
+		{
+			get
+			{
+				return this._indicaciones;
+			}
+			set
+			{
+				if ((this._indicaciones != value))
+				{
+					this.OnindicacionesChanging(value);
+					this.SendPropertyChanging();
+					this._indicaciones = value;
+					this.SendPropertyChanged("indicaciones");
+					this.OnindicacionesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ubicacion_Actividad", Storage="_Actividad", ThisKey="id_ubicacion", OtherKey="id_ubicacion")]
+		public EntitySet<Actividad> Actividad
+		{
+			get
+			{
+				return this._Actividad;
+			}
+			set
+			{
+				this._Actividad.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ubicacion = this;
+		}
+		
+		private void detach_Actividad(Actividad entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ubicacion = null;
 		}
 	}
 }
