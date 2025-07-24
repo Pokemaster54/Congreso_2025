@@ -23,7 +23,7 @@ namespace Congreso_2025.DataBase
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Congreso")]
-	public partial class CongresoDataContextDataContext : System.Data.Linq.DataContext
+	public partial class MiLinQ : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -74,25 +74,25 @@ namespace Congreso_2025.DataBase
     partial void DeleteUbicacion(Ubicacion instance);
     #endregion
 		
-		public CongresoDataContextDataContext(string connection) : 
+		public MiLinQ(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CongresoDataContextDataContext(System.Data.IDbConnection connection) : 
+		public MiLinQ(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CongresoDataContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public MiLinQ(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public CongresoDataContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public MiLinQ(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();

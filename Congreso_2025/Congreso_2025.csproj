@@ -73,6 +73,9 @@
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
+    <Compile Include="Clases\DataClasses\Ponente.cs" />
+    <Compile Include="Clases\General.cs" />
     <Compile Include="DataBase\CongresoDataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,9 +122,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
