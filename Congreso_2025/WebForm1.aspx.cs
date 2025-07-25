@@ -9,15 +9,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Congreso_2025.DataBase;
 using Congreso_2025.Clases;
+using Congreso_2025.Clases.DataAccessObjects;
+using Congreso_2025.Clases.DataClasses;
 
 namespace Congreso_2025
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
         General general = new General();
+        PonenteDAO ponenteDAO = new PonenteDAO();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                CargarPonentesEnTabla();
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -26,10 +32,7 @@ namespace Congreso_2025
             string fechaNacimiento = txtDate.Text;
             string origen = txtAddOrigin.Text;
             string descripcion = txtAddDescription.Text;
-
-            string swal = "Swal.fire('Añadido', 'Ponente añadido con éxito', 'success');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", swal, true);
-
+            addNewPonente(nombre, fechaNacimiento, origen, descripcion);
             cleanAddNewForm();
         }
 
@@ -43,25 +46,50 @@ namespace Congreso_2025
 
         }
 
-        private void addNewPonente(string nombre, string fechaNacimiento, string origen, string descripcion)
+
+        private void CargarPonentesEnTabla()
         {
+            PonenteDAO ponenteDao = new PonenteDAO();
             try
             {
-                using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
-                {
-                    var query = from ponente in miLinQ.Ponentes
-                                where ponente.Nombre == nombre && ponente.FechaNacimiento == fechaNacimiento
-                                select ponente;
-                }
+                List<Ponente> listaDePonentes = ponenteDao.ConsultarPonentes();
 
+                UserRepeater.DataSource = listaDePonentes;
+
+                UserRepeater.DataBind();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Response.Write($"<div class='alert alert-danger'>Error al cargar ponentes: {ex.Message}</div>");
             }
+        }
+        private void addNewPonente(string nombre, string fechaNacimiento, string origen, string descripcion)
+        {
+         PonenteDC ponente = new PonenteDC(nombre, Convert.ToDateTime(fechaNacimiento), origen, descripcion);
+            string swal = "";
+            if (ponenteDAO.InsertarPonente(ponente))
+            {
+                swal = "Swal.fire('Exito', 'Ponente añadido con potencia', 'success');";
+            }
+            else
+            {
+                swal = "Swal.fire('Error', 'No se pudo añadir el ponente', 'error');";
+            }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", swal, true);
+
+        }
+
+        protected void btnGuardarEdicion_Click(object sender, EventArgs e)
+        {
+            
         }
 
 
+        protected void btnConfirmarEliminacion_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
-}
+
 }
