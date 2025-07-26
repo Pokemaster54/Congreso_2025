@@ -49,9 +49,9 @@ namespace Congreso_2025
             {
                 using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
                 {
-                    var query = from ponente in miLinQ.Ponentes
+                    /*var query = from ponente in miLinQ.Ponentes
                                 where ponente.Nombre == nombre && ponente.FechaNacimiento == fechaNacimiento
-                                select ponente;
+                                select ponente;*/
                 }
 
             }
@@ -64,4 +64,4 @@ namespace Congreso_2025
 
     }
 }
-}
+//}
