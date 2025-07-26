@@ -103,68 +103,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <%-- Formulario para la edición --%>
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Editar Ponente</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <%-- Campo oculto para guardar el ID del ponente que se está editando --%>
-                        <asp:HiddenField ID="HiddenField1" runat="server" />
-
-                        <div class="mb-3">
-                            <label for="txtEditNombre" class="form-label">Nombre</label>
-                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtEditOrigen" class="form-label">Origen</label>
-                            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtEditFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                            <asp:TextBox ID="TextBox3" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtEditDescripcion" class="form-label">Descripción</label>
-                            <asp:TextBox ID="TextBox4" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control"></asp:TextBox>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="Button1" runat="server" Text="Guardar Cambios" CssClass="btn btn-primary" OnClick="btnGuardarEdicion_Click" />
-                        <div style="width: 1vw"></div>
-                        <%-- Pequeño espacio --%>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <%-- Formulario para la eliminación --%>
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>¿Estás seguro de que quieres eliminar al ponente <strong id="Strong1" runat="server"></strong>?</p>
-                        <%-- Campo oculto para guardar el ID del ponente que se va a eliminar --%>
-                        <asp:HiddenField ID="HiddenField2" runat="server" />
-                    </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="Button2" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnConfirmarEliminacion_Click" />
-                        <div style="width: 1vw"></div>
-                        <%-- Pequeño espacio --%>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-
-            </div>
-        </div>
-    </div>
+             
 
         </form>
     <!-- Bootstrap JS (required for modals to work) -->
