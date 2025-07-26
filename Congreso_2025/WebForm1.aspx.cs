@@ -69,13 +69,12 @@ namespace Congreso_2025
             string swal = "";
             if (ponenteDAO.InsertarPonente(ponente))
             {
-                swal = "Swal.fire('Exito', 'Ponente añadido con potencia', 'success');";
-            }
-            else
-            {
-                swal = "Swal.fire('Error', 'No se pudo añadir el ponente', 'error');";
-            }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", swal, true);
+                using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
+                {
+                    /*var query = from ponente in miLinQ.Ponentes
+                                where ponente.Nombre == nombre && ponente.FechaNacimiento == fechaNacimiento
+                                select ponente;*/
+                }
 
         }
 
@@ -88,8 +87,6 @@ namespace Congreso_2025
         protected void btnConfirmarEliminacion_Click(object sender, EventArgs e)
         {
 
-        }
-
     }
-
+}
 }
