@@ -6,12 +6,15 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+Luis
     <link href="bootstrap537/css/bootstrap.min.css" rel ="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ master
     <title>Tipo_Usuario</title>
 </head>
 <body >
     <form id="form1" runat="server">
+ Luis
         <div class="h1 p-2 m-2 text-center border-bottom border-danger">Tipo de usuario</div>
         <!--Inicio de tabla de ingreso de datos-->
         <div class="container bg-body-secondary p-3 mt-3 mb-3 col-8 fs-4 rounded-3">
@@ -53,6 +56,30 @@
         <!--Inicio de Grid-->
         <asp:GridView ID="GridViewListaTipoUs" runat="server" CssClass="table table-striped table-secondary table-hover"></asp:GridView>
         <!--Fin de Grid-->
+
+        <div class="h1 p-2 m-4 text-center border-bottom border-danger text-white">Ingreso de usuario</div>
+        <!--Inicio de tabla de ingreso de datos-->
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    ID tipo:
+                </div>
+                <div class="col">
+                    <asp:TextBox ID="TextBoxIdTipo" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                            <div class="row">
+                <div class="col">
+                    Tipo:
+                </div>
+                <div class="col">
+                    <asp:TextBox ID="TextBoxTipo" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+            </div>
+        <div class="h1 p-2 m-4 text-center border-bottom border-danger text-white"></div>
+        <!--Fin de tabla de ingresos-->
+master
     </form>
 </body>
 </html>

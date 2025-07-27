@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.75, 14.25" name="CongresoDataContext">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 16.875, 14.25" name="CongresoDataContext">
   <DataContextMoniker Name="/MiLinQ" />
   <nestedChildShapes>
     <classShape Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" absoluteBounds="4.375, 1.125, 2, 2.5401025390625">
@@ -27,20 +27,20 @@
         <classShapeMoniker Id="83767a3b-2473-45a0-bdbb-52e37dbfcd55" />
       </nodes>
     </associationConnector>
-    <classShape Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" absoluteBounds="3.375, 5.125, 2, 1.3862939453125">
+    <classShape Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" absoluteBounds="14.625, 6.375, 2, 1.3862939453125">
       <DataClassMoniker Name="/MiLinQ/carrera_actividad" />
       <nestedChildShapes>
-        <elementListCompartment Id="b261a7c7-7789-446b-8e9c-44e35ff44ada" absoluteBounds="3.39, 5.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b261a7c7-7789-446b-8e9c-44e35ff44ada" absoluteBounds="14.64, 6.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.375 : 5.9175439453125); (6.29166666666667 : 5.9175439453125 : JumpStart); (6.45833333333333 : 5.9175439453125 : JumpEnd); (10.125 : 5.9175439453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(14.625 : 6.59375); (11.28125 : 6.59375); (11.28125 : 5.95359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/carrera_actividad/carrera_actividad_asignacion_actividad" />
       <nodes>
         <classShapeMoniker Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" />
         <classShapeMoniker Id="83767a3b-2473-45a0-bdbb-52e37dbfcd55" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.96875 : 3.6651025390625); (5.96875 : 6.2456714453125); (5.375 : 6.2456714453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.03125 : 3.6651025390625); (6.03125 : 6.4531225); (6.29166666666667 : 6.4531225 : JumpStart); (6.45833333333333 : 6.4531225 : JumpEnd); (6.66666666666667 : 6.4531225 : JumpStart); (6.83333333333333 : 6.4531225 : JumpEnd); (7.63541666666667 : 6.4531225 : JumpStart); (7.80208333333333 : 6.4531225 : JumpEnd); (11.1979166666667 : 6.4531225 : JumpStart); (11.3645833333333 : 6.4531225 : JumpEnd); (14.625 : 6.4531225)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/Actividad/Actividad_carrera_actividad" />
       <nodes>
         <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
@@ -73,10 +73,10 @@
         <classShapeMoniker Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" />
       </nodes>
     </associationConnector>
-    <classShape Id="b2f1bafa-6ae2-4040-b4be-056eac695cd1" absoluteBounds="3.5, 3.375, 2, 1.1939925130208333">
+    <classShape Id="b2f1bafa-6ae2-4040-b4be-056eac695cd1" absoluteBounds="3.625, 4.875, 2, 1.1939925130208333">
       <DataClassMoniker Name="/MiLinQ/Estado_pago" />
       <nestedChildShapes>
-        <elementListCompartment Id="b3955dd5-6e77-43a1-88ca-ca1c6de4a5f9" absoluteBounds="3.515, 3.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b3955dd5-6e77-43a1-88ca-ca1c6de4a5f9" absoluteBounds="3.64, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="9f1c79af-a0af-40c8-8d18-48fb203cb635" absoluteBounds="7.125, 4.625, 2, 1.1939925130208333">
@@ -85,27 +85,27 @@
         <elementListCompartment Id="40f5c773-d2ff-439a-81f2-b1128b260205" absoluteBounds="7.14, 5.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.125 : 5.47199625651042); (6.45833333333333 : 5.47199625651042 : JumpStart); (6.29166666666667 : 5.47199625651042 : JumpEnd); (5.375 : 5.47199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.71875 : 5.81899251302083); (7.71875 : 6.7343775); (14.625 : 6.7343775)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/id_carrera/id_carrera_carrera_actividad" />
       <nodes>
         <classShapeMoniker Id="9f1c79af-a0af-40c8-8d18-48fb203cb635" />
         <classShapeMoniker Id="1387e945-7caa-4a48-b5aa-46f77235e4fc" />
       </nodes>
     </associationConnector>
-    <classShape Id="577d94b8-5549-4f3d-9deb-f8ea6c39a7d1" absoluteBounds="3.375, 2.5, 2, 1.9631982421875">
+    <classShape Id="577d94b8-5549-4f3d-9deb-f8ea6c39a7d1" absoluteBounds="0.5, 4.25, 2, 1.9631982421875">
       <DataClassMoniker Name="/MiLinQ/Pago" />
       <nestedChildShapes>
-        <elementListCompartment Id="d4665c66-661c-4170-8264-61a6360bab69" absoluteBounds="3.39, 2.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d4665c66-661c-4170-8264-61a6360bab69" absoluteBounds="0.51500000000000012, 4.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.4062505 : 4.4631982421875); (3.4062505 : 4.7131982421875); (6.29166666666667 : 4.7131982421875 : JumpStart); (6.45833333333333 : 4.7131982421875 : JumpEnd); (6.625 : 4.7131982421875); (6.625 : 2.70274983723958); (8 : 2.70274983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.5 : 4.40625); (5.66666666666667 : 4.40625 : JumpStart); (6.11458333333333 : 4.40625 : JumpEnd); (6.29166666666667 : 4.40625 : JumpStart); (6.45833333333333 : 4.40625 : JumpEnd); (6.66666666666667 : 4.40625 : JumpStart); (6.83333333333333 : 4.40625 : JumpEnd); (9.5624975 : 4.40625); (9.5624975 : 3.78049967447917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/Pago/Pago_Alumno" />
       <nodes>
         <classShapeMoniker Id="577d94b8-5549-4f3d-9deb-f8ea6c39a7d1" />
         <classShapeMoniker Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.5 : 3.97199625651042); (3.125 : 3.97199625651042); (3.125 : 3.48159912109375); (3.375 : 3.48159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.625 : 5.47199625651042); (2.5 : 5.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/Estado_pago/Estado_pago_Pago" />
       <nodes>
         <classShapeMoniker Id="b2f1bafa-6ae2-4040-b4be-056eac695cd1" />
@@ -142,35 +142,35 @@
         <elementListCompartment Id="ec68d29c-e8bf-4742-b28b-ac11ab6e551a" absoluteBounds="8.39, 7.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.625 : 12.25); (2.625 : 11.8189925130208); (4.75 : 11.8189925130208); (4.75 : 6.7612939453125); (2.875 : 6.7612939453125); (2.875 : 2.06574725651042); (4.375 : 2.06574725651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.625 : 13.1354484049479); (5 : 13.1354484049479); (5 : 6.31899251302083); (5.875 : 6.31899251302083); (5.875 : 4.0401025390625); (5.171873 : 4.0401025390625); (5.171873 : 3.6651025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/Ponente/Ponente_Actividad" />
       <nodes>
         <classShapeMoniker Id="d663905f-3323-443e-a536-24355ff49a9f" />
         <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.625 : 10.375); (2.625 : 9.56899251302083); (4.66666666666667 : 9.56899251302083 : JumpStart); (4.83333333333333 : 9.56899251302083 : JumpEnd); (5 : 9.56899251302083); (5 : 7.0112939453125); (4.83333333333333 : 7.0112939453125 : JumpStart); (4.66666666666667 : 7.0112939453125 : JumpEnd); (3.25 : 7.0112939453125); (3.25 : 2.28287612825521); (4.375 : 2.28287612825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.625 : 10.9719962565104); (4.75 : 10.9719962565104); (4.75 : 6.19399251302083); (5.75 : 6.19399251302083); (5.75 : 4.1651025390625); (4.7421845 : 4.1651025390625); (4.7421845 : 3.6651025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/Tipo_actividad/Tipo_actividad_Actividad" />
       <nodes>
         <classShapeMoniker Id="ce9ce70e-2ef2-4c51-809b-7823c10f981a" />
         <classShapeMoniker Id="7e4c25f4-fbb3-4a85-b309-d2c58396f0b5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.296875 : 7.875); (6.296875 : 3.9151025390625); (6.54166666666667 : 3.9151025390625 : JumpStart); (6.70833333333333 : 3.9151025390625 : JumpEnd); (6.875 : 3.9151025390625); (6.875 : 3.27287675585937); (8 : 3.27287675585937)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.75 : 7.875); (6.75 : 3.75405110677083); (8 : 3.75405110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MiLinQ/Usuario/Usuario_Alumno" />
       <nodes>
         <classShapeMoniker Id="5138e5f8-4683-4830-9719-6fdbbd207213" />
         <classShapeMoniker Id="72736a95-eaa4-4933-a3e3-6dc50bc3a177" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 8.72199625651042); (4.66666666666667 : 8.72199625651042 : JumpStart); (4.83333333333333 : 8.72199625651042 : JumpEnd); (5.25 : 8.72199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.5 : 8.72199625651042); (4.66666666666667 : 8.72199625651042 : JumpStart); (4.83333333333333 : 8.72199625651042 : JumpEnd); (4.91666666666667 : 8.72199625651042 : JumpStart); (5.08333333333333 : 8.72199625651042 : JumpEnd); (5.25 : 8.72199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MiLinQ/Tipo_usuario/Tipo_usuario_Usuario" />
       <nodes>
         <classShapeMoniker Id="e729a26f-fc4f-4c43-9de9-043fcc12b5d9" />
         <classShapeMoniker Id="5138e5f8-4683-4830-9719-6fdbbd207213" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.375 : 6.875); (6.375 : 6.875); (6.375 : 3.6651025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.375 : 6.875); (6.83333333333333 : 6.875 : JumpStart); (6.66666666666667 : 6.875 : JumpEnd); (6.375 : 6.875); (6.375 : 3.6651025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MiLinQ/Ubicacion/Ubicacion_Actividad" />
       <nodes>
         <classShapeMoniker Id="82ee1528-7518-4b15-b67c-b8ee7f0b5770" />

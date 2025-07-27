@@ -9,15 +9,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Congreso_2025.DataBase;
 using Congreso_2025.Clases;
+using Congreso_2025.Clases.DataAccessObjects;
+using Congreso_2025.Clases.DataClasses;
 
 namespace Congreso_2025
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
         General general = new General();
+        PonenteDAO ponenteDAO = new PonenteDAO();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                CargarPonentesEnTabla();
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -26,10 +32,7 @@ namespace Congreso_2025
             string fechaNacimiento = txtDate.Text;
             string origen = txtAddOrigin.Text;
             string descripcion = txtAddDescription.Text;
-
-            string swal = "Swal.fire('Añadido', 'Ponente añadido con éxito', 'success');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", swal, true);
-
+            addNewPonente(nombre, fechaNacimiento, origen, descripcion);
             cleanAddNewForm();
         }
 
@@ -43,9 +46,28 @@ namespace Congreso_2025
 
         }
 
+
+        private void CargarPonentesEnTabla()
+        {
+            PonenteDAO ponenteDao = new PonenteDAO();
+            try
+            {
+                List<Ponente> listaDePonentes = ponenteDao.ConsultarPonentes();
+
+                UserRepeater.DataSource = listaDePonentes;
+
+                UserRepeater.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<div class='alert alert-danger'>Error al cargar ponentes: {ex.Message}</div>");
+            }
+        }
         private void addNewPonente(string nombre, string fechaNacimiento, string origen, string descripcion)
         {
-            try
+         PonenteDC ponente = new PonenteDC(nombre, Convert.ToDateTime(fechaNacimiento), origen, descripcion);
+            string swal = "";
+            if (ponenteDAO.InsertarPonente(ponente))
             {
                 using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
                 {
@@ -54,13 +76,16 @@ namespace Congreso_2025
                                 select ponente;*/
                 }
 
-            }
-            catch
-            {
-
-            }
         }
 
+        protected void btnGuardarEdicion_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        protected void btnConfirmarEliminacion_Click(object sender, EventArgs e)
+        {
 
     }
 }

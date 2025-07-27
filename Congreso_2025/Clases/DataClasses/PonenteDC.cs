@@ -5,13 +5,14 @@ using System.Web;
 
 namespace Congreso_2025.Clases.DataClasses
 {
-    public class Ponente
+    public class PonenteDC
     {
+        private string idPonente;
         private string nombre;
         private DateTime fechaNacimiento;
         private string origen;
         private string descripcion;
-        public Ponente(string nombre, DateTime fechaNacimiento, string origen, string descripcion)
+        public PonenteDC(string nombre, DateTime fechaNacimiento, string origen, string descripcion)
         {
             Nombre = nombre;
             FechaNacimiento = fechaNacimiento;
@@ -19,7 +20,20 @@ namespace Congreso_2025.Clases.DataClasses
             Descripcion = descripcion;
         }
 
+        public PonenteDC(string idPonente, string nombre, DateTime fechaNacimiento, string origen, string descripcion)
+        {
+            IdPonente = idPonente;
+            Nombre = nombre;
+            FechaNacimiento = fechaNacimiento;
+            Origen = origen;
+            Descripcion = descripcion;
+        }
 
+        public string IdPonente
+        {
+            get { return idPonente; }
+            set { idPonente = value; }
+        }
         public string Nombre
         {
             get { return nombre; }

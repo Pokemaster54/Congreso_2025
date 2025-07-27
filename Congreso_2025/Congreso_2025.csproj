@@ -97,7 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
-    <Compile Include="Clases\DataClasses\Ponente.cs" />
+    <Compile Include="Clases\DataClasses\PonenteDC.cs" />
     <Compile Include="Clases\General.cs" />
     <Compile Include="DataBase\CongresoDataContext.designer.cs">
       <AutoGen>True</AutoGen>
