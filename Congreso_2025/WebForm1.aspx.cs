@@ -1,16 +1,12 @@
-﻿using Congreso_2025.DataBase;
-using System;
-using System.Collections.Generic;
-using System.Data.Linq;
-using System.Drawing;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Congreso_2025.DataBase;
-using Congreso_2025.Clases;
+﻿using Congreso_2025.Clases;
 using Congreso_2025.Clases.DataAccessObjects;
 using Congreso_2025.Clases.DataClasses;
+using Congreso_2025.DataBase;
+using System;
+using System.Collections.Generic;
+using System.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Congreso_2025
 {
@@ -18,31 +14,34 @@ namespace Congreso_2025
     {
         General general = new General();
         PonenteDAO ponenteDAO = new PonenteDAO();
+        string idPonenteSeleccionado = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
+
                 CargarPonentesEnTabla();
+                Session["idPonente"] = "";
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string nombre = txtAddName.Text;
+            string nombre = txtName.Text;
             string fechaNacimiento = txtDate.Text;
-            string origen = txtAddOrigin.Text;
-            string descripcion = txtAddDescription.Text;
+            string origen = txtOrigin.Text;
+            string descripcion = txtDescription.Text;
             addNewPonente(nombre, fechaNacimiento, origen, descripcion);
-            cleanAddNewForm();
+            cleanForm();
         }
 
 
-        private void cleanAddNewForm()
+        private void cleanForm()
         {
-            txtAddName.Text = "";
+            txtName.Text = "";
             txtDate.Text = "";
-            txtAddOrigin.Text = "";
-            txtAddDescription.Text = "";
+            txtOrigin.Text = "";
+            txtDescription.Text = "";
 
         }
 
@@ -55,8 +54,9 @@ namespace Congreso_2025
                 List<Ponente> listaDePonentes = ponenteDao.ConsultarPonentes();
 
                 UserRepeater.DataSource = listaDePonentes;
-
                 UserRepeater.DataBind();
+
+
             }
             catch (Exception ex)
             {
@@ -65,28 +65,134 @@ namespace Congreso_2025
         }
         private void addNewPonente(string nombre, string fechaNacimiento, string origen, string descripcion)
         {
-         PonenteDC ponente = new PonenteDC(nombre, Convert.ToDateTime(fechaNacimiento), origen, descripcion);
+            PonenteDC ponente = new PonenteDC(nombre, Convert.ToDateTime(fechaNacimiento), origen, descripcion);
+            Ponente comprobacion = null;
             string swal = "";
-            if (ponenteDAO.InsertarPonente(ponente))
+            string idPonente = Session["idPonente"] as string;
+
+            if (!string.IsNullOrEmpty(idPonente))
             {
-                using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
+                comprobacion = ponenteDAO.CargarDatosPonente(new Ponente (){ id_ponente = idPonente});
+            }
+            if (comprobacion == null)
+            {
+                if (ponenteDAO.InsertarPonente(ponente))
                 {
-                    /*var query = from ponente in miLinQ.Ponentes
-                                where ponente.Nombre == nombre && ponente.FechaNacimiento == fechaNacimiento
-                                select ponente;*/
+                    swal = "Swal.fire('Exito', 'Ponente añadido con éxito', 'success');";
+                    CargarPonentesEnTabla();
                 }
+                else
+                {
+                    swal = "Swal.fire('Error', 'No se pudo añadir el ponente', 'error');";
+                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", swal, true);
+            }
+            else
+            {
+                Ponente nuevo = new Ponente() { id_ponente = idPonente, nombre_ponente = nombre, fecha_nacimiento = Convert.ToDateTime(fechaNacimiento), Origen = origen, descripcion = descripcion };
+
+                if (ponenteDAO.ActualizarPonente(nuevo))
+                {
+                    swal = "Swal.fire('Exito', 'Ponente editado con éxito', 'success');";
+                    Session["idPonente"] = "";
+                    CargarPonentesEnTabla();
+                }
+                else
+                {
+                    swal = "Swal.fire('Error', 'No se pudo actualizar el ponente', 'error');";
+                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", swal, true);
+            }
 
         }
-
-        protected void btnGuardarEdicion_Click(object sender, EventArgs e)
+        protected void lnkDelete_Click(object sender, EventArgs e)
         {
-            
+            LinkButton btn = (LinkButton)sender;
+            string ponenteId = btn.CommandArgument;
+            if (!string.IsNullOrEmpty(ponenteId))
+            {
+
+                if (ponenteDAO.EliminarPonente(ponenteId))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "success",
+                        "alert('Ponente eliminado exitosamente'); $('#editModal').modal('hide');", true);
+                    CargarPonentesEnTabla();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"alert('Error al eliminar ponente');", true);
+                }
+            }
+        }
+        protected void lnkEdit_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            string ponenteId = btn.CommandArgument;
+            Session["idPonente"] = ponenteId;
+            CargarDatosParaEditar(Session["idPonente"] as string);
         }
 
-
-        protected void btnConfirmarEliminacion_Click(object sender, EventArgs e)
+        // Método para cargar datos del ponente en el modal de edición
+        protected void CargarDatosParaEditar(string ponenteId)
         {
+            try
+            {
+                Ponente ponente = new Ponente { id_ponente = ponenteId };
+                ponente = ponenteDAO.CargarDatosPonente(ponente);
+
+                if (ponente != null && ponente.nombre_ponente != null)
+                {
+                    hfPonenteId.Value = ponente.id_ponente;
+                    txtName.Text = ponente.nombre_ponente;
+                    txtDate.Text = ponente.fecha_nacimiento.ToString("yyyy-MM-dd");
+                    txtOrigin.Text = ponente.Origen;
+                    txtDescription.Text = ponente.descripcion;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"alert('Error: {ex.Message}');", true);
+            }
+        }
+        // Método para actualizar ponente
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string ponenteId = hfPonenteId.Value;
+                Ponente ponente = new Ponente { id_ponente = ponenteId };
+                ponente = ponenteDAO.CargarDatosPonente(ponente);
+
+                if (ponente != null)
+                {
+                    ponenteDAO.ActualizarPonente(ponente);
+                    cleanForm();
+                    CargarPonentesEnTabla();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "success",
+                        "alert('Ponente actualizado exitosamente'); $('#editModal').modal('hide');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                        "alert('No se encontró el ponente a actualizar');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"alert('Error al actualizar ponente: {ex.Message}');", true);
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            cleanForm();
+            Session["idPonente"] = "";
+        }
 
     }
+
 }
-//}

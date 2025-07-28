@@ -11,102 +11,97 @@
 </head>
 <body class="bg-light py-5">
     <form runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
+        <!-- Hidden field para almacenar el ID del ponente cuando se está editando -->
+        <asp:HiddenField ID="hfPonenteId" runat="server" />
 
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Panel Ponente</h2>
-            <!-- Trigger for modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                Añadir
-            </button>
-        </div>
+        <div class="container">
+            <h2 class="mb-4">Panel Ponente</h2>
 
-        <!-- Table -->
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Origen</th>
-                    <th>Fecha de nacimiento</th>
-                    <th>Descripcion</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <asp:Repeater ID="UserRepeater" runat="server">
-                    <ItemTemplate>
-                        <tr>
-                            <%-- ¡ATENCIÓN A LOS NOMBRES DE LAS PROPIEDADES! --%>
-                            <td><%# Eval("id_ponente") %></td>
-                            <td><%# Eval("nombre_ponente") %></td>
-                            <td><%# Eval("origen") %></td>
-                            <td><%# Eval("fecha_nacimiento", "{0:yyyy-MM-dd}") %></td>
-                            <%-- Formato de fecha --%>
-                            <td><%# Eval("descripcion") %></td>
-                            <td>
-                                <div class="d-flex justify-content-center">
-
-                                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </tbody>
-        </table>
-
-    </div>
-
-
-    <!-- Add Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addModalLabel">Añadir nuevo ponente</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- Formulario para Añadir/Editar -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <asp:Label ID="lblFormTitle" runat="server" Text="Añadir Nuevo Ponente"></asp:Label>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="txtName" class="form-label">Nombre</label>
+                            <asp:TextBox ID="txtName" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="txtDate" class="form-label">Fecha de nacimiento</label>
+                            <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="form-control" required="true"></asp:TextBox>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="addName" class="form-label">Nombre</label>
-                            <asp:TextBox ID="txtAddName" runat="server" CssClass="form-control" required="true"> </asp:TextBox>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="txtOrigin" class="form-label">Origen (lugar)</label>
+                            <asp:TextBox ID="txtOrigin" runat="server" CssClass="form-control" required="true"></asp:TextBox>
                         </div>
-                        <div class="mb-3">
-                            <label for="addDate" class="form-label">Fecha de nacimiento</label>
-                            <asp:TextBox ID="txtDate" runat="server" TextMode="Date" CssClass="form-control" required="true"> </asp:TextBox>
-
+                        <div class="col-md-6 mb-3">
+                            <label for="txtDescription" class="form-label">Descripción</label>
+                            <asp:TextBox ID="txtDescription" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
                         </div>
-                        <div class="mb-3">
-                            <label for="addOrigin" class="form-label">Origen (lugar)</label>
-                            <asp:TextBox ID="txtAddOrigin" runat="server" CssClass="form-control" required="true"> </asp:TextBox>
-                        </div>
-                        <div class="mb-3">
-                            <label for="addName" class="form-label">Descripción</label>
-                            <asp:TextBox ID="txtAddDescription" runat="server" CssClass="form-control" TextMode="MultiLine"> </asp:TextBox>
-                        </div>
-                        <!-- Add more fields here if needed -->
                     </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="btnSave" runat="server" Text="Añadir" CssClass="btn btn-success" OnClick="btnSave_Click" />
-                        <div style="width: 1vw"></div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <div class="d-flex gap-2">
+                        <asp:Button ID="btnSave" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                        <asp:Button ID="btnCancel" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancel_Click" />
                     </div>
+                </div>
+            </div>
 
+            <!-- Tabla de Ponentes -->
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Origen</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Descripcion</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <asp:Repeater ID="UserRepeater" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%# Eval("id_ponente") %></td>
+                                        <td><%# Eval("nombre_ponente") %></td>
+                                        <td><%# Eval("origen") %></td>
+                                        <td><%# Eval("fecha_nacimiento", "{0:yyyy-MM-dd}") %></td>
+                                        <td><%# Eval("descripcion") %></td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <asp:LinkButton ID="lnkEdit" runat="server"
+                                                    CssClass="btn btn-sm btn-warning"
+                                                    Text="Editar"
+                                                    OnClick="lnkEdit_Click"
+                                                    CommandArgument='<%# Eval("id_ponente") %>' />
+                                                <asp:LinkButton ID="lnkDelete" runat="server"
+                                                    CssClass="btn btn-sm btn-danger"
+                                                    Text="Eliminar"
+                                                    OnClick="lnkDelete_Click"
+                                                    CommandArgument='<%# Eval("id_ponente") %>'
+                                                    OnClientClick="return confirm('¿Está seguro de que desea eliminar este ponente?');" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    </form>
 
-             
-
-        </form>
-    <!-- Bootstrap JS (required for modals to work) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

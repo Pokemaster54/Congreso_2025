@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using PonenteDC = Congreso_2025.Clases.DataClasses.PonenteDC;
 
 namespace Congreso_2025.Clases.DataAccessObjects
@@ -110,6 +111,95 @@ namespace Congreso_2025.Clases.DataAccessObjects
 
         }
 
+        public Ponente CargarDatosPonente(Ponente ponente)
+        {
+            try
+            {
+                using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
+                {
 
+                    var consultaPonente = miLinQ.Ponente
+                        .Where(p => p.id_ponente == ponente.id_ponente)
+                        .FirstOrDefault();
+                    if (ponente != null)
+                    {
+                        Ponente nuevo = new Ponente()
+                        {
+                            id_ponente = consultaPonente.id_ponente,
+                            nombre_ponente = consultaPonente.nombre_ponente,
+                            fecha_nacimiento = consultaPonente.fecha_nacimiento,
+                            Origen = consultaPonente.Origen,
+                            descripcion = consultaPonente.descripcion
+                        };
+                        return nuevo;
+
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public bool ActualizarPonente(Ponente ponente)
+        {
+            try
+            {
+                using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
+                {
+                    // Cargar el ponente directamente desde el contexto actual
+                    var consultaPonente = miLinQ.Ponente
+                        .FirstOrDefault(p => p.id_ponente == ponente.id_ponente);
+
+                    if (consultaPonente != null)
+                    {
+                        // Actualizar los campos
+                        consultaPonente.nombre_ponente = ponente.nombre_ponente;
+                        consultaPonente.fecha_nacimiento = ponente.fecha_nacimiento;
+                        consultaPonente.Origen = ponente.Origen;
+                        consultaPonente.descripcion = ponente.descripcion;
+
+                        // Guardar cambios
+                        miLinQ.SubmitChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating ponente: {ex.Message}");
+                return false;
+            }
+        }
+
+        public bool EliminarPonente(string ponenteId)
+        {
+            try
+            {
+                using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
+                {
+                    var ponente = miLinQ.Ponente
+                        .FirstOrDefault(p => p.id_ponente == ponenteId);
+
+                    if (ponente != null)
+                    {
+                        miLinQ.Ponente.DeleteOnSubmit(ponente);
+                        miLinQ.SubmitChanges();
+                        return true;
+                    }
+                    return false; 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error eliminando ponente: {ex.Message}");
+                return false;
+            }
+        }
     }
+
+
 }
