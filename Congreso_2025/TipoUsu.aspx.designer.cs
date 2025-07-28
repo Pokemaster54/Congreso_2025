@@ -24,21 +24,13 @@ namespace Congreso_2025
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-Luis
         /// Control TextBoxCodTipo.
-
-        /// Control TextBoxIdTipo.
- master
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
- Luis
         protected global::System.Web.UI.WebControls.TextBox TextBoxCodTipo;
-
-        protected global::System.Web.UI.WebControls.TextBox TextBoxIdTipo;
- master
 
         /// <summary>
         /// Control TextBoxTipo.
@@ -48,7 +40,6 @@ Luis
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxTipo;
- Luis
 
         /// <summary>
         /// Control ButtonAgregar.
@@ -103,6 +94,5 @@ Luis
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewListaTipoUs;
-> master
     }
 }
