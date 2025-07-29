@@ -111,6 +111,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BD\LinqU.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinqU.dbml</DependentUpon>
+    </Compile>
     <Compile Include="MenuAdmin.Master.cs">
       <DependentUpon>MenuAdmin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,6 +170,14 @@
     <Content Include="bootstrap537\js\bootstrap.min.js.map" />
     <None Include="DataBase\CongresoDataContext.dbml.layout">
       <DependentUpon>CongresoDataContext.dbml</DependentUpon>
+    </None>
+    <Content Include="BD\LinqU.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>LinqU.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="BD\LinqU.dbml.layout">
+      <DependentUpon>LinqU.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
