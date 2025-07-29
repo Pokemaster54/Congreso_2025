@@ -54,14 +54,12 @@
                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("nombre_tipo") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text='<%# Bind("nombre_tipo") %>'></asp:TextBox>
+                                <asp:TextBox ID="TextBoxTipo" runat="server" CssClass="form-control" Text='<%# Bind("nombre_tipo") %>'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:ButtonField ButtonType="Button" Text="Editar" ControlStyle-CssClass="btn btn-warning">
-<ControlStyle CssClass="btn btn-warning"></ControlStyle>
+                        <asp:ButtonField ButtonType="Button" runat="server" Text="Editar" CommandName="Editar"><ControlStyle CssClass="btn btn-warning"></ControlStyle>
                         </asp:ButtonField>
-                        <asp:ButtonField ButtonType="Button" Text="Eliminar" ControlStyle-CssClass="btn btn-danger">
-<ControlStyle CssClass="btn btn-danger"></ControlStyle>
+                        <asp:ButtonField ButtonType="Button" runat="server" Text="Eliminar" CommandName="Eliminar"><ControlStyle CssClass="btn btn-danger"></ControlStyle>
                         </asp:ButtonField>
                     </Columns>
                 </asp:GridView>
