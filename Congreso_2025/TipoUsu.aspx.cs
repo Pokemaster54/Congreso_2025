@@ -34,9 +34,17 @@ namespace Congreso_2025
                 TextBoxCodTipo.Text=NuevoId;
             }
             TextBoxCodTipo.Enabled = false;
+            TextBoxTipo.Text = "";
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (Request.QueryString["confirmar"] =="true")
+            {
+                string idt = Request.QueryString["id"];
+                elimina(idt);
+            }
+
             if (!IsPostBack)
             {
                 Carga();
@@ -67,7 +75,7 @@ namespace Congreso_2025
                     }
                     catch
                     {
-                        Response.Write("<script>alert('Ocurrio un erro al intenta actualizar los datos')</script>");
+                        Response.Write("<script>alert('Ocurrio un erro al intenta ingresar los datos')</script>");
                     }
                 }
                 else
@@ -75,7 +83,7 @@ namespace Congreso_2025
             }
             catch
             {
-                Response.Write("<script>alert('Ocurrio un error al intentar actualizar los datos')</script>");
+                Response.Write("<script>alert('Ocurrio un error al intentar Ingresar los datos')</script>");
             }
         }
         protected void ButtonAgregar_Click(object sender, EventArgs e)
@@ -84,39 +92,51 @@ namespace Congreso_2025
         }
         public void Edita(string valorId,string valorTipo)
         {
-            if (valorTipo != "" && valorTipo != null)
+            try
+            {
+                if (valorTipo != "" && valorTipo != null)
+                {
+                    using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
+                    {
+                        var consulta = from tu in miLinQ.Tipo_usuario
+                                       where tu.id_tipo_usuario == valorId
+                                       select tu;
+                        foreach (var fila in consulta)
+                        {
+                            fila.nombre_tipo = valorTipo;
+                        }
+                        miLinQ.SubmitChanges();
+                        Carga();
+                        Response.Write("<script>alert('Se actualizaron los datos de forma correcta')</script>");
+                    }
+                }
+                else
+                    Response.Write("<script>alert('Es necesario que complete el campo')</script>");
+            }
+            catch
+            {
+                Response.Write("<script>alert('Ocurrio un error al intentar actualizar los datos')</script>");
+            }
+
+        }
+
+        public void elimina(string valorId)
+        {
+            try
             {
                 using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
                 {
                     var consulta = from tu in miLinQ.Tipo_usuario
                                    where tu.id_tipo_usuario == valorId
                                    select tu;
-                    foreach (var fila in consulta)
-                    {
-                        fila.nombre_tipo = valorTipo;
-                    }
+                    miLinQ.Tipo_usuario.DeleteOnSubmit(consulta.FirstOrDefault());
                     miLinQ.SubmitChanges();
-                    Carga();
-                    Response.Write("<script>alert('Se actualizaron los datos de forma correcta')</script>");
+                    Response.Write($@"<script>if('Los datos se eliminaron exitosamente') {{window.location = 'TipoUsu.aspx?id={""}&confirmar=false';}}</script>");
                 }
             }
-            else
-                Response.Write("<script>alert('Es necesario que complete el campo')</script>");
-
-        }
-
-        public void elimina(string valorId)
-        {
-
-            using (MiLinQ miLinQ = new MiLinQ(general.CadenaDeConexion))
+            catch 
             {
-                var consulta=from tu in miLinQ.Tipo_usuario
-                             where tu.id_tipo_usuario==valorId
-                             select tu;
-                miLinQ.Tipo_usuario.DeleteOnSubmit(consulta.FirstOrDefault());
-                miLinQ.SubmitChanges();
-                Response.Write("<script>alert('Los datos fueron elimindos exitosamente')</script>");
-                Carga();
+                Response.Write("<script>alert('Ocurrio un error al intentar eliminar los datos')</script>");
             }
         }
         protected void GridViewListaTipo_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -136,8 +156,8 @@ namespace Congreso_2025
                 }
                 else if (e.CommandName == "Eliminar")
                 {
-                    elimina(valorId);
-                }
+                Response.Write($@"<script>if (confirm('¿Deseas eliminar {valorTipo}?')) {{window.location = 'TipoUsu.aspx?id={valorId}&confirmar=true';}}</script>");
+            }
         }
     }
 }
