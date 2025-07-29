@@ -36,33 +36,7 @@ namespace Congreso_2025
         }
 
 
-        private void cleanForm()
-        {
-            txtName.Text = "";
-            txtDate.Text = "";
-            txtOrigin.Text = "";
-            txtDescription.Text = "";
 
-        }
-
-
-        private void CargarPonentesEnTabla()
-        {
-            PonenteDAO ponenteDao = new PonenteDAO();
-            try
-            {
-                List<Ponente> listaDePonentes = ponenteDao.ConsultarPonentes();
-
-                UserRepeater.DataSource = listaDePonentes;
-                UserRepeater.DataBind();
-
-
-            }
-            catch (Exception ex)
-            {
-                Response.Write($"<div class='alert alert-danger'>Error al cargar ponentes: {ex.Message}</div>");
-            }
-        }
         private void addNewPonente(string nombre, string fechaNacimiento, string origen, string descripcion)
         {
             PonenteDC ponente = new PonenteDC(nombre, Convert.ToDateTime(fechaNacimiento), origen, descripcion);
@@ -72,7 +46,7 @@ namespace Congreso_2025
 
             if (!string.IsNullOrEmpty(idPonente))
             {
-                comprobacion = ponenteDAO.CargarDatosPonente(new Ponente (){ id_ponente = idPonente});
+                comprobacion = ponenteDAO.CargarDatosPonente(new Ponente() { id_ponente = idPonente });
             }
             if (comprobacion == null)
             {
@@ -105,26 +79,7 @@ namespace Congreso_2025
             }
 
         }
-        protected void lnkDelete_Click(object sender, EventArgs e)
-        {
-            LinkButton btn = (LinkButton)sender;
-            string ponenteId = btn.CommandArgument;
-            if (!string.IsNullOrEmpty(ponenteId))
-            {
 
-                if (ponenteDAO.EliminarPonente(ponenteId))
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "success",
-                        "alert('Ponente eliminado exitosamente'); $('#editModal').modal('hide');", true);
-                    CargarPonentesEnTabla();
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "error",
-                    $"alert('Error al eliminar ponente');", true);
-                }
-            }
-        }
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
@@ -133,7 +88,6 @@ namespace Congreso_2025
             CargarDatosParaEditar(Session["idPonente"] as string);
         }
 
-        // Método para cargar datos del ponente en el modal de edición
         protected void CargarDatosParaEditar(string ponenteId)
         {
             try
@@ -157,7 +111,6 @@ namespace Congreso_2025
                     $"alert('Error: {ex.Message}');", true);
             }
         }
-        // Método para actualizar ponente
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -185,6 +138,53 @@ namespace Congreso_2025
                 ScriptManager.RegisterStartupScript(this, GetType(), "error",
                     $"alert('Error al actualizar ponente: {ex.Message}');", true);
             }
+        }
+
+        protected void lnkDelete_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            string ponenteId = btn.CommandArgument;
+            if (!string.IsNullOrEmpty(ponenteId))
+            {
+
+                if (ponenteDAO.EliminarPonente(ponenteId))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "success",
+                        "alert('Ponente eliminado exitosamente'); $('#editModal').modal('hide');", true);
+                    CargarPonentesEnTabla();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"alert('Error al eliminar ponente');", true);
+                }
+            }
+        }
+
+        private void CargarPonentesEnTabla()
+        {
+            PonenteDAO ponenteDao = new PonenteDAO();
+            try
+            {
+                List<Ponente> listaDePonentes = ponenteDao.ConsultarPonentes();
+
+                UserRepeater.DataSource = listaDePonentes;
+                UserRepeater.DataBind();
+
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<div class='alert alert-danger'>Error al cargar ponentes: {ex.Message}</div>");
+            }
+        }
+        private void cleanForm()
+        {
+            txtName.Text = "";
+            txtDate.Text = "";
+            txtOrigin.Text = "";
+            txtDescription.Text = "";
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
