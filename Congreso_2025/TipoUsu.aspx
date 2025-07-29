@@ -37,34 +37,35 @@
         <!--Inicio Botones-->
         <div class="container mt-3 mb-3 bg-body-secondary col-8 rounded-3 pt-2 pb-2">
             <div class="row ">
-                <div class="col-lg-2 col-sm-10 d-grid gap-2 mx-sm-auto me-lg-0  text-lg-center text-sm-center m-2 ">
-                    <asp:Button ID="ButtonAgregar" runat="server" class="btn btn-outline-success btn-lg fw-bold" Text="Agregar" />
-                </div>
-                <div class="col-lg-2 col-sm-10 d-grid gap-2 mx-sm-auto mx-lg-0 text-lg-center text-sm-center m-2">
-                    <asp:Button ID="ButtonEditar" runat="server" class="btn btn-outline-warning btn-lg fw-bold" Text="Editar" />
-                </div>
-                 <div class="col-lg-2 col-sm-10 d-grid mx-sm-auto gap-2 ms-lg-0 text-lg-start text-sm-center m-2">
-                     <asp:Button ID="ButtonEliminar" runat="server" class="btn btn-outline-danger btn-lg fw-bold" Text="Eliminar" />
-                     </div>
-                </div>
-            </div>
-                  <div class="h1 p-2 m-2 text-center border-bottom border-danger"></div>
+                <div class="col-lg-2 col-sm-10 d-grid gap-2 mx-auto   text-lg-center text-sm-center m-2 ">
+                    <asp:Button ID="ButtonAgregar" runat="server" class="btn btn-outline-success btn-lg fw-bold" Text="Agregar" OnClick="ButtonAgregar_Click" />
+                </div>                  
           <!--Fin Botones-->
-            <!--Inicio Editar-->
-    <div class="container p-3 mt-3 col-8 rounded-3">
-            <div class="row">
-                <div class="col-lg-6 col-sm-11 d-grid gap-2 mx-sm-auto me-lg-0  text-lg-end text-sm-center m-2 ">
-                    <asp:TextBox ID="TextBoxBuscar" runat="server" CssClass=" form-control" placeholder="Para editar ingrese el id"></asp:TextBox>
                 </div>
-                 <div class="col-lg-2 col-sm-10 d-grid mx-sm-auto gap-2 ms-lg-0 text-lg-start text-sm-center m-2">
-                     <asp:Button ID="Button1" runat="server" class="btn btn-primary btn-lg fw-bold" Text="Buscar" />
             </div>
-                </div>
-        </div>
-        <div class="h1 p-2 m-4 text-white text-center border-bottom border-danger"></div>
-        <!--Fin Editar-->
+                <div class="h1 p-2 m-2 text-center border-bottom border-danger"></div>
         <!--Inicio de Grid-->
-        <asp:GridView ID="GridViewListaTipoUs" runat="server" CssClass="table table-striped table-secondary table-hover"></asp:GridView>
+            <div class="container bg-body-secondary p-3 mt-3 mb-3 col-8 fs-4 rounded-3 text-center table-responsive">
+                <asp:GridView ID="GridViewListaTipo" runat="server" CssClass="table  table-hover table-striped" AutoGenerateColumns="False" OnRowCommand="GridViewListaTipo_RowCommand">
+                    <Columns>
+                        <asp:BoundField DataField="id_tipo_usuario" HeaderText="Id Tipo" />
+                        <asp:TemplateField HeaderText="Tipo">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("nombre_tipo") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Text='<%# Bind("nombre_tipo") %>'></asp:TextBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:ButtonField ButtonType="Button" Text="Editar" ControlStyle-CssClass="btn btn-warning">
+<ControlStyle CssClass="btn btn-warning"></ControlStyle>
+                        </asp:ButtonField>
+                        <asp:ButtonField ButtonType="Button" Text="Eliminar" ControlStyle-CssClass="btn btn-danger">
+<ControlStyle CssClass="btn btn-danger"></ControlStyle>
+                        </asp:ButtonField>
+                    </Columns>
+                </asp:GridView>
+                </div>
         <!--Fin de Grid-->
     </form>
 </body>
