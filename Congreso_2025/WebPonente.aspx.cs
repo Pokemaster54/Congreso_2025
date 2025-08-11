@@ -149,8 +149,7 @@ namespace Congreso_2025
 
                 if (ponenteDAO.EliminarPonente(ponenteId))
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "success",
-                        "alert('Ponente eliminado exitosamente'); $('#editModal').modal('hide');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alerta", "Swal.fire('Exito', 'Ponente editado con éxito', 'success');", true);
                     CargarPonentesEnTabla();
                 }
                 else

@@ -93,7 +93,7 @@
     <Content Include="Default.aspx" />
     <Content Include="TipoUsu.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
+    <Content Include="WebPonente.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
@@ -131,12 +131,12 @@
     <Compile Include="TipoUsu.aspx.designer.cs">
       <DependentUpon>TipoUsu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="WebPonente.aspx.cs">
+      <DependentUpon>WebPonente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
+    <Compile Include="WebPonente.aspx.designer.cs">
+      <DependentUpon>WebPonente.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
