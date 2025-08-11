@@ -90,6 +90,7 @@
     <Content Include="bootstrap537\js\bootstrap.esm.min.js" />
     <Content Include="bootstrap537\js\bootstrap.js" />
     <Content Include="bootstrap537\js\bootstrap.min.js" />
+    <Content Include="DashboardAlumno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="TipoUsu.aspx" />
     <Content Include="Web.config" />
@@ -99,6 +100,13 @@
     <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
     <Compile Include="Clases\DataClasses\PonenteDC.cs" />
     <Compile Include="Clases\General.cs" />
+    <Compile Include="DashboardAlumno.aspx.cs">
+      <DependentUpon>DashboardAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashboardAlumno.aspx.designer.cs">
+      <DependentUpon>DashboardAlumno.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DataBase\CongresoDataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
