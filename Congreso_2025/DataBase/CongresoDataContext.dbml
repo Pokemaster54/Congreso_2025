@@ -49,7 +49,7 @@
       <Column Name="id_carrera" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
       <Association Name="carrera_actividad_asignacion_actividad" Member="asignacion_actividad" ThisKey="id_carrera_actividad" OtherKey="id_carrera_actividad" Type="asignacion_actividad" />
       <Association Name="Actividad_carrera_actividad" Member="Actividad" ThisKey="id_actividad" OtherKey="id_actividad" Type="Actividad" IsForeignKey="true" />
-      <Association Name="id_carrera_carrera_actividad" Member="id_carrera1" ThisKey="id_carrera" OtherKey="id_carrera1" Type="id_carrera" IsForeignKey="true" />
+      <Association Name="id_carrera_carrera_actividad" Member="id_carrera1" ThisKey="id_carrera" OtherKey="id_carreras" Type="id_carrera" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Estado_actividad" Member="Estado_actividad">
@@ -75,9 +75,9 @@
   </Table>
   <Table Name="dbo.id_carrera" Member="id_carrera">
     <Type Name="id_carrera">
-      <Column Name="id_carrera" Member="id_carrera1" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_carrera" Member="id_carreras" Storage="_id_carrera1" Type="System.String" DbType="NVarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="nombre_carrera" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="id_carrera_carrera_actividad" Member="carrera_actividad" ThisKey="id_carrera1" OtherKey="id_carrera" Type="carrera_actividad" />
+      <Association Name="id_carrera_carrera_actividad" Member="carrera_actividad" ThisKey="id_carreras" OtherKey="id_carrera" Type="carrera_actividad" />
     </Type>
   </Table>
   <Table Name="dbo.Pago" Member="Pago">
