@@ -44,7 +44,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Portable.System.DateTimeOnly, Version=9.0.0.1, Culture=neutral, PublicKeyToken=16fb7a27ac3b9689, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.System.DateTimeOnly.9.0.0\lib\net462\Portable.System.DateTimeOnly.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -91,12 +107,18 @@
     <Content Include="bootstrap537\js\bootstrap.js" />
     <Content Include="bootstrap537\js\bootstrap.min.js" />
     <Content Include="Default.aspx" />
+    <Content Include="PruebaAsistencia.aspx" />
+    <Content Include="PruebaAsistenciasActividad.aspx" />
     <Content Include="TipoUsu.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asistencia.cs" />
+    <Compile Include="Clases\DataAccessObjects\ActividadAsistenciaDesendenteAcendenteDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\ActividadesAsistenciasFechasDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
+    <Compile Include="Clases\DataClasses\ActividadAsitenciasDescenteAsendente.cs" />
     <Compile Include="Clases\DataClasses\PonenteDC.cs" />
     <Compile Include="Clases\General.cs" />
     <Compile Include="DataBase\CongresoDataContext.designer.cs">
@@ -124,6 +146,20 @@
       <DependentUpon>MenuAdmin.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PruebaAsistencia.aspx.cs">
+      <DependentUpon>PruebaAsistencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PruebaAsistencia.aspx.designer.cs">
+      <DependentUpon>PruebaAsistencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PruebaAsistenciasActividad.aspx.cs">
+      <DependentUpon>PruebaAsistenciasActividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PruebaAsistenciasActividad.aspx.designer.cs">
+      <DependentUpon>PruebaAsistenciasActividad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TipoUsu.aspx.cs">
       <DependentUpon>TipoUsu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

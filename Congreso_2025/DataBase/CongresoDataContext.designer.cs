@@ -1383,7 +1383,7 @@ namespace Congreso_2025.DataBase
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="id_carrera_carrera_actividad", Storage="_id_carrera1", ThisKey="id_carrera", OtherKey="id_carrera1", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="id_carrera_carrera_actividad", Storage="_id_carrera1", ThisKey="id_carrera", OtherKey="id_carreras", IsForeignKey=true)]
 		public id_carrera id_carrera1
 		{
 			get
@@ -1406,7 +1406,7 @@ namespace Congreso_2025.DataBase
 					if ((value != null))
 					{
 						value.carrera_actividad.Add(this);
-						this._id_carrera = value.id_carrera1;
+						this._id_carrera = value.id_carreras;
 					}
 					else
 					{
@@ -1808,8 +1808,8 @@ namespace Congreso_2025.DataBase
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onid_carrera1Changing(string value);
-    partial void Onid_carrera1Changed();
+    partial void Onid_carrerasChanging(string value);
+    partial void Onid_carrerasChanged();
     partial void Onnombre_carreraChanging(string value);
     partial void Onnombre_carreraChanged();
     #endregion
@@ -1821,7 +1821,7 @@ namespace Congreso_2025.DataBase
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="id_carrera", Storage="_id_carrera1", DbType="NVarChar(6) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string id_carrera1
+		public string id_carreras
 		{
 			get
 			{
@@ -1831,11 +1831,11 @@ namespace Congreso_2025.DataBase
 			{
 				if ((this._id_carrera1 != value))
 				{
-					this.Onid_carrera1Changing(value);
+					this.Onid_carrerasChanging(value);
 					this.SendPropertyChanging();
 					this._id_carrera1 = value;
-					this.SendPropertyChanged("id_carrera1");
-					this.Onid_carrera1Changed();
+					this.SendPropertyChanged("id_carreras");
+					this.Onid_carrerasChanged();
 				}
 			}
 		}
@@ -1860,7 +1860,7 @@ namespace Congreso_2025.DataBase
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="id_carrera_carrera_actividad", Storage="_carrera_actividad", ThisKey="id_carrera1", OtherKey="id_carrera")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="id_carrera_carrera_actividad", Storage="_carrera_actividad", ThisKey="id_carreras", OtherKey="id_carrera")]
 		public EntitySet<carrera_actividad> carrera_actividad
 		{
 			get
