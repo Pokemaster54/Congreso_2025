@@ -106,11 +106,13 @@
     <Content Include="bootstrap537\js\bootstrap.esm.min.js" />
     <Content Include="bootstrap537\js\bootstrap.js" />
     <Content Include="bootstrap537\js\bootstrap.min.js" />
+    <Content Include="CSS\EstilosChidos.css" />
     <Content Include="DashboardAlumno.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="PruebaAsistencia.aspx" />
     <Content Include="TipoUsu.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Login.aspx" />
     <Content Include="WebPonente.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +165,13 @@
     </Compile>
     <Compile Include="TipoUsu.aspx.designer.cs">
       <DependentUpon>TipoUsu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPonente.aspx.cs">
       <DependentUpon>WebPonente.aspx</DependentUpon>

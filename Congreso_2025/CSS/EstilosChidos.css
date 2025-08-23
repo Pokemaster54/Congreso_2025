@@ -1,0 +1,118 @@
+﻿/* ===== Fondo animado sutil ===== */
+.login-bg {
+    min-height: 100vh;
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(31,111,235,.15), transparent 60%), radial-gradient(900px 500px at 110% 10%, rgba(111,66,193,.12), transparent 55%), linear-gradient(180deg, #f7f8fc 0%, #f2f4fb 100%);
+    overflow-x: hidden;
+}
+
+/* ===== Card con glassmorphism y animación de entrada ===== */
+.glassy {
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 18px;
+}
+
+.login-card {
+    border: 1px solid rgba(15,30,60,.06);
+    box-shadow: 0 2px 8px rgba(15,30,60,.05), 0 12px 32px rgba(15,30,60,.08);
+    transform: translateY(6px) scale(.985);
+    animation: card-enter .8s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@keyframes card-enter {
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.fade-up {
+    opacity: 0;
+}
+
+/* ===== Inputs con micro-interacciones ===== */
+.control-elevate {
+    border-radius: 12px;
+    border: 1px solid #e4e7ef;
+    transition: border-color .2s ease, box-shadow .25s ease, transform .08s ease;
+    box-shadow: 0 1px 0 rgba(10,20,30,.03) inset;
+}
+
+    .control-elevate:focus {
+        border-color: rgba(31,111,235,.55);
+        box-shadow: 0 0 0 .25rem rgba(31,111,235,.15);
+    }
+
+.form-floating > .form-control::placeholder {
+    color: transparent;
+}
+
+/* ===== Botón con efecto “lift” ===== */
+.btn-lift {
+    border-radius: 12px;
+    padding: .9rem 1rem;
+    background: linear-gradient(180deg, #2a79ff, #1f6feb);
+    box-shadow: 0 6px 14px rgba(31,111,235,.25);
+    transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+    .btn-lift:hover,
+    .btn-lift:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(31,111,235,.28);
+        filter: brightness(1.02);
+    }
+
+/* ===== Logo con giro suave al cargar ===== */
+.logo-spin {
+    color: #1f6feb;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(120% 120% at 30% 30%, rgba(31,111,235,.12), rgba(31,111,235,0) 70%);
+    animation: reveal .6s ease-out .15s backwards, slow-rotate 9s linear infinite;
+}
+
+@keyframes slow-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== Mensaje ocupa espacio aunque esté vacío (layout estable) ===== */
+.min-h-message {
+    min-height: 1.25rem;
+}
+
+/* ===== Focus visible accesible ===== */
+:focus-visible {
+    outline: 2px solid rgba(31,111,235,.6);
+    outline-offset: 2px;
+}
+
+/* ===== Pequeñas mejoras responsive ===== */
+@media (max-width: 575.98px) {
+    .login-card {
+        border-radius: 16px;
+    }
+}
