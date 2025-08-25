@@ -109,15 +109,19 @@
     <Content Include="CSS\EstilosChidos.css" />
     <Content Include="DashboardAlumno.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="for.aspx" />
     <Content Include="PruebaAsistencia.aspx" />
     <Content Include="TipoUsu.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
+    <Content Include="WebGestionAlumno.aspx" />
     <Content Include="WebPonente.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Asistencia.cs" />
+    <Compile Include="Clases\DataAccessObjects\AlumnoDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
+    <Compile Include="Clases\DataClasses\AlumnoDC.cs" />
     <Compile Include="Clases\DataClasses\PonenteDC.cs" />
     <Compile Include="Clases\General.cs" />
     <Compile Include="DashboardAlumno.aspx.cs">
@@ -143,6 +147,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LinqU.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="for.aspx.cs">
+      <DependentUpon>for.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="for.aspx.designer.cs">
+      <DependentUpon>for.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuAdmin.Master.cs">
       <DependentUpon>MenuAdmin.Master</DependentUpon>
@@ -172,6 +183,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebGestionAlumno.aspx.cs">
+      <DependentUpon>WebGestionAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebGestionAlumno.aspx.designer.cs">
+      <DependentUpon>WebGestionAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPonente.aspx.cs">
       <DependentUpon>WebPonente.aspx</DependentUpon>

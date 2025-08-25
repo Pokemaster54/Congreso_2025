@@ -27,6 +27,8 @@ namespace Congreso_2025.Clases.DataAccessObjects
             {
                 return null;
             }
+
+            
         }
 
         public bool InsertarPonente(PonenteDC ponente)
