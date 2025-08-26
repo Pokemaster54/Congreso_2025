@@ -108,19 +108,38 @@
     <Content Include="bootstrap537\js\bootstrap.min.js" />
     <Content Include="CSS\EstilosChidos.css" />
     <Content Include="DashboardAlumno.aspx" />
+    <Content Include="WebActividad.aspx" />
+    <Content Include="WebCarrera.aspx" />
+    <Content Include="WebLanding.aspx" />
+    <Content Include="WebUbicacion.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="for.aspx" />
     <Content Include="PruebaAsistencia.aspx" />
     <Content Include="TipoUsu.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
+    <Content Include="Ponente.aspx" />
+    <Content Include="WebEstadoActividad.aspx" />
+    <Content Include="WebEstadoAlumno.aspx" />
+    <Content Include="WebTipoActividad.aspx" />
+    <Content Include="WebTipoUsuario.aspx" />
     <Content Include="WebGestionAlumno.aspx" />
     <Content Include="WebPonente.aspx" />
+    <Content Include="WebUsuario.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Asistencia.cs" />
+    <Compile Include="Clases\DataAccessObjects\ActividadDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\AlumnoDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\CarreraDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\EstadoActividadDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\EstadoAlumnoDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\LandingDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\TipoActividadDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\TipoUsuarioDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\UbicacionDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\UsuarioDAO.cs" />
     <Compile Include="Clases\DataClasses\AlumnoDC.cs" />
     <Compile Include="Clases\DataClasses\PonenteDC.cs" />
     <Compile Include="Clases\General.cs" />
@@ -135,6 +154,34 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CongresoDataContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="WebActividad.aspx.cs">
+      <DependentUpon>WebActividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebActividad.aspx.designer.cs">
+      <DependentUpon>WebActividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebCarrera.aspx.cs">
+      <DependentUpon>WebCarrera.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebCarrera.aspx.designer.cs">
+      <DependentUpon>WebCarrera.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebLanding.aspx.cs">
+      <DependentUpon>WebLanding.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebLanding.aspx.designer.cs">
+      <DependentUpon>WebLanding.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUbicacion.aspx.cs">
+      <DependentUpon>WebUbicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUbicacion.aspx.designer.cs">
+      <DependentUpon>WebUbicacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -184,6 +231,41 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ponente.aspx.cs">
+      <DependentUpon>Ponente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ponente.aspx.designer.cs">
+      <DependentUpon>Ponente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebEstadoActividad.aspx.cs">
+      <DependentUpon>WebEstadoActividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebEstadoActividad.aspx.designer.cs">
+      <DependentUpon>WebEstadoActividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebEstadoAlumno.aspx.cs">
+      <DependentUpon>WebEstadoAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebEstadoAlumno.aspx.designer.cs">
+      <DependentUpon>WebEstadoAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebTipoActividad.aspx.cs">
+      <DependentUpon>WebTipoActividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebTipoActividad.aspx.designer.cs">
+      <DependentUpon>WebTipoActividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebTipoUsuario.aspx.cs">
+      <DependentUpon>WebTipoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebTipoUsuario.aspx.designer.cs">
+      <DependentUpon>WebTipoUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebGestionAlumno.aspx.cs">
       <DependentUpon>WebGestionAlumno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,6 +279,13 @@
     </Compile>
     <Compile Include="WebPonente.aspx.designer.cs">
       <DependentUpon>WebPonente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebUsuario.aspx.cs">
+      <DependentUpon>WebUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebUsuario.aspx.designer.cs">
+      <DependentUpon>WebUsuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

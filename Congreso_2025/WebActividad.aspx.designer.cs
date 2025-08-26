@@ -11,151 +11,151 @@ namespace Congreso_2025
 {
 
 
-    public partial class MenuAdmin
+    public partial class WebActividad
     {
 
         /// <summary>
-        /// Control TitleContent.
+        /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder TitleContent;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// Control HeadContent.
+        /// Control hfActividadId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.WebControls.HiddenField hfActividadId;
 
         /// <summary>
-        /// Control form1.
+        /// Control lblFormTitle.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label lblFormTitle;
 
         /// <summary>
-        /// Control lnkInicio.
+        /// Control txtNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkInicio;
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
         /// <summary>
-        /// Control lnkPonente.
+        /// Control ddlTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkPonente;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipo;
 
         /// <summary>
-        /// Control lnkUsuario.
+        /// Control ddlEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
 
         /// <summary>
-        /// Control lnkTipoUsuario.
+        /// Control ddlPonente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkTipoUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPonente;
 
         /// <summary>
-        /// Control lnkEstadoAlumno.
+        /// Control ddlUbicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkEstadoAlumno;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUbicacion;
 
         /// <summary>
-        /// Control lnkActividad.
+        /// Control txtInicioFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkActividad;
+        protected global::System.Web.UI.WebControls.TextBox txtInicioFecha;
 
         /// <summary>
-        /// Control lnkTipoActividad.
+        /// Control txtInicioHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkTipoActividad;
+        protected global::System.Web.UI.WebControls.TextBox txtInicioHora;
 
         /// <summary>
-        /// Control lnkEstadoActividad.
+        /// Control txtFinFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkEstadoActividad;
+        protected global::System.Web.UI.WebControls.TextBox txtFinFecha;
 
         /// <summary>
-        /// Control lnkUbicacion.
+        /// Control txtFinHora.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkUbicacion;
+        protected global::System.Web.UI.WebControls.TextBox txtFinHora;
 
         /// <summary>
-        /// Control lnkCarrera.
+        /// Control txtInscritos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkCarrera;
+        protected global::System.Web.UI.WebControls.TextBox txtInscritos;
 
         /// <summary>
-        /// Control BreadcrumbContent.
+        /// Control btnSave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BreadcrumbContent;
+        protected global::System.Web.UI.WebControls.Button btnSave;
 
         /// <summary>
-        /// Control MainContent.
+        /// Control btnCancel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
 
         /// <summary>
-        /// Control ScriptsContent.
+        /// Control rptActividades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ScriptsContent;
+        protected global::System.Web.UI.WebControls.Repeater rptActividades;
     }
 }

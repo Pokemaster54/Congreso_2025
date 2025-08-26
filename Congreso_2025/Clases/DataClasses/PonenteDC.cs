@@ -27,6 +27,7 @@ namespace Congreso_2025.Clases.DataClasses
             FechaNacimiento = fechaNacimiento;
             Origen = origen;
             Descripcion = descripcion;
+            
         }
 
         public string IdPonente
