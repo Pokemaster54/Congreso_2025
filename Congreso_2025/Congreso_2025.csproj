@@ -108,6 +108,7 @@
     <Content Include="bootstrap537\js\bootstrap.min.js" />
     <Content Include="Default.aspx" />
     <Content Include="PruebaAsistencia.aspx" />
+    <Content Include="PruebaAsistenciaActividadFecha.aspx" />
     <Content Include="PruebaAsistenciasActividad.aspx" />
     <Content Include="TipoUsu.aspx" />
     <Content Include="Web.config" />
@@ -116,7 +117,6 @@
   <ItemGroup>
     <Compile Include="Asistencia.cs" />
     <Compile Include="Clases\DataAccessObjects\ActividadAsistenciaDesendenteAcendenteDAO.cs" />
-    <Compile Include="Clases\DataAccessObjects\ActividadesAsistenciasFechasDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\PonenteDAO.cs" />
     <Compile Include="Clases\DataClasses\ActividadAsitenciasDescenteAsendente.cs" />
     <Compile Include="Clases\DataClasses\PonenteDC.cs" />
@@ -152,6 +152,13 @@
     </Compile>
     <Compile Include="PruebaAsistencia.aspx.designer.cs">
       <DependentUpon>PruebaAsistencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PruebaAsistenciaActividadFecha.aspx.cs">
+      <DependentUpon>PruebaAsistenciaActividadFecha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PruebaAsistenciaActividadFecha.aspx.designer.cs">
+      <DependentUpon>PruebaAsistenciaActividadFecha.aspx</DependentUpon>
     </Compile>
     <Compile Include="PruebaAsistenciasActividad.aspx.cs">
       <DependentUpon>PruebaAsistenciasActividad.aspx</DependentUpon>
