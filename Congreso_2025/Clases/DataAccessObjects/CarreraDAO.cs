@@ -11,20 +11,20 @@ namespace Congreso_2025.Clases.DataAccessObjects
         private General general = new General();
         public CarreraDAO() { }
 
-        public List<id_carrera> ConsultarCarreras()
+        public List<Carrera> ConsultarCarreras()
         {
             try
             {
                 using (var db = new MiLinQ(general.CadenaDeConexion))
                 {
-                    return db.id_carrera
+                    return db.Carrera
                              .OrderBy(c => c.nombre_carrera)
                              .ToList();
                 }
             }
             catch
             {
-                return new List<id_carrera>();
+                return new List<Carrera>();
             }
         }
 
@@ -35,12 +35,12 @@ namespace Congreso_2025.Clases.DataAccessObjects
             {
                 using (var db = new MiLinQ(general.CadenaDeConexion))
                 {
-                    var nuevo = new id_carrera
+                    var nuevo = new Carrera
                     {
-                        id_carreras = nuevoId,            // NVARCHAR(6)
+                        id_carrera = nuevoId,            // NVARCHAR(6)
                         nombre_carrera = nombre_carrera  // NVARCHAR(100)
                     };
-                    db.id_carrera.InsertOnSubmit(nuevo);
+                    db.Carrera.InsertOnSubmit(nuevo);
                     db.SubmitChanges();
                     return true;
                 }
@@ -51,13 +51,13 @@ namespace Congreso_2025.Clases.DataAccessObjects
             }
         }
 
-        public id_carrera CargarDatosCarrera(id_carrera c)
+        public Carrera CargarDatosCarrera(Carrera c)
         {
             try
             {
                 using (var db = new MiLinQ(general.CadenaDeConexion))
                 {
-                    return db.id_carrera.FirstOrDefault(x => x.id_carreras == c.id_carreras);
+                    return db.Carrera.FirstOrDefault(x => x.id_carrera == c.id_carrera);
                 }
             }
             catch
@@ -66,13 +66,13 @@ namespace Congreso_2025.Clases.DataAccessObjects
             }
         }
 
-        public bool ActualizarCarrera(id_carrera c)
+        public bool ActualizarCarrera(Carrera c)
         {
             try
             {
                 using (var db = new MiLinQ(general.CadenaDeConexion))
                 {
-                    var cur = db.id_carrera.FirstOrDefault(x => x.id_carreras == c.id_carreras);
+                    var cur = db.Carrera.FirstOrDefault(x => x.id_carrera == c.id_carrera);
                     if (cur == null) return false;
 
                     cur.nombre_carrera = c.nombre_carrera;
@@ -92,10 +92,10 @@ namespace Congreso_2025.Clases.DataAccessObjects
             {
                 using (var db = new MiLinQ(general.CadenaDeConexion))
                 {
-                    var cur = db.id_carrera.FirstOrDefault(x => x.id_carreras == id);
+                    var cur = db.Carrera.FirstOrDefault(x => x.id_carrera == id);
                     if (cur == null) return false;
 
-                    db.id_carrera.DeleteOnSubmit(cur);
+                    db.Carrera.DeleteOnSubmit(cur);
                     db.SubmitChanges();
                     return true;
                 }
@@ -117,9 +117,9 @@ namespace Congreso_2025.Clases.DataAccessObjects
             {
                 try
                 {
-                    var numerosStr = db.id_carrera
-                        .Where(x => x.id_carreras != null && x.id_carreras.StartsWith("CR") && x.id_carreras.Length == 6)
-                        .Select(x => x.id_carreras.Substring(2));
+                    var numerosStr = db.Carrera
+                        .Where(x => x.id_carrera != null && x.id_carrera.StartsWith("CR") && x.id_carrera.Length == 6)
+                        .Select(x => x.id_carrera.Substring(2));
 
                     int ultimo = 0;
                     if (numerosStr.Any())

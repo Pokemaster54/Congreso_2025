@@ -82,9 +82,9 @@
                 </div>
 
                 <div id="menuCollapse" class="collapse d-md-block">
-                        <a id="lnkInicio" runat="server" href="~/WebLanding.aspx" class="nav-link">
-                            <i class="fa-solid fa-house"></i>Inicio
-                        </a>
+                    <a id="lnkInicio" runat="server" href="~/WebLanding.aspx" class="nav-link">
+                        <i class="fa-solid fa-house"></i>Inicio
+                    </a>
 
                     <div class="section-label mt-3">Personas y Accesos</div>
                     <ul class="list-unstyled px-2">
@@ -101,6 +101,11 @@
                         <li>
                             <a id="lnkTipoUsuario" runat="server" href="~/WebTipoUsuario.aspx" class="nav-link">
                                 <i class="fa-solid fa-users-gear"></i>Tipo_usuario
+                            </a>
+                        </li>
+                        <li>
+                            <a id="A1" runat="server" href="~/WebAlumno.aspx" class="nav-link">
+                                <i class="fa-solid fa-users-gear"></i>Alumnos
                             </a>
                         </li>
                         <li>

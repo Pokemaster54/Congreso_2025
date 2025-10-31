@@ -84,7 +84,7 @@ namespace Congreso_2025
                 return;
             }
 
-            var entidad = new id_carrera { id_carreras = id, nombre_carrera = nombre };
+            var entidad = new Carrera { id_carrera = id, nombre_carrera = nombre };
             if (carreraDAO.ActualizarCarrera(entidad))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "ok",

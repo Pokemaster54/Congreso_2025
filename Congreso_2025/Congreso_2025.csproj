@@ -43,6 +43,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Portable.System.DateTimeOnly, Version=9.0.0.1, Culture=neutral, PublicKeyToken=16fb7a27ac3b9689, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.System.DateTimeOnly.9.0.0\lib\net462\Portable.System.DateTimeOnly.dll</HintPath>
@@ -84,6 +90,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Actividades.aspx" />
+    <Content Include="ActividadesAlumno.aspx" />
+    <Content Include="Alumnos.aspx" />
     <Content Include="bootstrap537\css\bootstrap-grid.css" />
     <Content Include="bootstrap537\css\bootstrap-grid.min.css" />
     <Content Include="bootstrap537\css\bootstrap-grid.rtl.css" />
@@ -108,9 +117,15 @@
     <Content Include="bootstrap537\js\bootstrap.min.js" />
     <Content Include="CSS\EstilosChidos.css" />
     <Content Include="DashboardAlumno.aspx" />
+    <Content Include="PonentePerfil.aspx" />
+    <Content Include="Ponentes.aspx" />
+    <Content Include="ResetPassword.aspx" />
     <Content Include="WebActividad.aspx" />
+    <Content Include="WebAlumno.aspx" />
     <Content Include="WebCarrera.aspx" />
     <Content Include="WebLanding.aspx" />
+    <Content Include="WebLandingAlumno.aspx" />
+    <Content Include="WebLandingCatedratico.aspx" />
     <Content Include="WebUbicacion.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="for.aspx" />
@@ -128,10 +143,32 @@
     <Content Include="WebUsuario.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actividades.aspx.cs">
+      <DependentUpon>Actividades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Actividades.aspx.designer.cs">
+      <DependentUpon>Actividades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActividadesAlumno.aspx.cs">
+      <DependentUpon>ActividadesAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActividadesAlumno.aspx.designer.cs">
+      <DependentUpon>ActividadesAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alumnos.aspx.cs">
+      <DependentUpon>Alumnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alumnos.aspx.designer.cs">
+      <DependentUpon>Alumnos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asistencia.cs" />
     <Compile Include="Clases\DataAccessObjects\ActividadDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\AlumnoDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\CarreraDAO.cs" />
+    <Compile Include="Clases\DataAccessObjects\CatedraticoLandingDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\EstadoActividadDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\EstadoAlumnoDAO.cs" />
     <Compile Include="Clases\DataAccessObjects\LandingDAO.cs" />
@@ -142,6 +179,7 @@
     <Compile Include="Clases\DataAccessObjects\UsuarioDAO.cs" />
     <Compile Include="Clases\DataClasses\AlumnoDC.cs" />
     <Compile Include="Clases\DataClasses\PonenteDC.cs" />
+    <Compile Include="Clases\DTOs\ActividadProximaDTO.cs" />
     <Compile Include="Clases\General.cs" />
     <Compile Include="DashboardAlumno.aspx.cs">
       <DependentUpon>DashboardAlumno.aspx</DependentUpon>
@@ -155,12 +193,54 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CongresoDataContext.dbml</DependentUpon>
     </Compile>
+    <Compile Include="MenuAlumno.Master.cs">
+      <DependentUpon>MenuAlumno.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuAlumno.Master.designer.cs">
+      <DependentUpon>MenuAlumno.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MenuCatedratico.Master.cs">
+      <DependentUpon>MenuCatedratico.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuCatedratico.Master.designer.cs">
+      <DependentUpon>MenuCatedratico.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PonentePerfil.aspx.cs">
+      <DependentUpon>PonentePerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PonentePerfil.aspx.designer.cs">
+      <DependentUpon>PonentePerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ponentes.aspx.cs">
+      <DependentUpon>Ponentes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ponentes.aspx.designer.cs">
+      <DependentUpon>Ponentes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebActividad.aspx.cs">
       <DependentUpon>WebActividad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebActividad.aspx.designer.cs">
       <DependentUpon>WebActividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebAlumno.aspx.cs">
+      <DependentUpon>WebAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebAlumno.aspx.designer.cs">
+      <DependentUpon>WebAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebCarrera.aspx.cs">
       <DependentUpon>WebCarrera.aspx</DependentUpon>
@@ -175,6 +255,20 @@
     </Compile>
     <Compile Include="WebLanding.aspx.designer.cs">
       <DependentUpon>WebLanding.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebLandingAlumno.aspx.cs">
+      <DependentUpon>WebLandingAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebLandingAlumno.aspx.designer.cs">
+      <DependentUpon>WebLandingAlumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebLandingCatedratico.aspx.cs">
+      <DependentUpon>WebLandingCatedratico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebLandingCatedratico.aspx.designer.cs">
+      <DependentUpon>WebLandingCatedratico.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebUbicacion.aspx.cs">
       <DependentUpon>WebUbicacion.aspx</DependentUpon>
@@ -328,6 +422,8 @@
     <None Include="BD\LinqU.dbml.layout">
       <DependentUpon>LinqU.dbml</DependentUpon>
     </None>
+    <Content Include="MenuCatedratico.Master" />
+    <Content Include="MenuAlumno.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

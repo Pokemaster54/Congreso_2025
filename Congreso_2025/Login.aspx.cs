@@ -1,110 +1,132 @@
-﻿using Congreso_2025.Clases;
-using Congreso_2025.DataBase;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using Congreso_2025.Clases;
+using Congreso_2025.DataBase;
 
 namespace Congreso_2025
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : Page
     {
-        General general = new General();
+        private readonly General general = new General();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            // Si ya está autenticado, redirige de una vez
-            if (User?.Identity != null && User.Identity.IsAuthenticated)
+            if (!IsPostBack)
             {
-                Response.Redirect("~/Default.aspx", true);
+                // 🔒 Si hay una cookie vieja, destrúyela para evitar redirección inmediata
+                if (Request.Cookies[".ASPXAUTH"] != null)
+                {
+                    var cookie = new HttpCookie(".ASPXAUTH");
+                    cookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(cookie);
+                    FormsAuthentication.SignOut();
+                }
+
+                // Ahora sí verifica sesión activa
+                if (User.Identity.IsAuthenticated)
+                {
+                    using (var db = new MiLinQ(general.CadenaDeConexion))
+                    {
+                        var tipo = (from u in db.Usuario
+                                    where u.nombre_usuario == User.Identity.Name
+                                    select u.id_tipo_usuario).FirstOrDefault();
+
+                        if (tipo != null && tipo.Trim().ToUpperInvariant() == "TU0003")
+                            Response.Redirect("~/WebLandingCatedratico.aspx", true);
+                        else
+                            Response.Redirect("~/WebLanding.aspx", true);
+                    }
+                }
             }
         }
 
-        protected void btnIngresar_Click(object sender, EventArgs e)
+
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
-            lblMsg.Text = string.Empty;
+            string usuario = txtUsuario.Text.Trim();
+            string pass = txtPassword.Text.Trim();
 
-            var userName = txtUsuario.Text?.Trim();
-            var pass = txtPassword.Text ?? string.Empty;
-
-            if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(pass))
+            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(pass))
             {
-                lblMsg.Text = "Ingresa usuario y contraseña.";
+                lblMensaje.Text = "Ingresa usuario y contraseña.";
+                ShowMessage("Atención", lblMensaje.Text, "warning");
                 return;
             }
 
-            try
+            using (var db = new MiLinQ(general.CadenaDeConexion))
             {
-                using (var ctx = new MiLinQ(general.CadenaDeConexion))
+                var dato = (from u in db.Usuario
+                            where u.nombre_usuario == usuario && u.password == pass
+                            select new
+                            {
+                                u.nombre_usuario,
+                                u.id_tipo_usuario
+                            }).FirstOrDefault();
+
+                if (dato == null)
                 {
-                    // Ajusta los nombres de entidades/propiedades si tu dbml usa otros
-                    var usuario = ctx.Usuario
-                        .FirstOrDefault(u => u.nombre_usuario == userName);
-
-                    if (usuario == null)
-                    {
-                        lblMsg.Text = "Usuario o contraseña no válidos.";
-                        return;
-                    }
-
-                    // TODO: si manejas hash/salt, reemplaza esta comparación simple
-                    var passwordOk = string.Equals(usuario.password, pass, StringComparison.Ordinal);
-                    if (!passwordOk)
-                    {
-                        lblMsg.Text = "Usuario o contraseña no válidos.";
-                        return;
-                    }
-
-                    // Cargar el tipo (join a Tipo_usuario)
-                    var tipo = ctx.Tipo_usuario.FirstOrDefault(t => t.id_tipo_usuario == usuario.id_tipo_usuario);
-                    var nombreTipo = tipo?.nombre_tipo?.Trim() ?? string.Empty;
-
-                    // Guarda datos de sesión útiles
-                    Session["UsuarioId"] = usuario.id_usuario;
-                    Session["NombreUsuario"] = usuario.nombre_usuario;
-                    Session["TipoUsuarioId"] = usuario.id_tipo_usuario;
-                    Session["TipoUsuarioNombre"] = nombreTipo;
-
-                    // Autenticar con FormsAuthentication (cookie)
-                    FormsAuthentication.SetAuthCookie(usuario.nombre_usuario, false);
-
-                    // Redirigir según tipo
-                    var redirect = GetRedirectUrlByTipo(Convert.ToInt32(usuario.id_tipo_usuario), nombreTipo);
-                    Response.Redirect(redirect, true);
+                    lblMensaje.Text = "Usuario o contraseña incorrectos.";
+                    ShowMessage("Error", lblMensaje.Text, "error");
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                // En producción, registra el error. No expongas detalles al usuario.
-                lblMsg.Text = "Ocurrió un error al iniciar sesión. Inténtalo de nuevo.";
-                System.Diagnostics.Debug.WriteLine(ex);
+
+                // ✅ Registrar cookie de autenticación
+                FormsAuthentication.SetAuthCookie(dato.nombre_usuario, false);
+
+                string tipo = dato.id_tipo_usuario?.Trim().ToUpperInvariant() ?? "";
+                string destino = "~/WebLanding.aspx"; // por defecto administrador
+
+                // 🔹 Redirección por tipo de usuario
+                switch (tipo)
+                {
+                    case "TU0001": // Administrador
+                        destino = "~/WebLanding.aspx";
+                        break;
+
+                    case "TU0002": // Alumno
+                        destino = "~/WebLandingAlumno.aspx";
+                        break;
+
+                    case "TU0003": // Catedrático
+                        destino = "~/WebLandingCatedratico.aspx";
+                        break;
+
+                    default:
+                        destino = "~/WebLanding.aspx";
+                        break;
+                }
+
+                // 🔹 Redirigir directamente
+                Response.Redirect(destino, true);
             }
         }
 
-        private string GetRedirectUrlByTipo(int idTipo, string nombreTipo)
+        private void ShowMessage(string title, string message, string icon)
         {
-            // Opción A: por nombre (más robusto cuando los IDs cambian)
-            var rol = (nombreTipo ?? "").ToLowerInvariant();
+            string safeTitle = HttpUtility.JavaScriptStringEncode(title);
+            string safeMsg = HttpUtility.JavaScriptStringEncode(message);
+            string safeIcon = HttpUtility.JavaScriptStringEncode(icon);
 
-            if (rol.Contains("admin")) return "~/Admin/Inicio.aspx";
-            if (rol.Contains("catedr")) return "~/Catedratico/Inicio.aspx";
-            if (rol.Contains("inscri")) return "~/Inscripciones/Inicio.aspx";  // quien inscribe
-            if (rol.Contains("alumn")) return "~/Alumno/Inicio.aspx";
+            string js = $@"
+                (function(){{
+                    if (window.Swal) {{
+                        Swal.fire({{
+                            icon: '{safeIcon}',
+                            title: '{safeTitle}',
+                            text: '{safeMsg}'
+                        }});
+                    }} else {{
+                        alert('{safeTitle}: {safeMsg}');
+                    }}
+                }})();";
 
-            // Opción B: por ID (si tienes IDs fijos). Descomenta/ajusta si es tu caso:
-            // switch (idTipo)
-            // {
-            //     case 1: return "~/Admin/Inicio.aspx";
-            //     case 2: return "~/Catedratico/Inicio.aspx";
-            //     case 3: return "~/Inscripciones/Inicio.aspx";
-            //     case 4: return "~/Alumno/Inicio.aspx";
-            // }
-
-            // Fallback
-            return "~/Default.aspx";
+            if (ScriptManager.GetCurrent(this) != null)
+                ScriptManager.RegisterStartupScript(this, GetType(), "swalMsg", js, true);
+            else
+                ClientScript.RegisterStartupScript(GetType(), "swalMsg", js, true);
         }
     }
 }

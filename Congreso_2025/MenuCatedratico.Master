@@ -1,0 +1,95 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MenuCatedratico.Master.cs" Inherits="Congreso_2025.MenuCatedratico" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>Cátedra - Congreso 2025</title>
+
+    <!-- Bootstrap y estilos generales -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a2d9c6a66b.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #002b5b;
+        }
+        .navbar-brand, .nav-link, .navbar-text {
+            color: white !important;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #002b5b;
+            color: white;
+            font-size: 0.9rem;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- ScriptManager necesario para UpdatePanels -->
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
+
+        <!-- 🔹 Barra de navegación superior -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-semibold" href="WebLandingCatedratico.aspx">
+                    <img src="~/assets/logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-middle me-2" />
+                    Congreso 2025 — Cátedra
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- 🔹 Opciones principales -->
+                        <li class="nav-item"><a class="nav-link" href="Actividades.aspx"><i class="fa-solid fa-calendar-days me-1"></i> Actividades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Alumnos.aspx"><i class="fa-solid fa-users me-1"></i> Alumnos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Carreras.aspx"><i class="fa-solid fa-graduation-cap me-1"></i> Carreras</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Ponentes.aspx"><i class="fa-solid fa-chalkboard-user me-1"></i> Ponentes</a></li>
+
+                        <!-- 🔹 Menú de perfil -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown">
+                                <asp:LoginName ID="LoginName1" runat="server" FormatString="Usuario: {0}" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
+                                <li><a class="dropdown-item" href="Perfil.aspx"><i class="fa-solid fa-user me-1"></i> Perfil</a></li>
+                                <li><asp:LinkButton ID="btnLogout" runat="server" CssClass="dropdown-item text-danger" OnClick="btnLogout_Click">
+                                    <i class="fa-solid fa-right-from-bracket me-1"></i> Cerrar sesión
+                                </asp:LinkButton></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 🔹 Contenido dinámico -->
+        <div class="container content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+
+        <!-- 🔹 Pie de página -->
+        <footer class="footer">
+            <p>© 2025 Congreso Académico — Sistema de Gestión de Cátedra</p>
+        </footer>
+    </form>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
