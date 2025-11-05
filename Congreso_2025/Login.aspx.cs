@@ -94,6 +94,10 @@ namespace Congreso_2025
                         destino = "~/WebLandingCatedratico.aspx";
                         break;
 
+                    case "TU0004": // Personal de inscripción
+                        destino = "~/InscripcionAlumno.aspx";
+                        break;
+
                     default:
                         destino = "~/WebLanding.aspx";
                         break;
@@ -103,6 +107,7 @@ namespace Congreso_2025
                 Response.Redirect(destino, true);
             }
         }
+
 
         private void ShowMessage(string title, string message, string icon)
         {
@@ -127,6 +132,8 @@ namespace Congreso_2025
                 ScriptManager.RegisterStartupScript(this, GetType(), "swalMsg", js, true);
             else
                 ClientScript.RegisterStartupScript(GetType(), "swalMsg", js, true);
+
         }
+        
     }
 }

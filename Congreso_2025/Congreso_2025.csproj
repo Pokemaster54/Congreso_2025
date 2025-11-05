@@ -117,6 +117,7 @@
     <Content Include="bootstrap537\js\bootstrap.min.js" />
     <Content Include="CSS\EstilosChidos.css" />
     <Content Include="DashboardAlumno.aspx" />
+    <Content Include="InscripcionAlumno.aspx" />
     <Content Include="PonentePerfil.aspx" />
     <Content Include="Ponentes.aspx" />
     <Content Include="ResetPassword.aspx" />
@@ -192,6 +193,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CongresoDataContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="InscripcionAlumno.aspx.cs">
+      <DependentUpon>InscripcionAlumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InscripcionAlumno.aspx.designer.cs">
+      <DependentUpon>InscripcionAlumno.aspx</DependentUpon>
     </Compile>
     <Compile Include="MenuAlumno.Master.cs">
       <DependentUpon>MenuAlumno.Master</DependentUpon>
