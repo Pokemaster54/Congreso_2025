@@ -31,9 +31,9 @@ namespace Congreso_2025
                 using (var db = new MiLinQ(general.CadenaDeConexion))
                 {
                     var tipos = db.Tipo_usuario
-                                  .OrderBy(t => t.nombre_tipo)
-                                  .Select(t => new { t.id_tipo_usuario, t.nombre_tipo })
-                                  .ToList();
+                                     .OrderBy(t => t.nombre_tipo)
+                                     .Select(t => new { t.id_tipo_usuario, t.nombre_tipo })
+                                     .ToList();
                     ddlTipoUsuario.DataSource = tipos;
                     ddlTipoUsuario.DataTextField = "nombre_tipo";
                     ddlTipoUsuario.DataValueField = "id_tipo_usuario";
@@ -41,16 +41,16 @@ namespace Congreso_2025
                     ddlTipoUsuario.Items.Insert(0, new ListItem("-- Seleccione --", ""));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Puedes loguear o mostrar mensaje
+
             }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             string nombreUsuario = txtUserName.Text?.Trim();
-            string password = txtPassword.Text; // NOTA: plain-text según tu esquema actual (max 10)
+            string password = txtPassword.Text;
             string tipoUsuario = ddlTipoUsuario.SelectedValue;
 
             AddOrUpdateUsuario(nombreUsuario, password, tipoUsuario);
@@ -69,7 +69,6 @@ namespace Congreso_2025
                 return;
             }
 
-            // Si hay id en sesión, es edición
             if (!string.IsNullOrEmpty(idUsuarioSession))
             {
                 var u = new Usuario
@@ -94,7 +93,6 @@ namespace Congreso_2025
                 return;
             }
 
-            // Inserción
             if (usuarioDAO.InsertarUsuario(nombreUsuario, password, idTipoUsuario))
             {
                 swal = "Swal.fire('Éxito', 'Usuario añadido con éxito', 'success');";
@@ -124,9 +122,8 @@ namespace Congreso_2025
                 {
                     hfUsuarioId.Value = usuario.id_usuario;
                     txtUserName.Text = usuario.nombre_usuario;
-                    txtPassword.Text = usuario.password; // según tu modelo actual
+                    txtPassword.Text = usuario.password;
                     ddlTipoUsuario.SelectedValue = usuario.id_tipo_usuario;
-
                     lblFormTitle.Text = "Editar Usuario";
                 }
             }
@@ -162,7 +159,7 @@ namespace Congreso_2025
         {
             try
             {
-                var lista = usuarioDAO.ConsultarUsuariosConTipo(); // incluye nombre del tipo
+                var lista = usuarioDAO.ConsultarUsuariosConTipo();
                 UserRepeater.DataSource = lista;
                 UserRepeater.DataBind();
             }
@@ -186,6 +183,49 @@ namespace Congreso_2025
             ddlTipoUsuario.ClearSelection();
             if (ddlTipoUsuario.Items.Count > 0) ddlTipoUsuario.SelectedIndex = 0;
             lblFormTitle.Text = "Añadir Nuevo Usuario";
+        }
+
+        protected void btnExportarPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var usuarios = usuarioDAO.ConsultarUsuariosConTipo();
+
+                if (usuarios == null || usuarios.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "warn",
+                        "Swal.fire('Sin datos','No hay usuarios para exportar.','info');", true);
+                    return;
+                }
+
+                var columnas = new List<string>
+                {
+                    "Código",
+                    "Nombre de Usuario",
+                    "Contraseña",
+                    "Tipo de Usuario"
+                };
+
+                var filas = usuarios.Select(u => new List<string>
+                {
+                    u.id_usuario,
+                    u.nombre_usuario,
+                    u.password,
+                    u.nombre_tipo_usuario
+                }).ToList();
+
+                ExportadorPDF.ExportarTabla(
+                    "Listado de Usuarios del Sistema",
+                    columnas,
+                    filas,
+                    "Usuarios_Congreso2025"
+                );
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"Swal.fire('Error','{ex.Message}','error');", true);
+            }
         }
     }
 }

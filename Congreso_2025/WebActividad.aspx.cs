@@ -4,6 +4,7 @@ using Congreso_2025.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -134,7 +135,6 @@ namespace Congreso_2025
             string swal;
             if (!string.IsNullOrEmpty(idEdit))
             {
-                // UPDATE
                 var entidad = new Actividad
                 {
                     id_actividad = idEdit,
@@ -230,7 +230,6 @@ namespace Congreso_2025
             }
             else
             {
-                // Puede estar referenciada por carrera_actividad
                 ScriptManager.RegisterStartupScript(this, GetType(), "err",
                     "Swal.fire('Error','No se pudo eliminar. Verifica si está en uso.','error');", true);
             }
@@ -261,8 +260,60 @@ namespace Congreso_2025
 
         private DateTime ParseDateTime(string date, string time)
         {
-            // date: yyyy-MM-dd, time: HH:mm
             return DateTime.ParseExact($"{date} {time}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+        }
+
+        protected void btnExportarPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var lista = actividadDAO.ConsultarActividadesListado(); 
+
+                if (lista == null || lista.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "warn",
+                        "Swal.fire('Sin datos','No hay actividades para exportar.','info');", true);
+                    return;
+                }
+
+                var columnas = new List<string>
+        {
+            "Código",
+            "Nombre",
+            "Tipo",
+            "Estado",
+            "Ponente",
+            "Ubicación",
+            "Inicio",
+            "Fin",
+            "Inscritos"
+        };
+
+                var filas = lista.Select(a => new List<string>
+        {
+            a.id_actividad,
+            a.Nombre_actividad,
+            a.nombre_tipo_actividad,
+            a.nombre_estado_actividad,
+            a.nombre_ponente,
+            a.nombre_ubicacion,
+            a.hora_inicio.ToString("dd/MM/yyyy HH:mm"),
+            a.hora_fin.ToString("dd/MM/yyyy HH:mm"),
+            a.inscritos.ToString() ?? "0"
+        }).ToList();
+
+                ExportadorPDF.ExportarTabla(
+                    "Listado de Actividades",
+                    columnas,
+                    filas,
+                    "Actividades_Congreso2025"
+                );
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"Swal.fire('Error','{ex.Message}','error');", true);
+            }
         }
     }
 }

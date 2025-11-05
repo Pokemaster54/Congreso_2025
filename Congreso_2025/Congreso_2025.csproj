@@ -181,6 +181,7 @@
     <Compile Include="Clases\DataClasses\AlumnoDC.cs" />
     <Compile Include="Clases\DataClasses\PonenteDC.cs" />
     <Compile Include="Clases\DTOs\ActividadProximaDTO.cs" />
+    <Compile Include="Clases\ExportadorPDF.cs" />
     <Compile Include="Clases\General.cs" />
     <Compile Include="DashboardAlumno.aspx.cs">
       <DependentUpon>DashboardAlumno.aspx</DependentUpon>

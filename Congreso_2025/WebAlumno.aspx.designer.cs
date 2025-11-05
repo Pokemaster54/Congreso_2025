@@ -105,6 +105,15 @@ namespace Congreso_2025
         protected global::System.Web.UI.WebControls.Button btnCancel;
 
         /// <summary>
+        /// Control btnExportarPDF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportarPDF;
+
+        /// <summary>
         /// Control rptAlumnos.
         /// </summary>
         /// <remarks>

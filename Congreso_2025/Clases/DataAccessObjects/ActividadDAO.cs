@@ -7,10 +7,9 @@ namespace Congreso_2025.Clases.DataAccessObjects
 {
     public class ActividadDAO
     {
-        private General general = new General();
+        private readonly General general = new General();
         public ActividadDAO() { }
 
-        // Listado con nombres (joins)
         public List<ActividadListado> ConsultarActividadesListado()
         {
             using (var db = new MiLinQ(general.CadenaDeConexion))
@@ -31,13 +30,20 @@ namespace Congreso_2025.Clases.DataAccessObjects
                             nombre_ubicacion = u.nombre_ubicacion,
                             hora_inicio = a.hora_inicio,
                             hora_fin = a.hora_fin,
-                            inscritos = a.inscritos
+
+                            inscritos = (
+                                from asg in db.asignacion_actividad
+                                join ca in db.carrera_actividad
+                                    on asg.id_carrera_actividad equals ca.id_carrera_actividad
+                                where ca.id_actividad == a.id_actividad
+                                select asg.id_alumno
+                            ).Count()
                         };
+
                 return q.ToList();
             }
         }
 
-        // Cargar para edición
         public Actividad CargarActividadPorId(string id)
         {
             using (var db = new MiLinQ(general.CadenaDeConexion))
@@ -46,7 +52,6 @@ namespace Congreso_2025.Clases.DataAccessObjects
             }
         }
 
-        // Insert
         public bool InsertarActividad(string nombre, string idTipo, string idEstado, string idPonente, string idUbicacion,
                                       DateTime inicio, DateTime fin, int? inscritos)
         {
@@ -57,14 +62,15 @@ namespace Congreso_2025.Clases.DataAccessObjects
                 {
                     var act = new Actividad
                     {
-                        id_actividad = nuevoId,              // NVARCHAR(6)
-                        Nombre_actividad = nombre,           // NVARCHAR(50)
+                        id_actividad = nuevoId,
+                        Nombre_actividad = nombre,
                         id_tipo_actividad = idTipo,
                         id_estado_actividad = idEstado,
                         id_ponente = idPonente,
                         id_ubicacion = idUbicacion,
                         hora_inicio = inicio,
                         hora_fin = fin,
+
                         inscritos = inscritos
                     };
                     db.Actividad.InsertOnSubmit(act);
@@ -78,7 +84,6 @@ namespace Congreso_2025.Clases.DataAccessObjects
             }
         }
 
-        // Update
         public bool ActualizarActividad(Actividad a)
         {
             try
@@ -107,7 +112,6 @@ namespace Congreso_2025.Clases.DataAccessObjects
             }
         }
 
-        // Delete
         public bool EliminarActividad(string id)
         {
             try
@@ -124,18 +128,34 @@ namespace Congreso_2025.Clases.DataAccessObjects
             }
             catch
             {
-                // Puede fallar por FK via carrera_actividad
                 return false;
             }
         }
 
-        // Helpers para combos
-        public List<Tipo_actividad> ObtenerTiposActividad() { using (var db = new MiLinQ(general.CadenaDeConexion)) return db.Tipo_actividad.OrderBy(x => x.nombre_tipo_actividad).ToList(); }
-        public List<Estado_actividad> ObtenerEstadosActividad() { using (var db = new MiLinQ(general.CadenaDeConexion)) return db.Estado_actividad.OrderBy(x => x.nombre_estado_actividad).ToList(); }
-        public List<Ponente> ObtenerPonentes() { using (var db = new MiLinQ(general.CadenaDeConexion)) return db.Ponente.OrderBy(x => x.nombre_ponente).ToList(); }
-        public List<Ubicacion> ObtenerUbicaciones() { using (var db = new MiLinQ(general.CadenaDeConexion)) return db.Ubicacion.OrderBy(x => x.nombre_ubicacion).ToList(); }
+        public List<Tipo_actividad> ObtenerTiposActividad()
+        {
+            using (var db = new MiLinQ(general.CadenaDeConexion))
+                return db.Tipo_actividad.OrderBy(x => x.nombre_tipo_actividad).ToList();
+        }
 
-        // Generador de IDs: "AT0001"
+        public List<Estado_actividad> ObtenerEstadosActividad()
+        {
+            using (var db = new MiLinQ(general.CadenaDeConexion))
+                return db.Estado_actividad.OrderBy(x => x.nombre_estado_actividad).ToList();
+        }
+
+        public List<Ponente> ObtenerPonentes()
+        {
+            using (var db = new MiLinQ(general.CadenaDeConexion))
+                return db.Ponente.OrderBy(x => x.nombre_ponente).ToList();
+        }
+
+        public List<Ubicacion> ObtenerUbicaciones()
+        {
+            using (var db = new MiLinQ(general.CadenaDeConexion))
+                return db.Ubicacion.OrderBy(x => x.nombre_ubicacion).ToList();
+        }
+
         public string GenerarSiguienteCodigoActividad()
         {
             using (var db = new MiLinQ(general.CadenaDeConexion))
@@ -143,13 +163,10 @@ namespace Congreso_2025.Clases.DataAccessObjects
                 try
                 {
                     var nums = db.Actividad
-                                 .Where(x => x.id_actividad != null && x.id_actividad.StartsWith("AT") && x.id_actividad.Length == 6)
-                                 .Select(x => x.id_actividad.Substring(2));
+                        .Where(x => x.id_actividad.StartsWith("AT") && x.id_actividad.Length == 6)
+                        .Select(x => x.id_actividad.Substring(2));
 
-                    int ultimo = 0;
-                    if (nums.Any())
-                        ultimo = nums.AsEnumerable().Select(s => int.Parse(s)).Max();
-
+                    int ultimo = nums.Any() ? nums.AsEnumerable().Select(int.Parse).Max() : 0;
                     int sig = ultimo + 1;
                     return $"AT{sig:D4}";
                 }
@@ -161,7 +178,6 @@ namespace Congreso_2025.Clases.DataAccessObjects
         }
     }
 
-    // ViewModel para listado (nombres ya resueltos)
     public class ActividadListado
     {
         public string id_actividad { get; set; }
@@ -172,6 +188,7 @@ namespace Congreso_2025.Clases.DataAccessObjects
         public string nombre_ubicacion { get; set; }
         public DateTime hora_inicio { get; set; }
         public DateTime hora_fin { get; set; }
-        public int? inscritos { get; set; }
+
+        public int inscritos { get; set; }
     }
 }

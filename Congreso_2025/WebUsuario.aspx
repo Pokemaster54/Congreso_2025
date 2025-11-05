@@ -9,15 +9,53 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        .table-responsive thead th { position: sticky; top: 0; z-index: 1; }
+        .table-responsive thead th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
         @media (max-width: 575.98px) {
-            .table-stack tbody, .table-stack tr, .table-stack td, .table-stack thead { display:block; width:100%; }
-            .table-stack thead { display:none; }
-            .table-stack tr { border:1px solid rgba(0,0,0,.125); border-radius:.5rem; margin-bottom:.75rem; background:#fff; overflow:hidden; }
-            .table-stack td { display:flex; padding:.5rem .75rem; border:none !important; border-bottom:1px solid rgba(0,0,0,.075) !important; }
-            .table-stack td:last-child { border-bottom:none !important; }
-            .table-stack td::before { content: attr(data-label); flex:0 0 42%; max-width:42%; font-weight:600; color:#374151; padding-right:.5rem; }
-            .actions-col { justify-content:flex-start !important; }
+            .table-stack tbody, .table-stack tr, .table-stack td, .table-stack thead {
+                display: block;
+                width: 100%;
+            }
+
+            .table-stack thead {
+                display: none;
+            }
+
+            .table-stack tr {
+                border: 1px solid rgba(0,0,0,.125);
+                border-radius: .5rem;
+                margin-bottom: .75rem;
+                background: #fff;
+                overflow: hidden;
+            }
+
+            .table-stack td {
+                display: flex;
+                padding: .5rem .75rem;
+                border: none !important;
+                border-bottom: 1px solid rgba(0,0,0,.075) !important;
+            }
+
+                .table-stack td:last-child {
+                    border-bottom: none !important;
+                }
+
+                .table-stack td::before {
+                    content: attr(data-label);
+                    flex: 0 0 42%;
+                    max-width: 42%;
+                    font-weight: 600;
+                    color: #374151;
+                    padding-right: .5rem;
+                }
+
+            .actions-col {
+                justify-content: flex-start !important;
+            }
         }
     </style>
 </asp:Content>
@@ -43,10 +81,12 @@
                 </h5>
             </div>
             <div class="card-body">
+
+
                 <div class="row g-3 row-cols-1 row-cols-md-2">
                     <div class="col">
                         <label for="txtUserName" class="form-label">Nombre de usuario</label>
-                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" required="true" MaxLength="10"></asp:TextBox>
+                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control"  MaxLength="10"></asp:TextBox>
                     </div>
                     <div class="col">
                         <label for="txtPassword" class="form-label">Contraseña</label>
@@ -71,6 +111,13 @@
         <!-- Tabla -->
         <div class="card shadow-sm">
             <div class="card-body">
+                <asp:Button ID="btnExportarPDF" runat="server"
+                    Text="Exportar a PDF"
+                    CssClass="btn btn-danger mb-3"
+                    OnClick="btnExportarPDF_Click"
+                    CausesValidation="false" />
+
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-sm align-middle table-stack">
                         <thead class="table-dark">
@@ -78,7 +125,7 @@
                                 <th scope="col">Código</th>
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Tipo</th>
-                                <th scope="col" style="width:160px">Acciones</th>
+                                <th scope="col" style="width: 160px">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

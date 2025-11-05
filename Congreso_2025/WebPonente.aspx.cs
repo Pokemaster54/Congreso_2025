@@ -4,6 +4,7 @@ using Congreso_2025.Clases.DataClasses;
 using Congreso_2025.DataBase;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -190,6 +191,55 @@ namespace Congreso_2025
         {
             cleanForm();
             Session["idPonente"] = "";
+        }
+
+        protected void btnExportarPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1️⃣ Obtener lista de ponentes desde el DAO
+                var ponentes = ponenteDAO.ConsultarPonentes();
+
+                if (ponentes == null || ponentes.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "warn",
+                        "Swal.fire('Sin datos','No hay ponentes para exportar.','info');", true);
+                    return;
+                }
+
+                // 2️⃣ Encabezados de columnas
+                var columnas = new List<string>
+        {
+            "Código",
+            "Nombre",
+            "Origen",
+            "Fecha de nacimiento",
+            "Descripción"
+        };
+
+                // 3️⃣ Transformar los datos a listas de texto
+                var filas = ponentes.Select(p => new List<string>
+        {
+            p.id_ponente,
+            p.nombre_ponente,
+            p.Origen,
+            p.fecha_nacimiento.ToString("dd/MM/yyyy"),
+            p.descripcion ?? ""
+        }).ToList();
+
+                // 4️⃣ Exportar con la clase genérica
+                ExportadorPDF.ExportarTabla(
+                    "Listado de Ponentes",
+                    columnas,
+                    filas,
+                    "Ponentes_Congreso2025"
+                );
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"Swal.fire('Error','{ex.Message}','error');", true);
+            }
         }
 
     }

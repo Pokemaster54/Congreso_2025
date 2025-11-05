@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Congreso_2025.Clases;
+using Congreso_2025.Clases.DataAccessObjects;
+using Congreso_2025.DataBase;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using Congreso_2025.Clases;
-using Congreso_2025.DataBase;
 
 namespace Congreso_2025
 {
@@ -64,22 +66,20 @@ namespace Congreso_2025
 
                 if (string.IsNullOrEmpty(idAlumno))
                 {
-                    // === Crear nuevo usuario automáticamente ===
                     int totalUsuarios = db.Usuario.Count();
                     string nuevoIdUsuario = "U" + (totalUsuarios + 1).ToString("0000");
 
                     var usuario = new DataBase.Usuario
                     {
                         id_usuario = nuevoIdUsuario,
-                        nombre_usuario = txtCarne.Text.Trim(), // el carné será su usuario
-                        password = "123",                      // puedes luego permitir cambio
-                        id_tipo_usuario = "TU0002"             // tipo alumno
+                        nombre_usuario = txtCarne.Text.Trim(),
+                        password = "123",
+                        id_tipo_usuario = "TU0002"
                     };
 
                     db.Usuario.InsertOnSubmit(usuario);
-                    db.SubmitChanges(); // Guardamos para que el FK sea válido
+                    db.SubmitChanges();
 
-                    // === Crear alumno asociado al nuevo usuario ===
                     int totalAlumnos = db.Alumno.Count();
                     string nuevoIdAlumno = "AL" + (totalAlumnos + 1).ToString("000");
 
@@ -92,14 +92,13 @@ namespace Congreso_2025
                         id_carrera = ddlCarrera.SelectedValue,
                         id_estado = ddlEstado.SelectedValue,
                         id_usuario = nuevoIdUsuario,
-                        id_pago = "PG0001" // puedes generar un pago real luego
+                        id_pago = "PG0001"
                     };
 
                     db.Alumno.InsertOnSubmit(nuevoAlumno);
                 }
                 else
                 {
-                    // === Editar alumno existente ===
                     var alumno = db.Alumno.FirstOrDefault(x => x.id_alumno == idAlumno);
                     if (alumno != null)
                     {
@@ -172,5 +171,55 @@ namespace Congreso_2025
             ddlEstado.SelectedIndex = 0;
             lblFormTitle.Text = "Añadir Nuevo Alumno";
         }
+
+        protected void btnExportarPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var db = new MiLinQ(general.CadenaDeConexion))
+                {
+                    var lista = (from a in db.Alumno
+                                 join c in db.Carrera on a.id_carrera equals c.id_carrera
+                                 join est in db.Estado_alumno on a.id_estado equals est.id_estado
+                                 select new
+                                 {
+                                     a.carne,
+                                     nombreCompleto = a.nombres_alumno + " " + a.apellidos_alumno,
+                                     carrera = c.nombre_carrera,
+                                     estado = est.nombre_estado
+                                 }).ToList();
+
+                    if (lista == null || lista.Count == 0)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "warn",
+                            "Swal.fire('Sin datos','No hay alumnos para exportar.','info');", true);
+                        return;
+                    }
+
+                    var columnas = new List<string> { "Carné", "Nombre completo", "Carrera", "Estado" };
+
+                    var filas = lista.Select(a => new List<string>
+            {
+                a.carne,
+                a.nombreCompleto,
+                a.carrera,
+                a.estado
+            }).ToList();
+
+                    ExportadorPDF.ExportarTabla(
+                        "Listado de Alumnos",
+                        columnas,
+                        filas,
+                        "Alumnos_Congreso2025"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "error",
+                    $"Swal.fire('Error','{ex.Message}','error');", true);
+            }
+        }
+
     }
 }

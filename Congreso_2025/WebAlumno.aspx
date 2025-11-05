@@ -73,7 +73,6 @@
     <asp:Label ID="lblNombreAlumno" runat="server" Text="Alumno"></asp:Label>
         </h2>
 
-        <!-- Formulario -->
         <div class="card mb-4 shadow-sm">
             <div class="card-header">
                 <h5 class="card-title mb-0">
@@ -81,6 +80,7 @@
                 </h5>
             </div>
             <div class="card-body">
+
                 <div class="row g-3 row-cols-1 row-cols-md-2">
                     <div class="col">
                         <label for="txtCarne" class="form-label">Carné</label>
@@ -111,9 +111,14 @@
             </div>
         </div>
 
-        <!-- Tabla -->
         <div class="card shadow-sm">
             <div class="card-body">
+                <asp:Button ID="btnExportarPDF" runat="server"
+                    Text="Exportar a PDF"
+                    CssClass="btn btn-danger mb-3"
+                    OnClick="btnExportarPDF_Click" 
+                    CausesValidation ="false"
+                    />
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-sm align-middle table-stack">
                         <thead class="table-dark">
