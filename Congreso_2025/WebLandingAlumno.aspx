@@ -18,17 +18,20 @@
             background: radial-gradient(1200px 600px at 10% 10%, #f8fafc 0%, #ffffff 30%, #f1f5f9 100%);
             box-shadow: 0 10px 40px rgba(0, 0, 0, .06);
         }
+
         .lp-lines {
             position: absolute;
             inset: 0;
             opacity: .9;
             pointer-events: none;
         }
-        .lp-lines svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
+
+            .lp-lines svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
         .line {
             fill: none;
             stroke-width: 2.2;
@@ -37,12 +40,34 @@
             animation: dash 18s linear infinite;
             filter: drop-shadow(0 0 6px rgba(99,102,241,.25));
         }
-        .line.slow { animation-duration: 24s; stroke-dasharray: 220 26; }
-        .line.fast { animation-duration: 12s; stroke-dasharray: 140 18; }
-        .line:nth-child(1) { stroke: url(#gradIndigoCyan); }
-        .line:nth-child(2) { stroke: url(#gradPinkViolet); }
-        .line:nth-child(3) { stroke: url(#gradLimeSky); }
-        @keyframes dash { to { stroke-dashoffset: -1600; } }
+
+            .line.slow {
+                animation-duration: 24s;
+                stroke-dasharray: 220 26;
+            }
+
+            .line.fast {
+                animation-duration: 12s;
+                stroke-dasharray: 140 18;
+            }
+
+            .line:nth-child(1) {
+                stroke: url(#gradIndigoCyan);
+            }
+
+            .line:nth-child(2) {
+                stroke: url(#gradPinkViolet);
+            }
+
+            .line:nth-child(3) {
+                stroke: url(#gradLimeSky);
+            }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1600;
+            }
+        }
 
         /* ===== Glass card ===== */
         .lp-card {
@@ -57,6 +82,7 @@
             border: 1px solid rgba(255,255,255,.6);
             box-shadow: 0 12px 44px rgba(15,23,42,.08);
         }
+
         .lp-badge {
             display: inline-flex;
             align-items: center;
@@ -67,6 +93,7 @@
             color: #4f46e5;
             font-weight: 600;
         }
+
         .lp-title {
             font-weight: 800;
             line-height: 1.1;
@@ -74,20 +101,45 @@
             letter-spacing: -.02em;
             margin: .35rem 0 .5rem;
         }
-        .lp-sub { color: #4b5563; font-size: clamp(1rem, 1.6vw, 1.125rem); }
+
+        .lp-sub {
+            color: #4b5563;
+            font-size: clamp(1rem, 1.6vw, 1.125rem);
+        }
 
         /* ===== KPIs ===== */
-        .lp-grid { display: grid; gap: 14px; grid-template-columns: repeat(12,1fr); }
-        .lp-kpi { grid-column: span 12; }
-        @media (min-width:768px) { .lp-kpi { grid-column: span 3; } }
+        .lp-grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(12,1fr);
+        }
+
+        .lp-kpi {
+            grid-column: span 12;
+        }
+
+        @media (min-width:768px) {
+            .lp-kpi {
+                grid-column: span 3;
+            }
+        }
+
         .kpi {
             border-radius: 16px;
             padding: 18px;
             background: rgba(255,255,255,.82);
             border: 1px solid rgba(0,0,0,.06);
         }
-        .kpi .label { color: #6b7280; font-size: .85rem; }
-        .kpi .value { font-weight: 800; font-size: 1.7rem; }
+
+            .kpi .label {
+                color: #6b7280;
+                font-size: .85rem;
+            }
+
+            .kpi .value {
+                font-weight: 800;
+                font-size: 1.7rem;
+            }
 
         /* ===== Próxima actividad ===== */
         .next {
@@ -97,8 +149,15 @@
             background: rgba(255,255,255,.9);
             border: 1px solid rgba(0,0,0,.06);
         }
-        .next .title { font-weight: 700; font-size: 1.1rem; }
-        .meta { color: #475569; }
+
+            .next .title {
+                font-weight: 700;
+                font-size: 1.1rem;
+            }
+
+        .meta {
+            color: #475569;
+        }
 
         /* ===== CTA ===== */
         .btn-aurora {
@@ -111,16 +170,26 @@
             background: linear-gradient(135deg,#4f46e5,#06b6d4);
             color: #fff;
         }
-        .btn-aurora::before {
-            content: "";
-            position: absolute;
-            inset: -40%;
-            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,.35), transparent 30%);
-            animation: spin 3.5s linear infinite;
-            filter: blur(12px);
+
+            .btn-aurora::before {
+                content: "";
+                position: absolute;
+                inset: -40%;
+                background: conic-gradient(from 0deg, transparent, rgba(255,255,255,.35), transparent 30%);
+                animation: spin 3.5s linear infinite;
+                filter: blur(12px);
+            }
+
+            .btn-aurora > span {
+                position: relative;
+                z-index: 1;
+            }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
         }
-        .btn-aurora > span { position: relative; z-index: 1; }
-        @keyframes spin { to { transform: rotate(360deg) } }
     </style>
 </asp:Content>
 
@@ -150,40 +219,48 @@
                 </svg>
             </div>
 
-            <!-- Tarjeta principal -->
             <div class="lp-card">
                 <div class="mb-3">
-                    <span class="lp-badge"><i class="fa-solid fa-user-graduate"></i> Bienvenido alumno</span>
+                    <span class="lp-badge">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        Saludos,
+                        <asp:Label ID="lblNombreAlumno" runat="server" Text="Alumno"></asp:Label>
+                        !
+                    </span>
+
                 </div>
                 <h2 class="lp-title">Panel del Alumno — Congreso 2025</h2>
                 <p class="lp-sub mb-4">
                     Consulta tus actividades inscritas, próximas sesiones y tus ponentes asignados.
                 </p>
 
-                <!-- KPIs -->
                 <div class="lp-grid">
                     <div class="lp-kpi">
                         <div class="kpi">
                             <div class="label">Próximas actividades</div>
-                            <div class="value"><asp:Label ID="lblKpiProximas" runat="server" Text="0" /></div>
+                            <div class="value">
+                                <asp:Label ID="lblKpiProximas" runat="server" Text="0" /></div>
                         </div>
                     </div>
                     <div class="lp-kpi">
                         <div class="kpi">
                             <div class="label">Ponentes asignados</div>
-                            <div class="value"><asp:Label ID="lblKpiPonentes" runat="server" Text="0" /></div>
+                            <div class="value">
+                                <asp:Label ID="lblKpiPonentes" runat="server" Text="0" /></div>
                         </div>
                     </div>
                     <div class="lp-kpi">
                         <div class="kpi">
                             <div class="label">Ubicaciones</div>
-                            <div class="value"><asp:Label ID="lblKpiUbicaciones" runat="server" Text="0" /></div>
+                            <div class="value">
+                                <asp:Label ID="lblKpiUbicaciones" runat="server" Text="0" /></div>
                         </div>
                     </div>
                     <div class="lp-kpi">
                         <div class="kpi">
                             <div class="label">Tipos de actividad</div>
-                            <div class="value"><asp:Label ID="lblKpiTipos" runat="server" Text="0" /></div>
+                            <div class="value">
+                                <asp:Label ID="lblKpiTipos" runat="server" Text="0" /></div>
                         </div>
                     </div>
                 </div>
@@ -192,16 +269,21 @@
                 <asp:Panel ID="pnlNext" runat="server" CssClass="next">
                     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
                         <div>
-                            <div class="title"><asp:Label ID="lblNextNombre" runat="server" Text="—" /></div>
+                            <div class="title">
+                                <asp:Label ID="lblNextNombre" runat="server" Text="—" /></div>
                             <div class="meta">
-                                <i class="fa-regular fa-clock me-1"></i> <asp:Label ID="lblNextFecha" runat="server" Text="—" />
-                                &nbsp;•&nbsp; <i class="fa-solid fa-chalkboard-user me-1"></i> <asp:Label ID="lblNextPonente" runat="server" Text="—" />
-                                &nbsp;•&nbsp; <i class="fa-solid fa-location-dot me-1"></i> <asp:Label ID="lblNextUbicacion" runat="server" Text="—" />
-                                &nbsp;•&nbsp; <i class="fa-solid fa-list-check me-1"></i> <asp:Label ID="lblNextTipo" runat="server" Text="—" />
+                                <i class="fa-regular fa-clock me-1"></i>
+                                <asp:Label ID="lblNextFecha" runat="server" Text="—" />
+                                &nbsp;•&nbsp; <i class="fa-solid fa-chalkboard-user me-1"></i>
+                                <asp:Label ID="lblNextPonente" runat="server" Text="—" />
+                                &nbsp;•&nbsp; <i class="fa-solid fa-location-dot me-1"></i>
+                                <asp:Label ID="lblNextUbicacion" runat="server" Text="—" />
+                                &nbsp;•&nbsp; <i class="fa-solid fa-list-check me-1"></i>
+                                <asp:Label ID="lblNextTipo" runat="server" Text="—" />
                             </div>
                         </div>
                         <a runat="server" href="~/ActividadesAlumno.aspx" class="btn btn-aurora">
-                            <span><i class="fa-solid fa-calendar-check me-2"></i> Ver mis actividades</span>
+                            <span><i class="fa-solid fa-calendar-check me-2"></i>Ver mis actividades</span>
                         </a>
                     </div>
                 </asp:Panel>

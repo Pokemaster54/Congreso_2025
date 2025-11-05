@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Security;
 
 namespace Congreso_2025
 {
@@ -16,13 +17,12 @@ namespace Congreso_2025
                 }
             }
         }
-
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            // Cerrar sesión de FormsAuthentication
-            System.Web.Security.FormsAuthentication.SignOut();
+            FormsAuthentication.SignOut();
             Session.Clear();
             Response.Redirect("~/Login.aspx");
         }
     }
+    
 }

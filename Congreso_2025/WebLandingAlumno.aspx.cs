@@ -15,6 +15,8 @@ namespace Congreso_2025
             if (!IsPostBack)
             {
                 CargarResumenAlumno();
+                CargarNombreAlumno();
+
             }
         }
 
@@ -24,7 +26,6 @@ namespace Congreso_2025
         {
             using (var db = new MiLinQ(general.CadenaDeConexion))
             {
-                // 🔹 Buscar al alumno actual por usuario
                 var alumno = db.Alumno.FirstOrDefault(a => a.Usuario.nombre_usuario == UsuarioActual);
                 if (alumno == null)
                 {
@@ -40,7 +41,6 @@ namespace Congreso_2025
                     return;
                 }
 
-                // 🔹 Actividades inscritas del alumno
                 var actividades =
                     from aa in db.asignacion_actividad
                     join ca in db.carrera_actividad on aa.id_carrera_actividad equals ca.id_carrera_actividad
@@ -61,13 +61,11 @@ namespace Congreso_2025
 
                 var lista = actividades.ToList();
 
-                // 🔹 KPIs individuales (solo lo que le corresponde al alumno)
                 lblKpiProximas.Text = lista.Count(x => x.hora_inicio > DateTime.Now).ToString("N0");
                 lblKpiPonentes.Text = lista.Select(x => x.nombre_ponente).Distinct().Count().ToString("N0");
                 lblKpiUbicaciones.Text = lista.Select(x => x.nombre_ubicacion).Distinct().Count().ToString("N0");
                 lblKpiTipos.Text = lista.Select(x => x.nombre_tipo_actividad).Distinct().Count().ToString("N0");
 
-                // 🔹 Próxima actividad del alumno
                 var next = lista
                     .Where(x => x.hora_inicio > DateTime.Now)
                     .OrderBy(x => x.hora_inicio)
@@ -88,6 +86,33 @@ namespace Congreso_2025
                     lblNextPonente.Text = "—";
                     lblNextUbicacion.Text = "—";
                     lblNextTipo.Text = "—";
+                }
+            }
+        }
+        private void CargarNombreAlumno()
+        {
+            string usuario = User.Identity.Name;
+
+            if (string.IsNullOrEmpty(usuario)) return;
+
+            using (var db = new MiLinQ(general.CadenaDeConexion))
+            {
+                var alumno = (from a in db.Alumno
+                              join u in db.Usuario on a.id_usuario equals u.id_usuario
+                              where u.nombre_usuario == usuario
+                              select new
+                              {
+                                  Nombre = a.nombres_alumno,
+                                  Apellido = a.apellidos_alumno
+                              }).FirstOrDefault();
+
+                if (alumno != null)
+                {
+                    lblNombreAlumno.Text = alumno.Nombre + " " + alumno.Apellido;
+                }
+                else
+                {
+                    lblNombreAlumno.Text = usuario;
                 }
             }
         }

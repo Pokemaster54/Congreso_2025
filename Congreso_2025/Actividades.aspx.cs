@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Congreso_2025.Clases;
+using Congreso_2025.DataBase;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.UI;
-using Congreso_2025.Clases;
-using Congreso_2025.DataBase;
 
 namespace Congreso_2025
 {
@@ -129,10 +133,11 @@ namespace Congreso_2025
             CargarActividades();
         }
 
-        // 🔹 Ver alumnos inscritos (abre modal)
         protected void btnVerInscritos_Command(object sender, System.Web.UI.WebControls.CommandEventArgs e)
         {
             string idActividad = e.CommandArgument.ToString();
+
+            ViewState["actividadActual"] = idActividad;
 
             using (var db = new MiLinQ(general.CadenaDeConexion))
             {
@@ -154,9 +159,111 @@ namespace Congreso_2025
             }
         }
 
+
         protected void btnCerrarModal_Click(object sender, EventArgs e)
         {
             pnlInscritos.Visible = false;
         }
+
+        protected void btnExportarPDF_Click(object sender, EventArgs e)
+        {
+            if (ViewState["actividadActual"] == null)
+            {
+                // Si no hay actividad seleccionada, no exportamos
+                return;
+            }
+
+            string idActividad = ViewState["actividadActual"].ToString();
+
+            using (var db = new MiLinQ(general.CadenaDeConexion))
+            {
+                // Obtenemos los alumnos inscritos directamente desde la base de datos
+                var alumnosBD = (from asg in db.asignacion_actividad
+                                 join ca in db.carrera_actividad on asg.id_carrera_actividad equals ca.id_carrera_actividad
+                                 join al in db.Alumno on asg.id_alumno equals al.id_alumno
+                                 join c in db.Carrera on ca.id_carrera equals c.id_carrera
+                                 join act in db.Actividad on ca.id_actividad equals act.id_actividad
+                                 join p in db.Ponente on act.id_ponente equals p.id_ponente
+                                 where ca.id_actividad == idActividad
+                                 select new
+                                 {
+                                     act.Nombre_actividad,
+                                     p.nombre_ponente,
+                                     al.carne,
+                                     nombre = al.nombres_alumno + " " + al.apellidos_alumno,
+                                     carrera = c.nombre_carrera
+                                 }).ToList();
+
+                if (alumnosBD.Count == 0)
+                {
+                    return;
+                }
+
+                // Tomamos datos del encabezado
+                string nombreActividad = alumnosBD.First().Nombre_actividad;
+                string nombrePonente = alumnosBD.First().nombre_ponente;
+
+                // === Crear PDF ===
+                Document doc = new Document(PageSize.A4, 40, 40, 50, 50);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    PdfWriter.GetInstance(doc, ms);
+                    doc.Open();
+
+                    // Encabezado
+                    var titulo = new Paragraph("Lista de Alumnos Inscritos", new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD))
+                    {
+                        Alignment = Element.ALIGN_CENTER
+                    };
+                    doc.Add(titulo);
+
+                    doc.Add(new Paragraph($"\nActividad: {nombreActividad}", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+                    doc.Add(new Paragraph($"Ponente: {nombrePonente}", new Font(Font.FontFamily.HELVETICA, 11)));
+                    doc.Add(new Paragraph($"\nFecha de generación: {DateTime.Now:dd/MM/yyyy HH:mm}\n\n"));
+
+                    // Tabla
+                    PdfPTable table = new PdfPTable(3);
+                    table.WidthPercentage = 100;
+                    table.SetWidths(new float[] { 20f, 40f, 40f });
+
+                    Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+                    BaseColor azul = new BaseColor(0, 43, 91);
+                    string[] headers = { "Carné", "Nombre", "Carrera" };
+
+                    foreach (string h in headers)
+                    {
+                        PdfPCell cell = new PdfPCell(new Phrase(h, headerFont))
+                        {
+                            BackgroundColor = azul,
+                            HorizontalAlignment = Element.ALIGN_CENTER,
+                            Padding = 6
+                        };
+                        table.AddCell(cell);
+                    }
+
+                    Font bodyFont = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL);
+                    foreach (var a in alumnosBD)
+                    {
+                        table.AddCell(new Phrase(a.carne, bodyFont));
+                        table.AddCell(new Phrase(a.nombre, bodyFont));
+                        table.AddCell(new Phrase(a.carrera, bodyFont));
+                    }
+
+                    doc.Add(table);
+                    doc.Close();
+
+                    
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("content-disposition", $"attachment;filename=Inscritos_{nombreActividad}.pdf");
+                    Response.BinaryWrite(ms.ToArray());
+                    Response.Flush();  
+                    HttpContext.Current.ApplicationInstance.CompleteRequest(); 
+
+                }
+            }
+        }
+
     }
 }

@@ -45,7 +45,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand fw-semibold" href="WebLandingCatedratico.aspx">
-                    <img src="~/assets/logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-middle me-2" />
+                    <img src="https://udeo.asms.gt/ROOT/assets.1.1.2/images/logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-middle me-2" />
                     Congreso 2025 — Cátedra
                 </a>
 
@@ -58,7 +58,6 @@
                         <!-- 🔹 Opciones principales -->
                         <li class="nav-item"><a class="nav-link" href="Actividades.aspx"><i class="fa-solid fa-calendar-days me-1"></i> Actividades</a></li>
                         <li class="nav-item"><a class="nav-link" href="Alumnos.aspx"><i class="fa-solid fa-users me-1"></i> Alumnos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Carreras.aspx"><i class="fa-solid fa-graduation-cap me-1"></i> Carreras</a></li>
                         <li class="nav-item"><a class="nav-link" href="Ponentes.aspx"><i class="fa-solid fa-chalkboard-user me-1"></i> Ponentes</a></li>
 
                         <!-- 🔹 Menú de perfil -->

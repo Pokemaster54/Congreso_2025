@@ -64,23 +64,42 @@ namespace Congreso_2025
 
                 if (string.IsNullOrEmpty(idAlumno))
                 {
-                    // Nuevo alumno
-                    var nuevo = new DataBase.Alumno
+                    // === Crear nuevo usuario automáticamente ===
+                    int totalUsuarios = db.Usuario.Count();
+                    string nuevoIdUsuario = "U" + (totalUsuarios + 1).ToString("0000");
+
+                    var usuario = new DataBase.Usuario
                     {
-                        id_alumno = "AL" + (db.Alumno.Count() + 1).ToString("000"),
+                        id_usuario = nuevoIdUsuario,
+                        nombre_usuario = txtCarne.Text.Trim(), // el carné será su usuario
+                        password = "123",                      // puedes luego permitir cambio
+                        id_tipo_usuario = "TU0002"             // tipo alumno
+                    };
+
+                    db.Usuario.InsertOnSubmit(usuario);
+                    db.SubmitChanges(); // Guardamos para que el FK sea válido
+
+                    // === Crear alumno asociado al nuevo usuario ===
+                    int totalAlumnos = db.Alumno.Count();
+                    string nuevoIdAlumno = "AL" + (totalAlumnos + 1).ToString("000");
+
+                    var nuevoAlumno = new DataBase.Alumno
+                    {
+                        id_alumno = nuevoIdAlumno,
                         carne = txtCarne.Text.Trim(),
                         nombres_alumno = txtNombre.Text.Trim(),
                         apellidos_alumno = txtApellido.Text.Trim(),
                         id_carrera = ddlCarrera.SelectedValue,
                         id_estado = ddlEstado.SelectedValue,
-                        id_usuario = "U0000", // placeholder
-                        id_pago = "P0000"
+                        id_usuario = nuevoIdUsuario,
+                        id_pago = "PG0001" // puedes generar un pago real luego
                     };
-                    db.Alumno.InsertOnSubmit(nuevo);
+
+                    db.Alumno.InsertOnSubmit(nuevoAlumno);
                 }
                 else
                 {
-                    // Editar alumno existente
+                    // === Editar alumno existente ===
                     var alumno = db.Alumno.FirstOrDefault(x => x.id_alumno == idAlumno);
                     if (alumno != null)
                     {

@@ -60,22 +60,13 @@ namespace Congreso_2025
         protected global::System.Web.UI.WebControls.Label lblAlumnoNombre;
 
         /// <summary>
-        /// Control LoginName1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginName LoginName1;
-
-        /// <summary>
         /// Control btnLogout.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
+        protected global::System.Web.UI.WebControls.Button btnLogout;
 
         /// <summary>
         /// Control MainContent.

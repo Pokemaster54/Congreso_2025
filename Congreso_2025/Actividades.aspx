@@ -11,6 +11,7 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,.04);
         }
+
         .card-actividad {
             border: 1px solid rgba(0,0,0,.08);
             border-radius: 12px;
@@ -19,10 +20,12 @@
             padding: 18px;
             transition: all .2s ease;
         }
-        .card-actividad:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 24px rgba(0,0,0,.08);
-        }
+
+            .card-actividad:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 24px rgba(0,0,0,.08);
+            }
+
         .badge-carrera {
             background: rgba(0,43,91,.1);
             color: #002b5b;
@@ -63,8 +66,9 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card-actividad h-100">
                             <h5 class="fw-bold"><%# Eval("Nombre_actividad") %></h5>
-                            <p class="text-muted mb-1"><i class="fa-regular fa-clock me-1"></i> <%# Eval("Horario") %></p>
-                            <p><strong>Ponente:</strong> 
+                            <p class="text-muted mb-1"><i class="fa-regular fa-clock me-1"></i><%# Eval("Horario") %></p>
+                            <p>
+                                <strong>Ponente:</strong>
                                 <a href='<%# Eval("id_ponente", "PonentePerfil.aspx?id={0}") %>' class="text-decoration-none text-primary">
                                     <%# Eval("nombre_ponente") %>
                                 </a>
@@ -96,10 +100,24 @@
                     <asp:LinkButton ID="btnCerrarModal" runat="server" CssClass="btn-close btn-close-white" OnClick="btnCerrarModal_Click" />
                 </div>
                 <div class="modal-body">
+                    <asp:Button ID="btnExportarPDF" runat="server"
+                        CssClass="btn btn-danger mb-3"
+                        Text="Exportar a PDF"
+                        OnClick="btnExportarPDF_Click"
+                        UseSubmitBehavior="false"
+                        CausesValidation="false" />
+
+
                     <asp:Repeater ID="rptInscritos" runat="server">
                         <HeaderTemplate>
                             <table class="table table-bordered table-striped mb-0">
-                                <thead><tr><th>Carné</th><th>Nombre</th><th>Carrera</th></tr></thead>
+                                <thead>
+                                    <tr>
+                                        <th>Carné</th>
+                                        <th>Nombre</th>
+                                        <th>Carrera</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                         </HeaderTemplate>
                         <ItemTemplate>
@@ -110,11 +128,12 @@
                             </tr>
                         </ItemTemplate>
                         <FooterTemplate>
-                                </tbody></table>
+                            </tbody></table>
                         </FooterTemplate>
                     </asp:Repeater>
                 </div>
             </div>
         </div>
+        
     </asp:Panel>
 </asp:Content>

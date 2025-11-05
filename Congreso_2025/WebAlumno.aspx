@@ -15,12 +15,17 @@
             top: 0;
             z-index: 1;
         }
+
         @media (max-width: 575.98px) {
             .table-stack tbody, .table-stack tr, .table-stack td, .table-stack thead {
                 display: block;
                 width: 100%;
             }
-            .table-stack thead { display: none; }
+
+            .table-stack thead {
+                display: none;
+            }
+
             .table-stack tr {
                 border: 1px solid rgba(0,0,0,.125);
                 border-radius: .5rem;
@@ -28,21 +33,27 @@
                 background: #fff;
                 overflow: hidden;
             }
+
             .table-stack td {
                 display: flex;
                 padding: .5rem .75rem;
                 border: none !important;
                 border-bottom: 1px solid rgba(0,0,0,.075) !important;
             }
-            .table-stack td:last-child { border-bottom: none !important; }
-            .table-stack td::before {
-                content: attr(data-label);
-                flex: 0 0 42%;
-                max-width: 42%;
-                font-weight: 600;
-                color: #374151;
-                padding-right: .5rem;
-            }
+
+                .table-stack td:last-child {
+                    border-bottom: none !important;
+                }
+
+                .table-stack td::before {
+                    content: attr(data-label);
+                    flex: 0 0 42%;
+                    max-width: 42%;
+                    font-weight: 600;
+                    color: #374151;
+                    padding-right: .5rem;
+                }
+
             .actions-col {
                 justify-content: flex-start !important;
             }
@@ -58,7 +69,9 @@
     <asp:HiddenField ID="hfAlumnoId" runat="server" />
 
     <div class="container-fluid px-0 px-sm-2">
-        <h2 class="mb-4">Panel Alumno</h2>
+        <h2 class="mb-4">Bienvenido, 
+    <asp:Label ID="lblNombreAlumno" runat="server" Text="Alumno"></asp:Label>
+        </h2>
 
         <!-- Formulario -->
         <div class="card mb-4 shadow-sm">
@@ -110,7 +123,7 @@
                                 <th>Nombre completo</th>
                                 <th>Carrera</th>
                                 <th>Estado</th>
-                                <th style="width:160px">Acciones</th>
+                                <th style="width: 160px">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>

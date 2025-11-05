@@ -156,7 +156,7 @@
                 <div class="text-center mt-3">
                     <asp:HyperLink ID="lnkOlvido" runat="server"
                         NavigateUrl="ResetPassword.aspx"
-                        Text="¿Olvidaste tu contraseña?"
+                        Text=""
                         CssClass="link-secondary" />
                 </div>
             </div>
@@ -167,7 +167,6 @@
         </div>
     </form>
 
-    <!-- 🌊 ONDA SENOIDAL ANIMADA REAL -->
     <div class="wave-container">
         <canvas id="waveCanvas"></canvas>
     </div>
@@ -175,7 +174,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // ==== ONDA SENOIDAL REAL ====
         const canvas = document.getElementById("waveCanvas");
         const ctx = canvas.getContext("2d");
 
@@ -190,9 +188,9 @@
         function drawWave() {
             ctx.clearRect(0, 0, width, height);
 
-            const amplitude = 25;     // altura de la onda
-            const wavelength = 250;   // longitud de onda
-            const speed = 0.015;      // velocidad
+            const amplitude = 25;     
+            const wavelength = 250;   
+            const speed = 0.015;      
             const baseline = height / 2;
 
             ctx.beginPath();

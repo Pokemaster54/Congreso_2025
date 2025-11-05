@@ -14,148 +14,181 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
     <style>
-        body {
-            min-height: 100vh;
+        :root {
+            --azul-udeo: #1c225a;
+            --burdeos: #7a0c0c;
+            --amarillo: #ffc107;
+            --gris-claro: #f8f9fa;
+            --gris-oscuro: #2f3136;
         }
 
+        body {
+            min-height: 100vh;
+            background-color: var(--gris-claro);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* ===== SIDEBAR ===== */
         .sidebar {
             width: 260px;
             min-height: 100vh;
-            background: #fff;
+            background: var(--azul-udeo);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, .25);
+        }
+
+        .sidebar .brand {
+            padding: 1.2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: var(--burdeos);
+            color: white;
+            text-align: center;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
         }
 
         .nav-link {
             display: flex;
             align-items: center;
-            gap: .5rem;
-            color: #343a40;
-            padding: .5rem .75rem;
+            gap: .6rem;
+            color: #e5e7eb;
+            padding: .6rem 1rem;
             border-radius: .5rem;
+            margin: 0.1rem 0.5rem;
+            transition: all .2s ease;
+            font-weight: 500;
         }
 
-            .nav-link:hover, .nav-link.active {
-                background: #f1f3f5;
-                color: #000;
-            }
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--amarillo);
+        }
+
+        .nav-link.active {
+            background: var(--burdeos);
+            color: white;
+            font-weight: 600;
+        }
 
         .section-label {
             font-size: .75rem;
             text-transform: uppercase;
-            color: #6c757d;
-            padding: .5rem .75rem;
+            color: #9ca3af;
+            padding: .75rem 1.25rem .25rem;
+            letter-spacing: 0.5px;
         }
 
+        .logout {
+            background: rgba(255,255,255,0.05);
+            text-align: center;
+            padding: .8rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logout button {
+            background: var(--burdeos);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            padding: .5rem 1.2rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .logout button:hover {
+            background: #a31212;
+        }
+
+        /* ===== HEADER ===== */
         header.sticky-top {
-            z-index: 1020;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
+        header h1 {
+            color: var(--azul-udeo);
+            font-weight: 700;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 767.98px) {
             .sidebar {
                 position: fixed;
                 z-index: 1040;
                 height: 100%;
-                border-right: 1px solid rgba(0,0,0,.1);
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
-
+            .sidebar.show {
+                transform: translateX(0);
+            }
             main {
                 width: 100%;
             }
         }
     </style>
 
-    <!-- Head específico de cada página -->
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
-<body class="bg-light">
+
+<body>
     <form id="form1" runat="server">
         <div class="d-flex">
 
-            <!-- Lateral -->
-            <nav class="sidebar border-end">
-                <div class="p-3 border-bottom d-flex align-items-center justify-content-between">
-                    <span class="fw-bold">Panel Admin</span>
-                    <button class="btn btn-sm btn-outline-secondary d-md-none" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#menuCollapse"
-                        aria-controls="menuCollapse" aria-expanded="false">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
+            <!-- ===== SIDEBAR ===== -->
+            <nav id="sidebarMenu" class="sidebar">
+                <div>
+                    <div class="brand">
+                        <i class="fa-solid fa-building-columns me-2"></i>Congreso 2025
+                    </div>
 
-                <div id="menuCollapse" class="collapse d-md-block">
                     <a id="lnkInicio" runat="server" href="~/WebLanding.aspx" class="nav-link">
                         <i class="fa-solid fa-house"></i>Inicio
                     </a>
 
                     <div class="section-label mt-3">Personas y Accesos</div>
                     <ul class="list-unstyled px-2">
-                        <li>
-                            <a id="lnkPonente" runat="server" href="~/WebPonente.aspx" class="nav-link">
-                                <i class="fa-solid fa-chalkboard-user"></i>Ponente
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkUsuario" runat="server" href="~/WebUsuario.aspx" class="nav-link">
-                                <i class="fa-solid fa-user"></i>Usuario
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkTipoUsuario" runat="server" href="~/WebTipoUsuario.aspx" class="nav-link">
-                                <i class="fa-solid fa-users-gear"></i>Tipo_usuario
-                            </a>
-                        </li>
-                        <li>
-                            <a id="A1" runat="server" href="~/WebAlumno.aspx" class="nav-link">
-                                <i class="fa-solid fa-users-gear"></i>Alumnos
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkEstadoAlumno" runat="server" href="~/WebEstadoAlumno.aspx" class="nav-link">
-                                <i class="fa-solid fa-user-check"></i>Estado_alumno
-                            </a>
-                        </li>
+                        <li><a id="lnkPonente" runat="server" href="~/WebPonente.aspx" class="nav-link"><i class="fa-solid fa-chalkboard-user"></i>Ponente</a></li>
+                        <li><a id="lnkUsuario" runat="server" href="~/WebUsuario.aspx" class="nav-link"><i class="fa-solid fa-user"></i>Usuario</a></li>
+                        <li><a id="lnkTipoUsuario" runat="server" href="~/WebTipoUsuario.aspx" class="nav-link"><i class="fa-solid fa-users-gear"></i>Tipo Usuario</a></li>
+                        <li><a id="A1" runat="server" href="~/WebAlumno.aspx" class="nav-link"><i class="fa-solid fa-users"></i>Alumnos</a></li>
+                        <li><a id="lnkEstadoAlumno" runat="server" href="~/WebEstadoAlumno.aspx" class="nav-link"><i class="fa-solid fa-user-check"></i>Estado Alumno</a></li>
                     </ul>
 
                     <div class="section-label mt-3">Actividades</div>
                     <ul class="list-unstyled px-2">
-                        <li>
-                            <a id="lnkActividad" runat="server" href="~/WebActividad.aspx" class="nav-link">
-                                <i class="fa-solid fa-calendar-check"></i>Actividad
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkTipoActividad" runat="server" href="~/WebTipoActividad.aspx" class="nav-link">
-                                <i class="fa-solid fa-list-check"></i>Tipo_actividad
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkEstadoActividad" runat="server" href="~/WebEstadoActividad.aspx" class="nav-link">
-                                <i class="fa-solid fa-traffic-light"></i>Estado_actividad
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkUbicacion" runat="server" href="~/WebUbicacion.aspx" class="nav-link">
-                                <i class="fa-solid fa-location-dot"></i>Ubicación
-                            </a>
-                        </li>
+                        <li><a id="lnkActividad" runat="server" href="~/WebActividad.aspx" class="nav-link"><i class="fa-solid fa-calendar-check"></i>Actividad</a></li>
+                        <li><a id="lnkTipoActividad" runat="server" href="~/WebTipoActividad.aspx" class="nav-link"><i class="fa-solid fa-list-check"></i>Tipo Actividad</a></li>
+                        <li><a id="lnkEstadoActividad" runat="server" href="~/WebEstadoActividad.aspx" class="nav-link"><i class="fa-solid fa-traffic-light"></i>Estado Actividad</a></li>
+                        <li><a id="lnkUbicacion" runat="server" href="~/WebUbicacion.aspx" class="nav-link"><i class="fa-solid fa-location-dot"></i>Ubicación</a></li>
                     </ul>
 
                     <div class="section-label mt-3">Catálogos</div>
                     <ul class="list-unstyled px-2 mb-4">
-                        <li>
-                            <a id="lnkCarrera" runat="server" href="~/WebCarrera.aspx" class="nav-link">
-                                <i class="fa-solid fa-graduation-cap"></i>Carrera
-                            </a>
-                        </li>
+                        <li><a id="lnkCarrera" runat="server" href="~/WebCarrera.aspx" class="nav-link"><i class="fa-solid fa-graduation-cap"></i>Carrera</a></li>
                     </ul>
+                </div>
+
+                <div class="logout">
+                    <asp:Button ID="btnLogout" runat="server" Text="Cerrar sesión" CssClass="btn-sm" OnClick="btnLogout_Click" />
                 </div>
             </nav>
 
-            <!-- Principal -->
+            <!-- ===== MAIN ===== -->
             <main class="flex-grow-1">
-                <header class="p-3 border-bottom bg-white d-flex align-items-center justify-content-between sticky-top">
+                <header class="p-3 d-flex align-items-center justify-content-between sticky-top">
                     <div class="d-flex align-items-center">
                         <button class="btn btn-outline-secondary d-md-none me-2" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#menuCollapse">
+                            onclick="document.getElementById('sidebarMenu').classList.toggle('show');">
                             <i class="fa-solid fa-bars"></i>
                         </button>
                         <h1 class="h5 m-0">
@@ -164,17 +197,13 @@
                     </div>
                 </header>
 
-                <section class="p-3">
+                <section class="p-4">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
                 </section>
             </main>
-
         </div>
 
-        <!-- Scripts base -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Scripts específicos de cada página -->
         <asp:ContentPlaceHolder ID="ScriptsContent" runat="server" />
     </form>
 </body>
